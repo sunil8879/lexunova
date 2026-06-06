@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Word Scramble - Wellspokn Vocabulary Game</title>
+  
+  <!-- Link to Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <!-- Link to Google Fonts for a Modern Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-blue: #0D6EFD;
+      --white: #FFFFFF;
+      --background-light: #f4f7f9;
+      --text-dark: #333745;
+      --border-color: #e0e7ef;
+      --correct-color: #2ecc71;
+      --wrong-color: #e74c3c;
+      --shadow-color: rgba(13, 110, 253, 0.2);
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, var(--white) 0%, #e9f2ff 100%);
+      animation: gradient-flow 15s ease infinite;
+      background-size: 200% 200%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    @keyframes gradient-flow {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .game-container {
+      width: 100%;
+      max-width: 600px;
+      background: var(--white);
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin: 0 0 30px 0;
+    }
+
+    .scrambled-word-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 30px;
+      min-height: 50px; /* Prevent layout shift */
+    }
+
+    .letter-tile {
+      background: var(--background-light);
+      color: var(--text-dark);
+      font-size: 2.5rem;
+      font-weight: 700;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      border-bottom: 4px solid var(--border-color);
+      text-transform: uppercase;
+      animation: pop-in 0.3s ease-out forwards;
+    }
+
+    @keyframes pop-in {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    input[type="text"] {
+      padding: 15px;
+      font-size: 1.2rem;
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+      text-align: center;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+
+    input[type="text"]:focus {
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 0 3px var(--shadow-color);
+      outline: none;
+    }
+
+    .controls-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .nav-button, .action-button {
+      padding: 12px 25px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      flex-grow: 1;
+    }
+
+    .nav-button {
+      background: none;
+      border: 2px solid var(--primary-blue);
+      color: var(--primary-blue);
+    }
+    .nav-button:hover {
+      background: var(--primary-blue);
+      color: var(--white);
+    }
+
+    .action-button {
+      background: var(--primary-blue);
+      color: var(--white);
+      border: none;
+    }
+    .action-button:hover {
+        opacity: 0.9;
+        box-shadow: 0 8px 20px var(--shadow-color);
+    }
+
+    .game-info {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border-color);
+    }
+
+    .result, .score {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    
+    .score { color: var(--primary-blue); }
+    .result.correct { color: var(--correct-color); }
+    .result.wrong { color: var(--wrong-color); }
+
+    .timer-container {
+      width: 100%;
+      height: 10px;
+      background-color: var(--border-color);
+      border-radius: 10px;
+      margin: 20px 0;
+      overflow: hidden;
+    }
+
+    #timer-bar {
+      height: 100%;
+      width: 100%;
+      background-color: var(--primary-blue);
+      border-radius: 10px;
+      transition: width 1s linear;
+    }
+  </style>
+</head>
+<body>
+  <div class="game-container">
+    <h1>Word Scramble</h1>
+    <div class="scrambled-word-container" id="scrambledWordContainer">
+      <!-- Letter tiles will be generated here -->
+    </div>
+    <input type="text" id="userGuess" placeholder="Enter your answer" onkeyup="event.keyCode === 13 && checkAnswer()" />
+
+    <div class="controls-container">
+      <button class="nav-button" onclick="prevWord()"><i class="fas fa-chevron-left"></i> Previous</button>
+      <button class="action-button" onclick="checkAnswer()">Submit</button>
+      <button class="nav-button" onclick="nextWord()">Next <i class="fas fa-chevron-right"></i></button>
+    </div>
+    
+    <div class="timer-container">
+        <div id="timer-bar"></div>
+    </div>
+
+    <div class="game-info">
+      <div class="result" id="result"></div>
+      <div class="score" id="score">Score: 0</div>
+    </div>
+  </div>
+
+  <script>
+    const wordList = [
+      "apple", "banana", "orange", "mango", "zebra", "planet", "school", "friend", "yellow", "purple", "number", "circle",
+      "tiger", "dance", "house", "light", "happy", "sadness", "hope", "scared", "cloud", "earth", "moon", "sunshine",
+      "game", "river", "train", "window", "laugh", "brush", "candle", "sugar", "mirror", "ocean", "bottle", "forest",
+      "castle", "guitar", "bubble", "garden", "pencil", "rocket", "doctor", "kitten", "puzzle", "wizard", "silver",
+      "spider", "camera", "ticket", "bridge", "monkey", "button", "remote", "cookie", "helmet", "rabbit", "wallet",
+      "hammer", "goggles", "butter", "magnet", "dragon", "shovel", "carpet", "wallet", "energy", "goblet", "ladder",
+      "planet", "quartz", "velvet", "nugget", "lantern", "rocket", "scroll", "violin", "castle", "sleeve", "parrot",
+      "jungle", "breeze", "memory", "flavor", "valley", "target", "wizard", "eraser", "glider", "grapes", "cactus",
+      "ball", "book", "lamp", "tree", "milk", "door", "fish", "game", "coat", "face", "chair", "dream", "earth", "flame", "grape", "horse"
+    ];
+
+    let currentIndex = 0;
+    let wordHistory = [];
+    let score = 0;
+    let timer;
+    let timerInterval;
+    const TIME_LIMIT = 30;
+
+    function scramble(word) {
+      let scrambled;
+      do {
+        scrambled = word.split('').sort(() => 0.5 - Math.random()).join('');
+      } while (scrambled === word && word.length > 1);
+      return scrambled;
+    }
+    
+    function displayScrambledWord(word) {
+        const container = document.getElementById('scrambledWordContainer');
+        container.innerHTML = '';
+        word.split('').forEach((letter, index) => {
+            const tile = document.createElement('div');
+            tile.className = 'letter-tile';
+            tile.textContent = letter;
+            tile.style.animationDelay = `${index * 50}ms`;
+            container.appendChild(tile);
+        });
+    }
+
+    function loadWord(index) {
+      if (!wordHistory[index]) {
+        const word = wordList[Math.floor(Math.random() * wordList.length)];
+        wordHistory[index] = {
+          correct: word,
+          scrambled: scramble(word)
+        };
+      }
+      
+      displayScrambledWord(wordHistory[index].scrambled);
+      document.getElementById("userGuess").value = "";
+      document.getElementById("result").textContent = "";
+      document.getElementById("result").className = "result";
+      startTimer();
+    }
+
+    function startTimer() {
+      clearTimeout(timer);
+      clearInterval(timerInterval);
+      
+      const timerBar = document.getElementById('timer-bar');
+      timerBar.style.transition = 'none';
+      timerBar.style.width = '100%';
+
+      // Use a short timeout to re-enable transition after reset
+      setTimeout(() => {
+        timerBar.style.transition = `width ${TIME_LIMIT}s linear`;
+        timerBar.style.width = '0%';
+      }, 100);
+
+      timer = setTimeout(() => {
+        clearInterval(timerInterval);
+        const resultEl = document.getElementById("result");
+        resultEl.textContent = `Time's up! The word was "${wordHistory[currentIndex].correct}".`;
+        resultEl.className = "result wrong";
+      }, TIME_LIMIT * 1000);
+    }
+
+    function checkAnswer() {
+      const guess = document.getElementById("userGuess").value.trim().toLowerCase();
+      if (!guess || !wordHistory[currentIndex]) return;
+      
+      const correct = wordHistory[currentIndex].correct;
+      const resultEl = document.getElementById("result");
+
+      if (guess === correct) {
+        resultEl.textContent = "Correct!";
+        resultEl.className = "result correct";
+        if (!wordHistory[currentIndex].answered) {
+          score++;
+          document.getElementById("score").textContent = "Score: " + score;
+          wordHistory[currentIndex].answered = true;
+        }
+      } else {
+        resultEl.textContent = `Incorrect. The word was "${correct}".`;
+        resultEl.className = "result wrong";
+      }
+      
+      clearTimeout(timer);
+      clearInterval(timerInterval);
+      document.getElementById('timer-bar').style.transition = 'none';
+    }
+
+    function nextWord() {
+      currentIndex++;
+      loadWord(currentIndex);
+    }
+
+    function prevWord() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        loadWord(currentIndex);
+      }
+    }
+    
+    // Initial setup
+    document.addEventListener('DOMContentLoaded', () => {
+        displayScrambledWord('START');
+        document.getElementById('userGuess').placeholder = 'Click Next or Previous';
+    });
+  </script>
+</body>
+</html>

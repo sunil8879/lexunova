@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammar Concepts - Wellspokn Studio</title>
+    
+    <!-- Link to Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    
+    <!-- Link to Google Fonts for a Modern Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --parrot-green: #39FF14; /* A vibrant parrot green */
+            --dark-green: #2CBF0F;
+            --white: #FFFFFF;
+            --text-dark: #2c3e50;
+            --bg-light: #f4fef3; /* A very light green tint */
+            --border-color: #e8f5e9;
+            --shadow-color: rgba(57, 255, 20, 0.2);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--white) 0%, var(--bg-light) 100%);
+            animation: gradient-flow 15s ease infinite;
+            background-size: 200% 200%;
+            margin: 0;
+            padding: 40px 20px;
+            color: var(--text-dark);
+        }
+        
+        @keyframes gradient-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--parrot-green);
+            border-radius: 2px;
+        }
+        
+        /* Modern grid layout for the concept cards */
+        .concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        /* The new stylish card-style links */
+        .concept-card {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 25px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        /* Interactive hover effect */
+        .concept-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px var(--shadow-color);
+            border-color: var(--parrot-green);
+        }
+        
+        .concept-card .icon {
+            font-size: 1.8rem;
+            color: var(--parrot-green);
+            width: 40px; /* Ensures consistent alignment */
+            text-align: center;
+        }
+        
+        .back-link {
+            display: inline-block;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark-green);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .back-link:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <h1>Grammar Concepts</h1>
+
+        <div class="concepts-grid">
+            <a href="active_passive.html" class="concept-card"><i class="fas fa-retweet icon"></i><span>Active & Passive Voice</span></a>
+            <a href="adjectives1.html" class="concept-card"><i class="fas fa-magic icon"></i><span>Adjectives</span></a>
+            <a href="adverbs.html" class="concept-card"><i class="fas fa-tachometer-alt icon"></i><span>Adverbs</span></a>
+            <a href="articles.html" class="concept-card"><i class="fas fa-font icon"></i><span>Articles</span></a>
+            <a href="clauses.html" class="concept-card"><i class="fas fa-stream icon"></i><span>Clauses</span></a>
+            <a href="conj.html" class="concept-card"><i class="fas fa-link icon"></i><span>Conjunctions</span></a>
+            <a href="corr.html" class="concept-card"><i class="fas fa-check-circle icon"></i><span>Grammar Corrections</span></a>
+            <a href="direct.html" class="concept-card"><i class="fas fa-comments icon"></i><span>Direct & Indirect Speech</span></a>
+            <a href="hindi.html" class="concept-card"><i class="fas fa-language icon"></i><span>Hindi to English</span></a>
+            <a href="interj.html" class="concept-card"><i class="fas fa-exclamation-circle icon"></i><span>Interjections</span></a>
+            <a href="jumbled.html" class="concept-card"><i class="fas fa-random icon"></i><span>Jumbled Sentences</span></a>
+            <a href="modals.html" class="concept-card"><i class="fas fa-question-circle icon"></i><span>Modals</span></a>
+            <a href="nouns.html" class="concept-card"><i class="fas fa-book-open icon"></i><span>Nouns</span></a>
+            <a href="past-mod.html" class="concept-card"><i class="fas fa-history icon"></i><span>Past Modals</span></a>
+            <a href="phrases.html" class="concept-card"><i class="fas fa-quote-right icon"></i><span>Phrases</span></a>
+            <a href="prep.html" class="concept-card"><i class="fas fa-map-marker-alt icon"></i><span>Prepositions</span></a>
+            <a href="pronoun.html" class="concept-card"><i class="fas fa-user-friends icon"></i><span>Pronouns</span></a>
+            <a href="sen-typ.html" class="concept-card"><i class="fas fa-align-left icon"></i><span>Sentence Types</span></a>
+            <a href="subject-verb1.html" class="concept-card"><i class="fas fa-check-double icon"></i><span>Subject-Verb Agreement</span></a>
+            <a href="sub-pred.html" class="concept-card"><i class="fas fa-sitemap icon"></i><span>Subject & Predicate</span></a>
+            <a href="tenses-conditionals1.html" class="concept-card"><i class="fas fa-clock icon"></i><span>Tenses & Conditionals</span></a>
+            <a href="verbs.html" class="concept-card"><i class="fas fa-running icon"></i><span>Verbs</span></a>
+        </div>
+
+        <a href="dashboardlast.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+    </div>
+
+</body>
+</html>

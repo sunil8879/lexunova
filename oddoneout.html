@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Odd One Out - Spoken English</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #f0f2f5 0%, #7fffd4 100%);
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    h1 { color: #1877F2; text-transform: uppercase; text-shadow: 2px 2px white; margin-bottom: 5px; }
+
+    .game-box {
+      background: white;
+      padding: 30px;
+      border-radius: 30px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 550px;
+      text-align: center;
+      position: relative;
+    }
+
+    .goto-section {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      background: #f0faff;
+      padding: 15px;
+      border-radius: 20px;
+      border: 2px solid #7fffd4;
+    }
+
+    select {
+      padding: 10px;
+      border-radius: 12px;
+      border: 2px solid #1877F2;
+      font-family: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .word-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .word-btn {
+      background: #ffffff;
+      border: 3px solid #1877F2;
+      color: #1877F2;
+      padding: 20px 10px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.1s;
+      box-shadow: 0 6px 0 #1877F2;
+      text-transform: capitalize;
+    }
+
+    .word-btn:hover { background: #f0faff; }
+    .word-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 #1877F2; }
+
+    .score-board {
+      margin-top: 30px;
+      font-weight: 800;
+      color: #333;
+      font-size: 1.1rem;
+    }
+
+    #message {
+      margin-top: 15px;
+      font-weight: 700;
+      height: 30px;
+      font-size: 1.2rem;
+    }
+
+    .explanation {
+      font-size: 0.95rem;
+      color: #444;
+      margin-top: 10px;
+      font-style: italic;
+      background: #e6fff9;
+      padding: 10px;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .start-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: white;
+      border-radius: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .btn-action {
+      background: #1877F2;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 15px;
+      border: none;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 5px 0 #0d5bb5;
+      text-transform: uppercase;
+    }
+
+    .btn-action:active { transform: translateY(4px); box-shadow: 0 1px 0 #0d5bb5; }
+  </style>
+</head>
+<body>
+
+  <h1>❌ Odd One Out</h1>
+  <p style="text-align:center">Select the word that does <b>NOT</b> fit the category.</p>
+
+  <div class="game-box">
+    <!-- Overlay -->
+    <div id="startOverlay" class="start-overlay">
+      <button class="btn-action" style="font-size:1.5rem" onclick="startGame()">START GAME</button>
+    </div>
+
+    <!-- GO TO Section -->
+    <div class="goto-section">
+      <select id="diffJump">
+        <option value="0">Simple (1-50)</option>
+        <option value="50">Hard (51-100)</option>
+        <option value="100">Harder (101-150)</option>
+        <option value="150">Hardest (151-200)</option>
+      </select>
+      <button class="btn-action" onclick="jumpTo()">GO TO</button>
+    </div>
+
+    <div id="message"></div>
+    <div class="explanation" id="explanation"></div>
+
+    <div class="word-grid" id="wordGrid"></div>
+
+    <div class="score-board">
+      Level: <span id="currentLevel">1</span> / 200
+    </div>
+  </div>
+
+  <script>
+    const gameData = [
+      // SIMPLE (1-50)
+      { words: ["Apple", "Banana", "Carrot", "Orange"], odd: 2, why: "Carrot is a vegetable, others are fruits." },
+      { words: ["Dog", "Cat", "Lion", "Rabbit"], odd: 2, why: "Lion is a wild animal, others are pets." },
+      { words: ["Red", "Blue", "Green", "Small"], odd: 3, why: "Small is a size, others are colors." },
+      { words: ["Walk", "Run", "Jump", "Sit"], odd: 3, why: "Sitting is stationary, others are movements." },
+      { words: ["Table", "Chair", "Cloud", "Sofa"], odd: 2, why: "Cloud is in the sky, others are furniture." },
+      { words: ["Monday", "Friday", "June", "Sunday"], odd: 2, why: "June is a month, others are days." },
+      { words: ["Milk", "Juice", "Water", "Pizza"], odd: 3, why: "Pizza is solid food, others are liquids." },
+      { words: ["Pen", "Pencil", "Eraser", "Hammer"], odd: 3, why: "Hammer is a tool, others are stationery." },
+      { words: ["Sun", "Moon", "Stars", "Car"], odd: 3, why: "Car is a vehicle, others are celestial bodies." },
+      { words: ["English", "French", "Spanish", "Math"], odd: 3, why: "Math is a subject, others are languages." },
+      { words: ["Hand", "Foot", "Ear", "Shirt"], odd: 3, why: "Shirt is clothing, others are body parts." },
+      { words: ["Winter", "Summer", "Autumn", "Snow"], odd: 3, why: "Snow is a form of water, others are seasons." },
+      { words: ["Doctor", "Nurse", "Pilot", "Patient"], odd: 3, why: "Patient is being treated, others are professionals." },
+      { words: ["One", "Two", "Ten", "Big"], odd: 3, why: "Big is an adjective, others are numbers." },
+      { words: ["Hat", "Cap", "Helmet", "Gloves"], odd: 3, why: "Gloves go on hands, others go on heads." },
+      { words: ["Car", "Bus", "Bicycle", "Plane"], odd: 3, why: "Plane flies, others stay on the ground." },
+      { words: ["Tea", "Coffee", "Soup", "Cake"], odd: 3, why: "Cake is solid, others are liquids (usually hot)." },
+      { words: ["Book", "Newspaper", "Letter", "Phone"], odd: 3, why: "Phone is digital, others are traditionally paper." },
+      { words: ["Happy", "Sad", "Angry", "Table"], odd: 3, why: "Table is an object, others are feelings." },
+      { words: ["Ocean", "Sea", "River", "Mountain"], odd: 3, why: "Mountain is land, others are bodies of water." },
+      { words: ["Mom", "Dad", "Teacher", "Brother"], odd: 2, why: "Teacher is a job, others are family members." },
+      { words: ["Cereal", "Toast", "Eggs", "Dinner"], odd: 3, why: "Dinner is a meal time, others are breakfast foods." },
+      { words: ["Kitchen", "Bedroom", "Garden", "Bathroom"], odd: 2, why: "Garden is outdoors, others are inside rooms." },
+      { words: ["Fish", "Whale", "Dolphin", "Bird"], odd: 3, why: "Bird lives in air, others live in water." },
+      { words: ["Gold", "Silver", "Iron", "Wood"], odd: 3, why: "Wood comes from plants, others are metals." },
+      { words: ["Boots", "Sandals", "Socks", "Sneakers"], odd: 2, why: "Socks are not footwear/shoes themselves." },
+      { words: ["Circle", "Square", "Triangle", "Point"], odd: 3, why: "Point is not a 2D shape." },
+      { words: ["Violin", "Guitar", "Piano", "Song"], odd: 3, why: "Song is a piece of music, others are instruments." },
+      { words: ["Ear", "Eye", "Nose", "Leg"], odd: 3, why: "Leg is part of the lower body, others are on the face." },
+      { words: ["Bread", "Butter", "Cheese", "Cream"], odd: 0, why: "Bread is a grain, others are dairy products." },
+      { words: ["Sing", "Dance", "Think", "Jump"], odd: 2, why: "Think is a mental action, others are physical." },
+      { words: ["January", "March", "Sunday", "May"], odd: 2, why: "Sunday is a day, others are months." },
+      { words: ["Radio", "TV", "Newspaper", "Wall"], odd: 3, why: "Wall is not a medium of communication." },
+      { words: ["Yellow", "Orange", "Pink", "Small"], odd: 3, why: "Small is a description of size." },
+      { words: ["Tree", "Flower", "Grass", "Rock"], odd: 3, why: "Rock is non-living, others are plants." },
+      { words: ["Bus", "Truck", "Van", "Ship"], odd: 3, why: "Ship travels on water." },
+      { words: ["Bee", "Ant", "Spider", "Worm"], odd: 3, why: "Worm has no legs, others do." },
+      { words: ["Cold", "Cool", "Freezing", "Dry"], odd: 3, why: "Dry refers to moisture, others to temperature." },
+      { words: ["Boy", "Girl", "Man", "Toy"], odd: 3, why: "Toy is an object." },
+      { words: ["Axe", "Saw", "Hammer", "Nail"], odd: 3, why: "Nail is a fastener, others are tools to use." },
+      { words: ["Ship", "Boat", "Canoe", "Car"], odd: 3, why: "Car is for road transport." },
+      { words: ["Hot", "Boiling", "Warm", "Rainy"], odd: 3, why: "Rainy is a weather condition." },
+      { words: ["Sweet", "Sour", "Salty", "Hot"], odd: 3, why: "Hot (spicy) is a sensation, others are basic tastes." },
+      { words: ["English", "History", "School", "Science"], odd: 2, why: "School is the building/place." },
+      { words: ["Tiger", "Lion", "Leopard", "Cow"], odd: 3, why: "Cow is a domestic herbivore." },
+      { words: ["Shirt", "Pants", "Dress", "Hanger"], odd: 3, why: "Hanger holds clothes." },
+      { words: ["Morning", "Evening", "Night", "Clock"], odd: 3, why: "Clock tells the time." },
+      { words: ["Rain", "Snow", "Hail", "Wind"], odd: 3, why: "Wind is moving air, others are precipitation." },
+      { words: ["Piano", "Drums", "Music", "Flute"], odd: 2, why: "Music is the sound produced by instruments." },
+      { words: ["Bed", "Pillow", "Blanket", "Kitchen"], odd: 3, why: "Kitchen is a room." },
+
+      // HARD (51-100)
+      { words: ["Quietly", "Slowly", "Quickly", "Beautiful"], odd: 3, why: "Beautiful is an adjective, others are adverbs." },
+      { words: ["Think", "Dream", "Understand", "Kick"], odd: 3, why: "Kick is a physical action, others are mental." },
+      { words: ["Expensive", "Costly", "Valuable", "Cheap"], odd: 3, why: "Cheap is the antonym of high-cost." },
+      { words: ["Giggle", "Scream", "Whisper", "Stare"], odd: 3, why: "Stare is a visual action, others are sounds." },
+      { words: ["Brave", "Courageous", "Fearless", "Timid"], odd: 3, why: "Timid means fearful." },
+      { words: ["Professor", "Teacher", "Coach", "Student"], odd: 3, why: "Student is the one being taught." },
+      { words: ["Purchase", "Acquire", "Obtain", "Sell"], odd: 3, why: "Sell means to give away for money." },
+      { words: ["Arrival", "Entrance", "Intro", "Departure"], odd: 3, why: "Departure is the act of leaving." },
+      { words: ["Enormous", "Gigantic", "Huge", "Slender"], odd: 3, why: "Slender refers to being thin." },
+      { words: ["Transparent", "Clear", "Lucid", "Opaque"], odd: 3, why: "Opaque means light cannot pass through." },
+      { words: ["Often", "Usually", "Frequently", "Seldom"], odd: 3, why: "Seldom means rarely." },
+      { words: ["Ancient", "Antique", "Old", "Modern"], odd: 3, why: "Modern means current/new." },
+      { words: ["Fragile", "Delicate", "Brittle", "Strong"], odd: 3, why: "Strong is the opposite of breakable." },
+      { words: ["Praise", "Compliment", "Admire", "Criticize"], odd: 3, why: "Criticize is negative." },
+      { words: ["Success", "Victory", "Gain", "Loss"], odd: 3, why: "Loss is negative outcome." },
+      { words: ["Forest", "Jungle", "Woods", "Beach"], odd: 3, why: "Beach is sandy/coastal." },
+      { words: ["Fluent", "Articulate", "Talkative", "Mute"], odd: 3, why: "Mute means unable to speak." },
+      { words: ["Create", "Build", "Construct", "Demolish"], odd: 3, why: "Demolish means to tear down." },
+      { words: ["Polite", "Civil", "Courteous", "Rude"], odd: 3, why: "Rude is the opposite of polite." },
+      { words: ["Maybe", "Perhaps", "Possibly", "Surely"], odd: 3, why: "Surely indicates certainty." },
+      { words: ["Gentle", "Tender", "Soft", "Harsh"], odd: 3, why: "Harsh is the opposite of soft/gentle." },
+      { words: ["Ache", "Pain", "Sore", "Cure"], odd: 3, why: "Cure is the solution to pain." },
+      { words: ["Vast", "Immense", "Broad", "Narrow"], odd: 3, why: "Narrow means not wide." },
+      { words: ["Wealthy", "Rich", "Prosperous", "Needy"], odd: 3, why: "Needy means being poor." },
+      { words: ["Accurate", "Precise", "Exact", "Vague"], odd: 3, why: "Vague means unclear/general." },
+      { words: ["Swift", "Rapid", "Hasty", "Gradual"], odd: 3, why: "Gradual means slow over time." },
+      { words: ["Joyful", "Cheerful", "Merry", "Grave"], odd: 3, why: "Grave means serious/solemn." },
+      { words: ["Buy", "Purchase", "Spend", "Earn"], odd: 3, why: "Earn is getting money, others are giving it." },
+      { words: ["Candid", "Honest", "Frank", "Sly"], odd: 3, why: "Sly means being secretive/dishonest." },
+      { words: ["Delicious", "Savory", "Tasty", "Bland"], odd: 3, why: "Bland means no flavor." },
+      { words: ["Always", "Constantly", "Forever", "Rarely"], odd: 3, why: "Rarely means not often." },
+      { words: ["Bright", "Radiant", "Shiny", "Dim"], odd: 3, why: "Dim means low light." },
+      { words: ["Agree", "Consent", "Accept", "Deny"], odd: 3, why: "Deny means to say no." },
+      { words: ["Humble", "Modest", "Meek", "Proud"], odd: 3, why: "Proud (arrogant) is the opposite of humble." },
+      { words: ["Stable", "Steady", "Fixed", "Shaky"], odd: 3, why: "Shaky means unstable." },
+      { words: ["Broad", "Wide", "Large", "Brief"], odd: 3, why: "Brief refers to time/length of words." },
+      { words: ["Simple", "Easy", "Plain", "Complex"], odd: 3, why: "Complex means difficult/intricate." },
+      { words: ["Empty", "Hollow", "Vacant", "Full"], odd: 3, why: "Full is the opposite." },
+      { words: ["Fix", "Repair", "Mend", "Break"], odd: 3, why: "Break is to damage." },
+      { words: ["Smart", "Clever", "Bright", "Dull"], odd: 3, why: "Dull means not smart/sharp." },
+      { words: ["Silent", "Quiet", "Still", "Noisy"], odd: 3, why: "Noisy involves sound." },
+      { words: ["Rough", "Coarse", "Rugged", "Smooth"], odd: 3, why: "Smooth is the opposite of rough." },
+      { words: ["Danger", "Risk", "Hazard", "Safety"], odd: 3, why: "Safety is the absence of danger." },
+      { words: ["Famous", "Noted", "Renowned", "Unknown"], odd: 3, why: "Unknown means nobody knows them." },
+      { words: ["Gather", "Collect", "Assemble", "Scatter"], odd: 3, why: "Scatter means to throw apart." },
+      { words: ["Real", "Actual", "True", "Fake"], odd: 3, why: "Fake is not real." },
+      { words: ["Help", "Assist", "Support", "Hinder"], odd: 3, why: "Hinder means to block/stop." },
+      { words: ["Start", "Begin", "Launch", "Cease"], odd: 3, why: "Cease means to stop." },
+      { words: ["Under", "Below", "Beneath", "Above"], odd: 3, why: "Above is the opposite direction." },
+      { words: ["Friend", "Ally", "Partner", "Enemy"], odd: 3, why: "Enemy is the opposite of a friend." },
+
+      // HARDER (101-150)
+      { words: ["Abundant", "Plentiful", "Ample", "Scarce"], odd: 3, why: "Scarce means very little." },
+      { words: ["Hostile", "Aggressive", "Antagonistic", "Amiable"], odd: 3, why: "Amiable means friendly." },
+      { words: ["Benevolent", "Kind", "Generous", "Malevolent"], odd: 3, why: "Malevolent means wishing evil." },
+      { words: ["Diligent", "Studious", "Hardworking", "Lethargic"], odd: 3, why: "Lethargic means lazy/slow." },
+      { words: ["Brief", "Concise", "Succinct", "Prolix"], odd: 3, why: "Prolix means wordy/long." },
+      { words: ["Ambiguous", "Unclear", "Obscure", "Lucid"], odd: 3, why: "Lucid means clear/easy to understand." },
+      { words: ["Durable", "Lasting", "Enduring", "Ephemeral"], odd: 3, why: "Ephemeral means short-lived." },
+      { words: ["Authentic", "Genuine", "Real", "Counterfeit"], odd: 3, why: "Counterfeit means fake." },
+      { words: ["Ponder", "Meditate", "Contemplate", "Ignore"], odd: 3, why: "Ignore is to pay no attention." },
+      { words: ["Alleviate", "Ease", "Soothe", "Aggravate"], odd: 3, why: "Aggravate means to make worse." },
+      { words: ["Eloquent", "Articulate", "Silver-tongued", "Incoherent"], odd: 3, why: "Incoherent means making no sense." },
+      { words: ["Optimistic", "Hopeful", "Positive", "Pessimistic"], odd: 3, why: "Pessimistic is negative." },
+      { words: ["Vigilant", "Alert", "Watchful", "Negligent"], odd: 3, why: "Negligent means careless." },
+      { words: ["Trivial", "Petty", "Insignificant", "Paramount"], odd: 3, why: "Paramount means supreme/most important." },
+      { words: ["Voluntary", "Optional", "Discretionary", "Mandatory"], odd: 3, why: "Mandatory means required." },
+      { words: ["Exuberant", "Joyful", "High-spirited", "Melancholy"], odd: 3, why: "Melancholy means deep sadness." },
+      { words: ["Candid", "Frank", "Direct", "Deceptive"], odd: 3, why: "Deceptive means misleading." },
+      { words: ["Vibrant", "Lively", "Vivid", "Drab"], odd: 3, why: "Drab means dull and boring." },
+      { words: ["Sincere", "Genuine", "Heartfelt", "Insincere"], odd: 3, why: "Insincere is fake." },
+      { words: ["Harmony", "Accord", "Unison", "Discord"], odd: 3, why: "Discord means disagreement." },
+      { words: ["Abstain", "Refrain", "Avoid", "Indulge"], odd: 3, why: "Indulge means to give in to desire." },
+      { words: ["Flexible", "Pliant", "Adaptable", "Rigid"], odd: 3, why: "Rigid means stiff/unbending." },
+      { words: ["Admire", "Respect", "Revere", "Despise"], odd: 3, why: "Despise means to hate." },
+      { words: ["Prosperity", "Affluence", "Wealth", "Poverty"], odd: 3, why: "Poverty means being poor." },
+      { words: ["Swift", "Brisk", "Rapid", "Sluggish"], odd: 3, why: "Sluggish means very slow." },
+      { words: ["Acclaim", "Applaud", "Praise", "Criticize"], odd: 3, why: "Criticize is negative." },
+      { words: ["Cunning", "Crafty", "Sly", "Naive"], odd: 3, why: "Naive means innocent/unknowing." },
+      { words: ["Defend", "Protect", "Guard", "Attack"], odd: 3, why: "Attack is the opposite of defend." },
+      { words: ["External", "Outer", "Exterior", "Internal"], odd: 3, why: "Internal is inside." },
+      { words: ["Famous", "Renowned", "Celebrated", "Obscure"], odd: 3, why: "Obscure means unknown." },
+      { words: ["Generous", "Magnanimous", "Charitable", "Stingy"], odd: 3, why: "Stingy means not wanting to give." },
+      { words: ["Harmless", "Benign", "Innocuous", "Toxic"], odd: 3, why: "Toxic means poisonous/deadly." },
+      { words: ["Ignite", "Kindle", "Light", "Extinguish"], odd: 3, why: "Extinguish means to put out a fire." },
+      { words: ["Jolly", "Jovial", "Cheerful", "Gloomy"], odd: 3, why: "Gloomy means dark and sad." },
+      { words: ["Knowledge", "Wisdom", "Insight", "Ignorance"], odd: 3, why: "Ignorance means lack of knowledge." },
+      { words: ["Loathe", "Abhor", "Detest", "Cherish"], odd: 3, why: "Cherish means to love/value." },
+      { words: ["Modern", "Contemporary", "Current", "Archaic"], odd: 3, why: "Archaic means extremely old." },
+      { words: ["Noble", "Exalted", "Grand", "Base"], odd: 3, why: "Base (in this context) means dishonorable." },
+      { words: ["Obey", "Comply", "Submit", "Defy"], odd: 3, why: "Defy means to refuse to obey." },
+      { words: ["Peaceful", "Placid", "Serene", "Boisterous"], odd: 3, why: "Boisterous means noisy and energetic." },
+      { words: ["Question", "Inquire", "Query", "Answer"], odd: 3, why: "Answer is the response to a question." },
+      { words: ["Rare", "Scarce", "Infrequent", "Common"], odd: 3, why: "Common means seen everywhere." },
+      { words: ["Savage", "Fierce", "Wild", "Tame"], odd: 3, why: "Tame means domestic/gentle." },
+      { words: ["Thrifty", "Frugal", "Economical", "Extravagant"], odd: 3, why: "Extravagant means spending too much." },
+      { words: ["Unity", "Alliance", "Union", "Division"], odd: 3, why: "Division is the opposite of unity." },
+      { words: ["Vanish", "Dissolve", "Fade", "Appear"], odd: 3, why: "Appear is to become visible." },
+      { words: ["Whole", "Entire", "Complete", "Partial"], odd: 3, why: "Partial means only a piece." },
+      { words: ["Yield", "Submit", "Surrender", "Resist"], odd: 3, why: "Resist means to fight back." },
+      { words: ["Zenith", "Peak", "Summit", "Nadir"], odd: 3, why: "Nadir means the lowest point." },
+      { words: ["Abridge", "Shorten", "Truncate", "Extend"], odd: 3, why: "Extend is to make longer." },
+
+      // HARDEST (151-200)
+      { words: ["Enigmatic", "Mysterious", "Cryptic", "Obvious"], odd: 3, why: "Obvious is clear, others are puzzling." },
+      { words: ["Ephemeral", "Transient", "Fleeting", "Perpetual"], odd: 3, why: "Perpetual means everlasting." },
+      { words: ["Loquacious", "Garrulous", "Voluble", "Taciturn"], odd: 3, why: "Taciturn means reserved/quiet." },
+      { words: ["Munificent", "Liberal", "Bounteous", "Parsimonious"], odd: 3, why: "Parsimonious means stingy." },
+      { words: ["Placid", "Tranquil", "Serene", "Turbulent"], odd: 3, why: "Turbulent is violent/unsteady." },
+      { words: ["Vacillate", "Waver", "Dither", "Resolute"], odd: 3, why: "Resolute means determined." },
+      { words: ["Innocuous", "Inoffensive", "Harmless", "Pernicious"], odd: 3, why: "Pernicious means very harmful." },
+      { words: ["Superfluous", "Redundant", "Excess", "Meager"], odd: 3, why: "Meager means lacking quantity." },
+      { words: ["Apathy", "Indifference", "Lassitude", "Zeal"], odd: 3, why: "Zeal means great enthusiasm." },
+      { words: ["Luminous", "Radiant", "Gleaming", "Tenebrous"], odd: 3, why: "Tenebrous means dark/gloomy." },
+      { words: ["Amicable", "Cordial", "Amiable", "Belligerent"], odd: 3, why: "Belligerent means warlike/aggressive." },
+      { words: ["Capricious", "Fickle", "Mercurial", "Steadfast"], odd: 3, why: "Steadfast means loyal/unchanging." },
+      { words: ["Pristine", "Immaculate", "Untarnished", "Sullied"], odd: 3, why: "Sullied means dirtied/damaged." },
+      { words: ["Veracious", "Trustworthy", "Honest", "Mendacious"], odd: 3, why: "Mendacious means lying." },
+      { words: ["Obsequious", "Fawning", "Servile", "Arrogant"], odd: 3, why: "Arrogant means feeling superior." },
+      { words: ["Avarice", "Cupidity", "Greed", "Altruism"], odd: 3, why: "Altruism is selflessness." },
+      { words: ["Taciturn", "Reticent", "Reserved", "Loquacious"], odd: 3, why: "Loquacious means very talkative." },
+      { words: ["Conspicuous", "Prominent", "Obvious", "Clandestine"], odd: 3, why: "Clandestine means secret." },
+      { words: ["Fastidious", "Meticulous", "Scrupulous", "Slovenly"], odd: 3, why: "Slovenly means messy/careless." },
+      { words: ["Pragmatic", "Practical", "Realistic", "Quixotic"], odd: 3, why: "Quixotic means impractical/idealistic." },
+      { words: ["Resilient", "Strong", "Tough", "Brittle"], odd: 3, why: "Brittle means easily shattered." },
+      { words: ["Abridge", "Curtail", "Truncate", "Elongate"], odd: 3, why: "Elongate is to make longer." },
+      { words: ["Mitigate", "Assuage", "Allay", "Exacerbate"], odd: 3, why: "Exacerbate is to make worse." },
+      { words: ["Insolent", "Impudent", "Rude", "Deferential"], odd: 3, why: "Deferential means respectful." },
+      { words: ["Abundant", "Copious", "Profuse", "Dearth"], odd: 3, why: "Dearth means a shortage." },
+      { words: ["Audacious", "Bold", "Daring", "Timid"], odd: 3, why: "Timid is showing lack of courage." },
+      { words: ["Candor", "Directness", "Honesty", "Duplicity"], odd: 3, why: "Duplicity is deceitfulness." },
+      { words: ["Ebullient", "Exuberant", "Joyful", "Stoic"], odd: 3, why: "Stoic is showing no emotion." },
+      { words: ["Facetious", "Joking", "Humorous", "Solemn"], odd: 3, why: "Solemn is formal and serious." },
+      { words: ["Gregarious", "Sociable", "Outgoing", "Reclusive"], odd: 3, why: "Reclusive is avoiding people." },
+      { words: ["Haughty", "Arrogant", "Vain", "Modest"], odd: 3, why: "Modest is being humble." },
+      { words: ["Impeccable", "Flawless", "Perfect", "Defective"], odd: 3, why: "Defective means having flaws." },
+      { words: ["Jubilant", "Elated", "Thrilled", "Despondent"], odd: 3, why: "Despondent means losing hope." },
+      { words: ["Knack", "Talent", "Skill", "Inability"], odd: 3, why: "Inability means lack of power/skill." },
+      { words: ["Languid", "Slow", "Lazy", "Energetic"], odd: 3, why: "Energetic is full of power." },
+      { words: ["Malevolent", "Spiteful", "Hostile", "Benevolent"], odd: 3, why: "Benevolent is kind/giving." },
+      { words: ["Nefarious", "Wicked", "Evil", "Virtuous"], odd: 3, why: "Virtuous is having high morals." },
+      { words: ["Opaque", "Cloudy", "Blurred", "Transparent"], odd: 3, why: "Transparent is clear." },
+      { words: ["Pensive", "Thoughtful", "Meditative", "Frivolous"], odd: 3, why: "Frivolous means silly/unserious." },
+      { words: ["Quash", "Suppress", "Crush", "Foment"], odd: 3, why: "Foment is to stir up (trouble)." },
+      { words: ["Robust", "Sturdy", "Strong", "Frail"], odd: 3, why: "Frail means weak/delicate." },
+      { words: ["Sanguine", "Optimistic", "Hopeful", "Morose"], odd: 3, why: "Morose means sullen and ill-tempered." },
+      { words: ["Tenacious", "Persistent", "Stubborn", "Irresolute"], odd: 3, why: "Irresolute means showing hesitation." },
+      { words: ["Ubiquitous", "Pervasive", "Common", "Rare"], odd: 3, why: "Rare is the opposite of ubiquitous." },
+      { words: ["Veneration", "Respect", "Reverence", "Disdain"], odd: 3, why: "Disdain is feeling of contempt." },
+      { words: ["Wary", "Cautious", "Watchful", "Rash"], odd: 3, why: "Rash means acting without thought." },
+      { words: ["Xenial", "Hospitable", "Welcoming", "Hostile"], odd: 3, why: "Hostile is unfriendly." },
+      { words: ["Yielding", "Submissive", "Pliant", "Adamant"], odd: 3, why: "Adamant means refusing to be persuaded." },
+      { words: ["Zealous", "Fervent", "Passionate", "Apathetic"], odd: 3, why: "Apathetic means showing no interest." },
+      { words: ["Benevolent", "Altruistic", "Philanthropic", "Misery"], odd: 3, why: "Misery is a state of suffering, others are personality traits." }
+    ];
+
+    let level = 0;
+    const wordGrid = document.getElementById('wordGrid');
+    const msg = document.getElementById('message');
+    const explanation = document.getElementById('explanation');
+    const levelText = document.getElementById('currentLevel');
+
+    function startGame() {
+      document.getElementById('startOverlay').style.display = 'none';
+      loadLevel();
+    }
+
+    function jumpTo() {
+      level = parseInt(document.getElementById('diffJump').value);
+      loadLevel();
+    }
+
+    function loadLevel() {
+      const data = gameData[level];
+      wordGrid.innerHTML = '';
+      msg.innerText = '';
+      explanation.innerText = '';
+      explanation.style.display = 'none';
+      levelText.innerText = level + 1;
+
+      data.words.forEach((w, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'word-btn';
+        btn.innerText = w;
+        btn.onclick = () => check(i);
+        wordGrid.appendChild(btn);
+      });
+    }
+
+    function check(index) {
+      const data = gameData[level];
+      if (index === data.odd) {
+        msg.innerText = "✅ Correct!";
+        msg.style.color = "#2ed573";
+        explanation.innerText = data.why;
+        explanation.style.display = 'block';
+        
+        // Brief delay before next level
+        setTimeout(() => {
+          level++;
+          if (level < gameData.length) {
+            loadLevel();
+          } else {
+            msg.innerText = "🏆 Final Level Completed!";
+            wordGrid.innerHTML = '';
+          }
+        }, 3000);
+      } else {
+        msg.innerText = "❌ Try Again!";
+        msg.style.color = "#ff4757";
+        explanation.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>

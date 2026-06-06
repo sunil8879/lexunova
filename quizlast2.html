@@ -1,0 +1,4530 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Interactive Quiz</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .question { margin-bottom: 20px; padding: 10px; border-bottom: 1px solid #ccc; }
+    .answer { display: none; color: green; font-weight: bold; }
+    .show-answer { color: blue; cursor: pointer; text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+ 
+    
+<h2>Interactive Grammar Quiz</h2>
+<div class="question">
+  <p>501. Which is a complex sentence?</p>
+  <p>A) Because she likes oranges, he likes apples.</p>
+  <p>B) She likes oranges.</p>
+  <p>C) She likes oranges, and he likes apples.</p>
+  <p>D) She likes oranges if he likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans1')">Show Answer</p>
+  <p id="ans1" class="answer">Answer: A) Because she likes oranges, he likes apples.</p>
+</div>
+<div class="question">
+  <p>502. Which is a compound-complex sentence?</p>
+  <p>A) She likes oranges, and he likes apples because they are sweet.</p>
+  <p>B) She likes oranges.</p>
+  <p>C) She likes oranges, and he likes apples.</p>
+  <p>D) Because she likes oranges, he likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans2')">Show Answer</p>
+  <p id="ans2" class="answer">Answer: A) She likes oranges, and he likes apples because they are sweet.</p>
+</div>
+<div class="question">
+  <p>503. Which is a declarative sentence?</p>
+  <p>A) The grass is green.</p>
+  <p>B) Is the grass green?</p>
+  <p>C) What green grass!</p>
+  <p>D) Please look at the grass.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans3')">Show Answer</p>
+  <p id="ans3" class="answer">Answer: A) The grass is green.</p>
+</div>
+<div class="question">
+  <p>504. Which is an interrogative sentence?</p>
+  <p>A) Is the grass green?</p>
+  <p>B) The grass is green.</p>
+  <p>C) What green grass!</p>
+  <p>D) Please look at the grass.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans4')">Show Answer</p>
+  <p id="ans4" class="answer">Answer: A) Is the grass green?</p>
+</div>
+<div class="question">
+  <p>505. Which is an imperative sentence?</p>
+  <p>A) Please look at the grass.</p>
+  <p>B) The grass is green.</p>
+  <p>C) Is the grass green?</p>
+  <p>D) What green grass!</p>
+  <p class="show-answer" onclick="toggleAnswer('ans5')">Show Answer</p>
+  <p id="ans5" class="answer">Answer: A) Please look at the grass.</p>
+</div>
+<div class="question">
+  <p>506. Which is an exclamatory sentence?</p>
+  <p>A) What green grass!</p>
+  <p>B) The grass is green.</p>
+  <p>C) Is the grass green?</p>
+  <p>D) Please look at the grass.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans6')">Show Answer</p>
+  <p id="ans6" class="answer">Answer: A) What green grass!</p>
+</div>
+<div class="question">
+  <p>507. Which is a definite article?</p>
+  <p>A) the</p>
+  <p>B) a</p>
+  <p>C) an</p>
+  <p>D) some</p>
+  <p class="show-answer" onclick="toggleAnswer('ans7')">Show Answer</p>
+  <p id="ans7" class="answer">Answer: A) the</p>
+</div>
+<div class="question">
+  <p>508. Which is an indefinite article?</p>
+  <p>A) a</p>
+  <p>B) the</p>
+  <p>C) some</p>
+  <p>D) this</p>
+  <p class="show-answer" onclick="toggleAnswer('ans8')">Show Answer</p>
+  <p id="ans8" class="answer">Answer: A) a</p>
+</div>
+<div class="question">
+  <p>509. Which is a demonstrative pronoun?</p>
+  <p>A) these</p>
+  <p>B) they</p>
+  <p>C) their</p>
+  <p>D) them</p>
+  <p class="show-answer" onclick="toggleAnswer('ans9')">Show Answer</p>
+  <p id="ans9" class="answer">Answer: A) these</p>
+</div>
+<div class="question">
+  <p>510. Which is a possessive adjective?</p>
+  <p>A) her</p>
+  <p>B) she</p>
+  <p>C) hers</p>
+  <p>D) herself</p>
+  <p class="show-answer" onclick="toggleAnswer('ans10')">Show Answer</p>
+  <p id="ans10" class="answer">Answer: A) her</p>
+</div>
+<div class="question">
+  <p>511. Which is a possessive pronoun?</p>
+  <p>A) hers</p>
+  <p>B) her</p>
+  <p>C) she</p>
+  <p>D) herself</p>
+  <p class="show-answer" onclick="toggleAnswer('ans11')">Show Answer</p>
+  <p id="ans11" class="answer">Answer: A) hers</p>
+</div>
+<div class="question">
+  <p>512. Which is a reflexive pronoun?</p>
+  <p>A) yourself</p>
+  <p>B) you</p>
+  <p>C) your</p>
+  <p>D) yours</p>
+  <p class="show-answer" onclick="toggleAnswer('ans12')">Show Answer</p>
+  <p id="ans12" class="answer">Answer: A) yourself</p>
+</div>
+<div class="question">
+  <p>513. Which is a subject pronoun?</p>
+  <p>A) we</p>
+  <p>B) us</p>
+  <p>C) our</p>
+  <p>D) ours</p>
+  <p class="show-answer" onclick="toggleAnswer('ans13')">Show Answer</p>
+  <p id="ans13" class="answer">Answer: A) we</p>
+</div>
+<div class="question">
+  <p>514. Which is an object pronoun?</p>
+  <p>A) them</p>
+  <p>B) they</p>
+  <p>C) their</p>
+  <p>D) theirs</p>
+  <p class="show-answer" onclick="toggleAnswer('ans14')">Show Answer</p>
+  <p id="ans14" class="answer">Answer: A) them</p>
+</div>
+<div class="question">
+  <p>515. Which is a relative pronoun?</p>
+  <p>A) that</p>
+  <p>B) she</p>
+  <p>C) he</p>
+  <p>D) it</p>
+  <p class="show-answer" onclick="toggleAnswer('ans15')">Show Answer</p>
+  <p id="ans15" class="answer">Answer: A) that</p>
+</div>
+<div class="question">
+  <p>516. Which is an interrogative pronoun?</p>
+  <p>A) whom</p>
+  <p>B) his</p>
+  <p>C) her</p>
+  <p>D) their</p>
+  <p class="show-answer" onclick="toggleAnswer('ans16')">Show Answer</p>
+  <p id="ans16" class="answer">Answer: A) whom</p>
+</div>
+<div class="question">
+  <p>517. Which is a linking verb?</p>
+  <p>A) appear</p>
+  <p>B) run</p>
+  <p>C) eat</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans17')">Show Answer</p>
+  <p id="ans17" class="answer">Answer: A) appear</p>
+</div>
+<div class="question">
+  <p>518. Which is an auxiliary verb?</p>
+  <p>A) be</p>
+  <p>B) run</p>
+  <p>C) eat</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans18')">Show Answer</p>
+  <p id="ans18" class="answer">Answer: A) be</p>
+</div>
+<div class="question">
+  <p>519. Which is a modal verb?</p>
+  <p>A) must</p>
+  <p>B) running</p>
+  <p>C) quickly</p>
+  <p>D) book</p>
+  <p class="show-answer" onclick="toggleAnswer('ans19')">Show Answer</p>
+  <p id="ans19" class="answer">Answer: A) must</p>
+</div>
+<div class="question">
+  <p>520. Which is a past modal?</p>
+  <p>A) must have</p>
+  <p>B) must</p>
+  <p>C) will</p>
+  <p>D) can</p>
+  <p class="show-answer" onclick="toggleAnswer('ans20')">Show Answer</p>
+  <p id="ans20" class="answer">Answer: A) must have</p>
+</div>
+<div class="question">
+  <p>521. Which is a regular verb?</p>
+  <p>A) talk</p>
+  <p>B) go</p>
+  <p>C) eat</p>
+  <p>D) see</p>
+  <p class="show-answer" onclick="toggleAnswer('ans21')">Show Answer</p>
+  <p id="ans21" class="answer">Answer: A) talk</p>
+</div>
+<div class="question">
+  <p>522. Which is an irregular verb?</p>
+  <p>A) eat</p>
+  <p>B) talk</p>
+  <p>C) walk</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans22')">Show Answer</p>
+  <p id="ans22" class="answer">Answer: A) eat</p>
+</div>
+<div class="question">
+  <p>523. Which is a gerund?</p>
+  <p>A) singing</p>
+  <p>B) sing</p>
+  <p>C) sings</p>
+  <p>D) to sing</p>
+  <p class="show-answer" onclick="toggleAnswer('ans23')">Show Answer</p>
+  <p id="ans23" class="answer">Answer: A) singing</p>
+</div>
+<div class="question">
+  <p>524. Which is an infinitive?</p>
+  <p>A) to sing</p>
+  <p>B) singing</p>
+  <p>C) sing</p>
+  <p>D) sings</p>
+  <p class="show-answer" onclick="toggleAnswer('ans24')">Show Answer</p>
+  <p id="ans24" class="answer">Answer: A) to sing</p>
+</div>
+<div class="question">
+  <p>525. Which is a past participle?</p>
+  <p>A) sung</p>
+  <p>B) sing</p>
+  <p>C) sings</p>
+  <p>D) singing</p>
+  <p class="show-answer" onclick="toggleAnswer('ans25')">Show Answer</p>
+  <p id="ans25" class="answer">Answer: A) sung</p>
+</div>
+<div class="question">
+  <p>526. Which is a present participle?</p>
+  <p>A) singing</p>
+  <p>B) sing</p>
+  <p>C) sings</p>
+  <p>D) sung</p>
+  <p class="show-answer" onclick="toggleAnswer('ans26')">Show Answer</p>
+  <p id="ans26" class="answer">Answer: A) singing</p>
+</div>
+<div class="question">
+  <p>527. Which is a noun phrase?</p>
+  <p>A) the old house</p>
+  <p>B) singing loudly</p>
+  <p>C) to sing well</p>
+  <p>D) sings loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans27')">Show Answer</p>
+  <p id="ans27" class="answer">Answer: A) the old house</p>
+</div>
+<div class="question">
+  <p>528. Which is a verb phrase?</p>
+  <p>A) has been singing</p>
+  <p>B) old house</p>
+  <p>C) under the table</p>
+  <p>D) loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans28')">Show Answer</p>
+  <p id="ans28" class="answer">Answer: A) has been singing</p>
+</div>
+<div class="question">
+  <p>529. Which is an adjective phrase?</p>
+  <p>A) full of joy</p>
+  <p>B) singing loudly</p>
+  <p>C) to sing well</p>
+  <p>D) sings loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans29')">Show Answer</p>
+  <p id="ans29" class="answer">Answer: A) full of joy</p>
+</div>
+<div class="question">
+  <p>530. Which is an adverb phrase?</p>
+  <p>A) very happily</p>
+  <p>B) the old house</p>
+  <p>C) under the table</p>
+  <p>D) to sing well</p>
+  <p class="show-answer" onclick="toggleAnswer('ans30')">Show Answer</p>
+  <p id="ans30" class="answer">Answer: A) very happily</p>
+</div>
+<div class="question">
+  <p>531. Which is a prepositional phrase?</p>
+  <p>A) by the river</p>
+  <p>B) singing loudly</p>
+  <p>C) to sing well</p>
+  <p>D) sings loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans31')">Show Answer</p>
+  <p id="ans31" class="answer">Answer: A) by the river</p>
+</div>
+<div class="question">
+  <p>532. Which is a clause?</p>
+  <p>A) since she was late</p>
+  <p>B) by the river</p>
+  <p>C) to sing well</p>
+  <p>D) singing loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans32')">Show Answer</p>
+  <p id="ans32" class="answer">Answer: A) since she was late</p>
+</div>
+<div class="question">
+  <p>533. Which is a main clause?</p>
+  <p>A) He went home</p>
+  <p>B) since he was tired</p>
+  <p>C) singing loudly</p>
+  <p>D) by the river</p>
+  <p class="show-answer" onclick="toggleAnswer('ans33')">Show Answer</p>
+  <p id="ans33" class="answer">Answer: A) He went home</p>
+</div>
+<div class="question">
+  <p>534. Which is a subordinate clause?</p>
+  <p>A) since she was late</p>
+  <p>B) She is happy</p>
+  <p>C) the old house</p>
+  <p>D) singing loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans34')">Show Answer</p>
+  <p id="ans34" class="answer">Answer: A) since she was late</p>
+</div>
+<div class="question">
+  <p>535. Which is a noun clause?</p>
+  <p>A) what she wrote</p>
+  <p>B) by the river</p>
+  <p>C) to sing well</p>
+  <p>D) singing loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans35')">Show Answer</p>
+  <p id="ans35" class="answer">Answer: A) what she wrote</p>
+</div>
+<div class="question">
+  <p>536. Which is an adjective clause?</p>
+  <p>A) who lives upstairs</p>
+  <p>B) by the river</p>
+  <p>C) to sing well</p>
+  <p>D) singing loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans36')">Show Answer</p>
+  <p id="ans36" class="answer">Answer: A) who lives upstairs</p>
+</div>
+<div class="question">
+  <p>537. Which is an adverb clause?</p>
+  <p>A) while the sun shines</p>
+  <p>B) the old house</p>
+  <p>C) under the table</p>
+  <p>D) to sing well</p>
+  <p class="show-answer" onclick="toggleAnswer('ans37')">Show Answer</p>
+  <p id="ans37" class="answer">Answer: A) while the sun shines</p>
+</div>
+<div class="question">
+  <p>538. Which is a simple sentence?</p>
+  <p>A) He likes bananas.</p>
+  <p>B) He likes bananas, and she likes apples.</p>
+  <p>C) Because he likes bananas, she likes apples.</p>
+  <p>D) He likes bananas if she likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans38')">Show Answer</p>
+  <p id="ans38" class="answer">Answer: A) He likes bananas.</p>
+</div>
+<div class="question">
+  <p>539. Which is a compound sentence?</p>
+  <p>A) He likes bananas, and she likes apples.</p>
+  <p>B) He likes bananas.</p>
+  <p>C) Because he likes bananas, she likes apples.</p>
+  <p>D) He likes bananas if she likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans39')">Show Answer</p>
+  <p id="ans39" class="answer">Answer: A) He likes bananas, and she likes apples.</p>
+</div>
+<div class="question">
+  <p>540. Which is a complex sentence?</p>
+  <p>A) Because he likes bananas, she likes apples.</p>
+  <p>B) He likes bananas.</p>
+  <p>C) He likes bananas, and she likes apples.</p>
+  <p>D) He likes bananas if she likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans40')">Show Answer</p>
+  <p id="ans40" class="answer">Answer: A) Because he likes bananas, she likes apples.</p>
+</div>
+<div class="question">
+  <p>541. Which is a compound-complex sentence?</p>
+  <p>A) He likes bananas, and she likes apples because they are sweet.</p>
+  <p>B) He likes bananas.</p>
+  <p>C) He likes bananas, and she likes apples.</p>
+  <p>D) Because he likes bananas, she likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans41')">Show Answer</p>
+  <p id="ans41" class="answer">Answer: A) He likes bananas, and she likes apples because they are sweet.</p>
+</div>
+<div class="question">
+  <p>542. Which is a declarative sentence?</p>
+  <p>A) The sun is bright.</p>
+  <p>B) Is the sun bright?</p>
+  <p>C) What a bright sun!</p>
+  <p>D) Please look at the sun.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans42')">Show Answer</p>
+  <p id="ans42" class="answer">Answer: A) The sun is bright.</p>
+</div>
+<div class="question">
+  <p>543. Which is an interrogative sentence?</p>
+  <p>A) Is the sun bright?</p>
+  <p>B) The sun is bright.</p>
+  <p>C) What a bright sun!</p>
+  <p>D) Please look at the sun.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans43')">Show Answer</p>
+  <p id="ans43" class="answer">Answer: A) Is the sun bright?</p>
+</div>
+<div class="question">
+  <p>544. Which is an imperative sentence?</p>
+  <p>A) Please look at the sun.</p>
+  <p>B) The sun is bright.</p>
+  <p>C) Is the sun bright?</p>
+  <p>D) What a bright sun!</p>
+  <p class="show-answer" onclick="toggleAnswer('ans44')">Show Answer</p>
+  <p id="ans44" class="answer">Answer: A) Please look at the sun.</p>
+</div>
+<div class="question">
+  <p>545. Which is an exclamatory sentence?</p>
+  <p>A) What a bright sun!</p>
+  <p>B) The sun is bright.</p>
+  <p>C) Is the sun bright?</p>
+  <p>D) Please look at the sun.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans45')">Show Answer</p>
+  <p id="ans45" class="answer">Answer: A) What a bright sun!</p>
+</div>
+<div class="question">
+  <p>546. Which is a definite article?</p>
+  <p>A) the</p>
+  <p>B) a</p>
+  <p>C) an</p>
+  <p>D) some</p>
+  <p class="show-answer" onclick="toggleAnswer('ans46')">Show Answer</p>
+  <p id="ans46" class="answer">Answer: A) the</p>
+</div>
+<div class="question">
+  <p>547. Which is an indefinite article?</p>
+  <p>A) an</p>
+  <p>B) the</p>
+  <p>C) some</p>
+  <p>D) this</p>
+  <p class="show-answer" onclick="toggleAnswer('ans47')">Show Answer</p>
+  <p id="ans47" class="answer">Answer: A) an</p>
+</div>
+<div class="question">
+  <p>548. Which is a demonstrative pronoun?</p>
+  <p>A) that</p>
+  <p>B) they</p>
+  <p>C) their</p>
+  <p>D) them</p>
+  <p class="show-answer" onclick="toggleAnswer('ans48')">Show Answer</p>
+  <p id="ans48" class="answer">Answer: A) that</p>
+</div>
+<div class="question">
+  <p>549. Which is a possessive adjective?</p>
+  <p>A) his</p>
+  <p>B) he</p>
+  <p>C) him</p>
+  <p>D) himself</p>
+  <p class="show-answer" onclick="toggleAnswer('ans49')">Show Answer</p>
+  <p id="ans49" class="answer">Answer: A) his</p>
+</div>
+<div class="question">
+  <p>550. Which is a possessive pronoun?</p>
+  <p>A) his</p>
+  <p>B) he</p>
+  <p>C) him</p>
+  <p>D) himself</p>
+  <p class="show-answer" onclick="toggleAnswer('ans50')">Show Answer</p>
+  <p id="ans50" class="answer">Answer: A) his</p>
+</div>
+<div class="question">
+  <p>551. Which is a reflexive pronoun?</p>
+  <p>A) herself</p>
+  <p>B) her</p>
+  <p>C) hers</p>
+  <p>D) she</p>
+  <p class="show-answer" onclick="toggleAnswer('ans51')">Show Answer</p>
+  <p id="ans51" class="answer">Answer: A) herself</p>
+</div>
+<div class="question">
+  <p>552. Which is a subject pronoun?</p>
+  <p>A) you</p>
+  <p>B) your</p>
+  <p>C) yours</p>
+  <p>D) yourself</p>
+  <p class="show-answer" onclick="toggleAnswer('ans52')">Show Answer</p>
+  <p id="ans52" class="answer">Answer: A) you</p>
+</div>
+<div class="question">
+  <p>553. Which is an object pronoun?</p>
+  <p>A) us</p>
+  <p>B) we</p>
+  <p>C) our</p>
+  <p>D) ours</p>
+  <p class="show-answer" onclick="toggleAnswer('ans53')">Show Answer</p>
+  <p id="ans53" class="answer">Answer: A) us</p>
+</div>
+<div class="question">
+  <p>554. Which is a relative pronoun?</p>
+  <p>A) whose</p>
+  <p>B) she</p>
+  <p>C) he</p>
+  <p>D) it</p>
+  <p class="show-answer" onclick="toggleAnswer('ans54')">Show Answer</p>
+  <p id="ans54" class="answer">Answer: A) whose</p>
+</div>
+<div class="question">
+  <p>555. Which is an interrogative pronoun?</p>
+  <p>A) what</p>
+  <p>B) his</p>
+  <p>C) her</p>
+  <p>D) their</p>
+  <p class="show-answer" onclick="toggleAnswer('ans55')">Show Answer</p>
+  <p id="ans55" class="answer">Answer: A) what</p>
+</div>
+<div class="question">
+  <p>556. Which is a linking verb?</p>
+  <p>A) remain</p>
+  <p>B) run</p>
+  <p>C) eat</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans56')">Show Answer</p>
+  <p id="ans56" class="answer">Answer: A) remain</p>
+</div>
+<div class="question">
+  <p>557. Which is an auxiliary verb?</p>
+  <p>A) am</p>
+  <p>B) run</p>
+  <p>C) eat</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans57')">Show Answer</p>
+  <p id="ans57" class="answer">Answer: A) am</p>
+</div>
+<div class="question">
+  <p>558. Which is a modal verb?</p>
+  <p>A) shall</p>
+  <p>B) running</p>
+  <p>C) quickly</p>
+  <p>D) book</p>
+  <p class="show-answer" onclick="toggleAnswer('ans58')">Show Answer</p>
+  <p id="ans58" class="answer">Answer: A) shall</p>
+</div>
+<div class="question">
+  <p>559. Which is a past modal?</p>
+  <p>A) should have</p>
+  <p>B) should</p>
+  <p>C) will</p>
+  <p>D) can</p>
+  <p class="show-answer" onclick="toggleAnswer('ans59')">Show Answer</p>
+  <p id="ans59" class="answer">Answer: A) should have</p>
+</div>
+<div class="question">
+  <p>560. Which is a regular verb?</p>
+  <p>A) play</p>
+  <p>B) go</p>
+  <p>C) eat</p>
+  <p>D) see</p>
+  <p class="show-answer" onclick="toggleAnswer('ans60')">Show Answer</p>
+  <p id="ans60" class="answer">Answer: A) play</p>
+</div>
+<div class="question">
+  <p>561. Which is an irregular verb?</p>
+  <p>A) see</p>
+  <p>B) play</p>
+  <p>C) walk</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans61')">Show Answer</p>
+  <p id="ans61" class="answer">Answer: A) see</p>
+</div>
+<div class="question">
+  <p>562. Which is a gerund?</p>
+  <p>A) playing</p>
+  <p>B) play</p>
+  <p>C) plays</p>
+  <p>D) to play</p>
+  <p class="show-answer" onclick="toggleAnswer('ans62')">Show Answer</p>
+  <p id="ans62" class="answer">Answer: A) playing</p>
+</div>
+<div class="question">
+  <p>563. Which is an infinitive?</p>
+  <p>A) to play</p>
+  <p>B) playing</p>
+  <p>C) play</p>
+  <p>D) plays</p>
+  <p class="show-answer" onclick="toggleAnswer('ans63')">Show Answer</p>
+  <p id="ans63" class="answer">Answer: A) to play</p>
+</div>
+<div class="question">
+  <p>564. Which is a past participle?</p>
+  <p>A) played</p>
+  <p>B) play</p>
+  <p>C) plays</p>
+  <p>D) playing</p>
+  <p class="show-answer" onclick="toggleAnswer('ans64')">Show Answer</p>
+  <p id="ans64" class="answer">Answer: A) played</p>
+</div>
+<div class="question">
+  <p>565. Which is a present participle?</p>
+  <p>A) playing</p>
+  <p>B) play</p>
+  <p>C) plays</p>
+  <p>D) played</p>
+  <p class="show-answer" onclick="toggleAnswer('ans65')">Show Answer</p>
+  <p id="ans65" class="answer">Answer: A) playing</p>
+</div>
+<div class="question">
+  <p>566. Which is a noun phrase?</p>
+  <p>A) the white horse</p>
+  <p>B) playing loudly</p>
+  <p>C) to play well</p>
+  <p>D) plays loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans66')">Show Answer</p>
+  <p id="ans66" class="answer">Answer: A) the white horse</p>
+</div>
+<div class="question">
+  <p>567. Which is a verb phrase?</p>
+  <p>A) has been playing</p>
+  <p>B) white horse</p>
+  <p>C) under the table</p>
+  <p>D) loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans67')">Show Answer</p>
+  <p id="ans67" class="answer">Answer: A) has been playing</p>
+</div>
+<div class="question">
+  <p>568. Which is an adjective phrase?</p>
+  <p>A) full of energy</p>
+  <p>B) playing loudly</p>
+  <p>C) to play well</p>
+  <p>D) plays loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans68')">Show Answer</p>
+  <p id="ans68" class="answer">Answer: A) full of energy</p>
+</div>
+<div class="question">
+  <p>569. Which is an adverb phrase?</p>
+  <p>A) very softly</p>
+  <p>B) the white horse</p>
+  <p>C) under the table</p>
+  <p>D) to play well</p>
+  <p class="show-answer" onclick="toggleAnswer('ans69')">Show Answer</p>
+  <p id="ans69" class="answer">Answer: A) very softly</p>
+</div>
+<div class="question">
+  <p>570. Which is a prepositional phrase?</p>
+  <p>A) over the hill</p>
+  <p>B) playing loudly</p>
+  <p>C) to play well</p>
+  <p>D) plays loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans70')">Show Answer</p>
+  <p id="ans70" class="answer">Answer: A) over the hill</p>
+</div>
+<div class="question">
+  <p>571. Which is a clause?</p>
+  <p>A) unless he calls</p>
+  <p>B) over the hill</p>
+  <p>C) to play well</p>
+  <p>D) playing loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans71')">Show Answer</p>
+  <p id="ans71" class="answer">Answer: A) unless he calls</p>
+</div>
+<div class="question">
+  <p>572. Which is a main clause?</p>
+  <p>A) She left early</p>
+  <p>B) unless she was tired</p>
+  <p>C) playing loudly</p>
+  <p>D) over the hill</p>
+  <p class="show-answer" onclick="toggleAnswer('ans72')">Show Answer</p>
+  <p id="ans72" class="answer">Answer: A) She left early</p>
+</div>
+<div class="question">
+  <p>573. Which is a subordinate clause?</p>
+  <p>A) unless he calls</p>
+  <p>B) She is happy</p>
+  <p>C) the white horse</p>
+  <p>D) playing loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans73')">Show Answer</p>
+  <p id="ans73" class="answer">Answer: A) unless he calls</p>
+</div>
+<div class="question">
+  <p>574. Which is a noun clause?</p>
+  <p>A) why she left</p>
+  <p>B) over the hill</p>
+  <p>C) to play well</p>
+  <p>D) playing loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans74')">Show Answer</p>
+  <p id="ans74" class="answer">Answer: A) why she left</p>
+</div>
+<div class="question">
+  <p>575. Which is an adjective clause?</p>
+  <p>A) who won the race</p>
+  <p>B) over the hill</p>
+  <p>C) to play well</p>
+  <p>D) playing loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans75')">Show Answer</p>
+  <p id="ans75" class="answer">Answer: A) who won the race</p>
+</div>
+<div class="question">
+  <p>576. Which is an adverb clause?</p>
+  <p>A) after the show ends</p>
+  <p>B) the white horse</p>
+  <p>C) under the table</p>
+  <p>D) to play well</p>
+  <p class="show-answer" onclick="toggleAnswer('ans76')">Show Answer</p>
+  <p id="ans76" class="answer">Answer: A) after the show ends</p>
+</div>
+<div class="question">
+  <p>577. Which is a simple sentence?</p>
+  <p>A) She likes grapes.</p>
+  <p>B) She likes grapes, and he likes apples.</p>
+  <p>C) Because she likes grapes, he likes apples.</p>
+  <p>D) She likes grapes if he likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans77')">Show Answer</p>
+  <p id="ans77" class="answer">Answer: A) She likes grapes.</p>
+</div>
+<div class="question">
+  <p>578. Which is a compound sentence?</p>
+  <p>A) She likes grapes, and he likes apples.</p>
+  <p>B) She likes grapes.</p>
+  <p>C) Because she likes grapes, he likes apples.</p>
+  <p>D) She likes grapes if he likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans78')">Show Answer</p>
+  <p id="ans78" class="answer">Answer: A) She likes grapes, and he likes apples.</p>
+</div>
+<div class="question">
+  <p>579. Which is a complex sentence?</p>
+  <p>A) Because she likes grapes, he likes apples.</p>
+  <p>B) She likes grapes.</p>
+  <p>C) She likes grapes, and he likes apples.</p>
+  <p>D) She likes grapes if he likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans79')">Show Answer</p>
+  <p id="ans79" class="answer">Answer: A) Because she likes grapes, he likes apples.</p>
+</div>
+<div class="question">
+  <p>580. Which is a compound-complex sentence?</p>
+  <p>A) She likes grapes, and he likes apples because they are sweet.</p>
+  <p>B) She likes grapes.</p>
+  <p>C) She likes grapes, and he likes apples.</p>
+  <p>D) Because she likes grapes, he likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans80')">Show Answer</p>
+  <p id="ans80" class="answer">Answer: A) She likes grapes, and he likes apples because they are sweet.</p>
+</div>
+<div class="question">
+  <p>581. Which is a declarative sentence?</p>
+  <p>A) The moon is bright.</p>
+  <p>B) Is the moon bright?</p>
+  <p>C) What a bright moon!</p>
+  <p>D) Please look at the moon.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans81')">Show Answer</p>
+  <p id="ans81" class="answer">Answer: A) The moon is bright.</p>
+</div>
+<div class="question">
+  <p>582. Which is an interrogative sentence?</p>
+  <p>A) Is the moon bright?</p>
+  <p>B) The moon is bright.</p>
+  <p>C) What a bright moon!</p>
+  <p>D) Please look at the moon.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans82')">Show Answer</p>
+  <p id="ans82" class="answer">Answer: A) Is the moon bright?</p>
+</div>
+<div class="question">
+  <p>583. Which is an imperative sentence?</p>
+  <p>A) Please look at the moon.</p>
+  <p>B) The moon is bright.</p>
+  <p>C) Is the moon bright?</p>
+  <p>D) What a bright moon!</p>
+  <p class="show-answer" onclick="toggleAnswer('ans83')">Show Answer</p>
+  <p id="ans83" class="answer">Answer: A) Please look at the moon.</p>
+</div>
+<div class="question">
+  <p>584. Which is an exclamatory sentence?</p>
+  <p>A) What a bright moon!</p>
+  <p>B) The moon is bright.</p>
+  <p>C) Is the moon bright?</p>
+  <p>D) Please look at the moon.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans84')">Show Answer</p>
+  <p id="ans84" class="answer">Answer: A) What a bright moon!</p>
+</div>
+<div class="question">
+  <p>585. Which is a definite article?</p>
+  <p>A) the</p>
+  <p>B) a</p>
+  <p>C) an</p>
+  <p>D) some</p>
+  <p class="show-answer" onclick="toggleAnswer('ans85')">Show Answer</p>
+  <p id="ans85" class="answer">Answer: A) the</p>
+</div>
+<div class="question">
+  <p>586. Which is an indefinite article?</p>
+  <p>A) a</p>
+  <p>B) the</p>
+  <p>C) some</p>
+  <p>D) this</p>
+  <p class="show-answer" onclick="toggleAnswer('ans86')">Show Answer</p>
+  <p id="ans86" class="answer">Answer: A) a</p>
+</div>
+<div class="question">
+  <p>587. Which is a demonstrative pronoun?</p>
+  <p>A) this</p>
+  <p>B) they</p>
+  <p>C) their</p>
+  <p>D) them</p>
+  <p class="show-answer" onclick="toggleAnswer('ans87')">Show Answer</p>
+  <p id="ans87" class="answer">Answer: A) this</p>
+</div>
+<div class="question">
+  <p>588. Which is a possessive adjective?</p>
+  <p>A) my</p>
+  <p>B) me</p>
+  <p>C) mine</p>
+  <p>D) myself</p>
+  <p class="show-answer" onclick="toggleAnswer('ans88')">Show Answer</p>
+  <p id="ans88" class="answer">Answer: A) my</p>
+</div>
+<div class="question">
+  <p>589. Which is a possessive pronoun?</p>
+  <p>A) mine</p>
+  <p>B) my</p>
+  <p>C) me</p>
+  <p>D) myself</p>
+  <p class="show-answer" onclick="toggleAnswer('ans89')">Show Answer</p>
+  <p id="ans89" class="answer">Answer: A) mine</p>
+</div>
+<div class="question">
+  <p>590. Which is a reflexive pronoun?</p>
+  <p>A) myself</p>
+  <p>B) me</p>
+  <p>C) mine</p>
+  <p>D) I</p>
+  <p class="show-answer" onclick="toggleAnswer('ans90')">Show Answer</p>
+  <p id="ans90" class="answer">Answer: A) myself</p>
+</div>
+<div class="question">
+  <p>591. Which is a subject pronoun?</p>
+  <p>A) she</p>
+  <p>B) her</p>
+  <p>C) hers</p>
+  <p>D) herself</p>
+  <p class="show-answer" onclick="toggleAnswer('ans91')">Show Answer</p>
+  <p id="ans91" class="answer">Answer: A) she</p>
+</div>
+<div class="question">
+  <p>592. Which is an object pronoun?</p>
+  <p>A) her</p>
+  <p>B) she</p>
+  <p>C) hers</p>
+  <p>D) herself</p>
+  <p class="show-answer" onclick="toggleAnswer('ans92')">Show Answer</p>
+  <p id="ans92" class="answer">Answer: A) her</p>
+</div>
+<div class="question">
+  <p>593. Which is a relative pronoun?</p>
+  <p>A) who</p>
+  <p>B) she</p>
+  <p>C) he</p>
+  <p>D) it</p>
+  <p class="show-answer" onclick="toggleAnswer('ans93')">Show Answer</p>
+  <p id="ans93" class="answer">Answer: A) who</p>
+</div>
+<div class="question">
+  <p>594. Which is an interrogative pronoun?</p>
+  <p>A) who</p>
+  <p>B) his</p>
+  <p>C) her</p>
+  <p>D) their</p>
+  <p class="show-answer" onclick="toggleAnswer('ans94')">Show Answer</p>
+  <p id="ans94" class="answer">Answer: A) who</p>
+</div>
+<div class="question">
+  <p>595. Which is a linking verb?</p>
+  <p>A) feel</p>
+  <p>B) run</p>
+  <p>C) eat</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans95')">Show Answer</p>
+  <p id="ans95" class="answer">Answer: A) feel</p>
+</div>
+<div class="question">
+  <p>596. Which is an auxiliary verb?</p>
+  <p>A) is</p>
+  <p>B) run</p>
+  <p>C) eat</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans96')">Show Answer</p>
+  <p id="ans96" class="answer">Answer: A) is</p>
+</div>
+<div class="question">
+  <p>597. Which is a modal verb?</p>
+  <p>A) can</p>
+  <p>B) running</p>
+  <p>C) quickly</p>
+  <p>D) book</p>
+  <p class="show-answer" onclick="toggleAnswer('ans97')">Show Answer</p>
+  <p id="ans97" class="answer">Answer: A) can</p>
+</div>
+<div class="question">
+  <p>598. Which is a past modal?</p>
+  <p>A) could have</p>
+  <p>B) could</p>
+  <p>C) will</p>
+  <p>D) can</p>
+  <p class="show-answer" onclick="toggleAnswer('ans98')">Show Answer</p>
+  <p id="ans98" class="answer">Answer: A) could have</p>
+</div>
+<div class="question">
+  <p>599. Which is a regular verb?</p>
+  <p>A) jump</p>
+  <p>B) go</p>
+  <p>C) eat</p>
+  <p>D) see</p>
+  <p class="show-answer" onclick="toggleAnswer('ans99')">Show Answer</p>
+  <p id="ans99" class="answer">Answer: A) jump</p>
+</div>
+<div class="question">
+  <p>600. Which is an irregular verb?</p>
+  <p>A) go</p>
+  <p>B) jump</p>
+  <p>C) talk</p>
+  <p>D) walk</p>
+  <p class="show-answer" onclick="toggleAnswer('ans100')">Show Answer</p>
+  <p id="ans100" class="answer">Answer: A) go</p>
+</div>
+<div class="question">
+  <p>601. Which is a gerund?</p>
+  <p>A) jumping</p>
+  <p>B) jump</p>
+  <p>C) jumps</p>
+  <p>D) to jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans101')">Show Answer</p>
+  <p id="ans101" class="answer">Answer: A) jumping</p>
+</div>
+<div class="question">
+  <p>602. Which is an infinitive?</p>
+  <p>A) to jump</p>
+  <p>B) jumping</p>
+  <p>C) jump</p>
+  <p>D) jumps</p>
+  <p class="show-answer" onclick="toggleAnswer('ans102')">Show Answer</p>
+  <p id="ans102" class="answer">Answer: A) to jump</p>
+</div>
+<div class="question">
+  <p>603. Which is a past participle?</p>
+  <p>A) jumped</p>
+  <p>B) jump</p>
+  <p>C) jumps</p>
+  <p>D) jumping</p>
+  <p class="show-answer" onclick="toggleAnswer('ans103')">Show Answer</p>
+  <p id="ans103" class="answer">Answer: A) jumped</p>
+</div>
+<div class="question">
+  <p>604. Which is a present participle?</p>
+  <p>A) jumping</p>
+  <p>B) jump</p>
+  <p>C) jumps</p>
+  <p>D) jumped</p>
+  <p class="show-answer" onclick="toggleAnswer('ans104')">Show Answer</p>
+  <p id="ans104" class="answer">Answer: A) jumping</p>
+</div>
+<div class="question">
+  <p>605. Which is a noun phrase?</p>
+  <p>A) the green tree</p>
+  <p>B) jumping quickly</p>
+  <p>C) to jump high</p>
+  <p>D) jumps quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans105')">Show Answer</p>
+  <p id="ans105" class="answer">Answer: A) the green tree</p>
+</div>
+<div class="question">
+  <p>606. Which is a verb phrase?</p>
+  <p>A) has been jumping</p>
+  <p>B) green tree</p>
+  <p>C) under the table</p>
+  <p>D) quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans106')">Show Answer</p>
+  <p id="ans106" class="answer">Answer: A) has been jumping</p>
+</div>
+<div class="question">
+  <p>607. Which is an adjective phrase?</p>
+  <p>A) full of life</p>
+  <p>B) jumping quickly</p>
+  <p>C) to jump high</p>
+  <p>D) jumps quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans107')">Show Answer</p>
+  <p id="ans107" class="answer">Answer: A) full of life</p>
+</div>
+<div class="question">
+  <p>608. Which is an adverb phrase?</p>
+  <p>A) very quietly</p>
+  <p>B) the green tree</p>
+  <p>C) under the table</p>
+  <p>D) to jump high</p>
+  <p class="show-answer" onclick="toggleAnswer('ans108')">Show Answer</p>
+  <p id="ans108" class="answer">Answer: A) very quietly</p>
+</div>
+<div class="question">
+  <p>609. Which is a prepositional phrase?</p>
+  <p>A) across the field</p>
+  <p>B) jumping quickly</p>
+  <p>C) to jump high</p>
+  <p>D) jumps quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans109')">Show Answer</p>
+  <p id="ans109" class="answer">Answer: A) across the field</p>
+</div>
+<div class="question">
+  <p>610. Which is a clause?</p>
+  <p>A) after she arrived</p>
+  <p>B) across the field</p>
+  <p>C) to jump high</p>
+  <p>D) jumping quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans110')">Show Answer</p>
+  <p id="ans110" class="answer">Answer: A) after she arrived</p>
+</div>
+<div class="question">
+  <p>611. Which is a main clause?</p>
+  <p>A) She went home</p>
+  <p>B) after she arrived</p>
+  <p>C) jumping quickly</p>
+  <p>D) across the field</p>
+  <p class="show-answer" onclick="toggleAnswer('ans111')">Show Answer</p>
+  <p id="ans111" class="answer">Answer: A) She went home</p>
+</div>
+<div class="question">
+  <p>612. Which is a subordinate clause?</p>
+  <p>A) after she arrived</p>
+  <p>B) She is happy</p>
+  <p>C) the green tree</p>
+  <p>D) jumping quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans112')">Show Answer</p>
+  <p id="ans112" class="answer">Answer: A) after she arrived</p>
+</div>
+<div class="question">
+  <p>613. Which is a noun clause?</p>
+  <p>A) what she said</p>
+  <p>B) across the field</p>
+  <p>C) to jump high</p>
+  <p>D) jumping quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans113')">Show Answer</p>
+  <p id="ans113" class="answer">Answer: A) what she said</p>
+</div>
+<div class="question">
+  <p>614. Which is an adjective clause?</p>
+  <p>A) who lives next door</p>
+  <p>B) across the field</p>
+  <p>C) to jump high</p>
+  <p>D) jumping quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans114')">Show Answer</p>
+  <p id="ans114" class="answer">Answer: A) who lives next door</p>
+</div>
+<div class="question">
+  <p>615. Which is an adverb clause?</p>
+  <p>A) when the bell rings</p>
+  <p>B) the green tree</p>
+  <p>C) under the table</p>
+  <p>D) to jump high</p>
+  <p class="show-answer" onclick="toggleAnswer('ans115')">Show Answer</p>
+  <p id="ans115" class="answer">Answer: A) when the bell rings</p>
+</div>
+<div class="question">
+  <p>616. Which is a simple sentence?</p>
+  <p>A) She likes lemons.</p>
+  <p>B) She likes lemons, and he likes oranges.</p>
+  <p>C) Because she likes lemons, he likes oranges.</p>
+  <p>D) She likes lemons if he likes oranges.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans116')">Show Answer</p>
+  <p id="ans116" class="answer">Answer: A) She likes lemons.</p>
+</div>
+<div class="question">
+  <p>617. Which is a compound sentence?</p>
+  <p>A) She likes lemons, and he likes oranges.</p>
+  <p>B) She likes lemons.</p>
+  <p>C) Because she likes lemons, he likes oranges.</p>
+  <p>D) She likes lemons if he likes oranges.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans117')">Show Answer</p>
+  <p id="ans117" class="answer">Answer: A) She likes lemons, and he likes oranges.</p>
+</div>
+<div class="question">
+  <p>618. Which is a complex sentence?</p>
+  <p>A) Because she likes lemons, he likes oranges.</p>
+  <p>B) She likes lemons.</p>
+  <p>C) She likes lemons, and he likes oranges.</p>
+  <p>D) She likes lemons if he likes oranges.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans118')">Show Answer</p>
+  <p id="ans118" class="answer">Answer: A) Because she likes lemons, he likes oranges.</p>
+</div>
+<div class="question">
+  <p>619. Which is a compound-complex sentence?</p>
+  <p>A) She likes lemons, and he likes oranges because they are sweet.</p>
+  <p>B) She likes lemons.</p>
+  <p>C) She likes lemons, and he likes oranges.</p>
+  <p>D) Because she likes lemons, he likes oranges.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans119')">Show Answer</p>
+  <p id="ans119" class="answer">Answer: A) She likes lemons, and he likes oranges because they are sweet.</p>
+</div>
+<div class="question">
+  <p>620. Which is a declarative sentence?</p>
+  <p>A) The river is long.</p>
+  <p>B) Is the river long?</p>
+  <p>C) What a long river!</p>
+  <p>D) Please look at the river.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans120')">Show Answer</p>
+  <p id="ans120" class="answer">Answer: A) The river is long.</p>
+</div>
+<div class="question">
+  <p>621. Which is an interrogative sentence?</p>
+  <p>A) Is the river long?</p>
+  <p>B) The river is long.</p>
+  <p>C) What a long river!</p>
+  <p>D) Please look at the river.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans121')">Show Answer</p>
+  <p id="ans121" class="answer">Answer: A) Is the river long?</p>
+</div>
+<div class="question">
+  <p>622. Which is an imperative sentence?</p>
+  <p>A) Please look at the river.</p>
+  <p>B) The river is long.</p>
+  <p>C) Is the river long?</p>
+  <p>D) What a long river!</p>
+  <p class="show-answer" onclick="toggleAnswer('ans122')">Show Answer</p>
+  <p id="ans122" class="answer">Answer: A) Please look at the river.</p>
+</div>
+<div class="question">
+  <p>623. Which is an exclamatory sentence?</p>
+  <p>A) What a long river!</p>
+  <p>B) The river is long.</p>
+  <p>C) Is the river long?</p>
+  <p>D) Please look at the river.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans123')">Show Answer</p>
+  <p id="ans123" class="answer">Answer: A) What a long river!</p>
+</div>
+<div class="question">
+  <p>624. Which is a definite article?</p>
+  <p>A) the</p>
+  <p>B) a</p>
+  <p>C) an</p>
+  <p>D) some</p>
+  <p class="show-answer" onclick="toggleAnswer('ans124')">Show Answer</p>
+  <p id="ans124" class="answer">Answer: A) the</p>
+</div>
+<div class="question">
+  <p>625. Which is an indefinite article?</p>
+  <p>A) an</p>
+  <p>B) the</p>
+  <p>C) some</p>
+  <p>D) this</p>
+  <p class="show-answer" onclick="toggleAnswer('ans125')">Show Answer</p>
+  <p id="ans125" class="answer">Answer: A) an</p>
+</div>
+<div class="question">
+  <p>626. Which is a demonstrative pronoun?</p>
+  <p>A) those</p>
+  <p>B) they</p>
+  <p>C) their</p>
+  <p>D) them</p>
+  <p class="show-answer" onclick="toggleAnswer('ans126')">Show Answer</p>
+  <p id="ans126" class="answer">Answer: A) those</p>
+</div>
+<div class="question">
+  <p>627. Which is a possessive adjective?</p>
+  <p>A) their</p>
+  <p>B) they</p>
+  <p>C) them</p>
+  <p>D) theirs</p>
+  <p class="show-answer" onclick="toggleAnswer('ans127')">Show Answer</p>
+  <p id="ans127" class="answer">Answer: A) their</p>
+</div>
+<div class="question">
+  <p>628. Which is a possessive pronoun?</p>
+  <p>A) theirs</p>
+  <p>B) their</p>
+  <p>C) them</p>
+  <p>D) they</p>
+  <p class="show-answer" onclick="toggleAnswer('ans128')">Show Answer</p>
+  <p id="ans128" class="answer">Answer: A) theirs</p>
+</div>
+<div class="question">
+  <p>629. Which is a reflexive pronoun?</p>
+  <p>A) themselves</p>
+  <p>B) them</p>
+  <p>C) their</p>
+  <p>D) they</p>
+  <p class="show-answer" onclick="toggleAnswer('ans129')">Show Answer</p>
+  <p id="ans129" class="answer">Answer: A) themselves</p>
+</div>
+<div class="question">
+  <p>630. Which is a subject pronoun?</p>
+  <p>A) they</p>
+  <p>B) them</p>
+  <p>C) their</p>
+  <p>D) theirs</p>
+  <p class="show-answer" onclick="toggleAnswer('ans130')">Show Answer</p>
+  <p id="ans130" class="answer">Answer: A) they</p>
+</div>
+<div class="question">
+  <p>631. Which is an object pronoun?</p>
+  <p>A) them</p>
+  <p>B) they</p>
+  <p>C) their</p>
+  <p>D) theirs</p>
+  <p class="show-answer" onclick="toggleAnswer('ans131')">Show Answer</p>
+  <p id="ans131" class="answer">Answer: A) them</p>
+</div>
+<div class="question">
+  <p>632. Which is a relative pronoun?</p>
+  <p>A) that</p>
+  <p>B) she</p>
+  <p>C) he</p>
+  <p>D) it</p>
+  <p class="show-answer" onclick="toggleAnswer('ans132')">Show Answer</p>
+  <p id="ans132" class="answer">Answer: A) that</p>
+</div>
+<div class="question">
+  <p>633. Which is an interrogative pronoun?</p>
+  <p>A) which</p>
+  <p>B) his</p>
+  <p>C) her</p>
+  <p>D) their</p>
+  <p class="show-answer" onclick="toggleAnswer('ans133')">Show Answer</p>
+  <p id="ans133" class="answer">Answer: A) which</p>
+</div>
+<div class="question">
+  <p>634. Which is a linking verb?</p>
+  <p>A) seem</p>
+  <p>B) run</p>
+  <p>C) eat</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans134')">Show Answer</p>
+  <p id="ans134" class="answer">Answer: A) seem</p>
+</div>
+<div class="question">
+  <p>635. Which is an auxiliary verb?</p>
+  <p>A) were</p>
+  <p>B) run</p>
+  <p>C) eat</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans135')">Show Answer</p>
+  <p id="ans135" class="answer">Answer: A) were</p>
+</div>
+<div class="question">
+  <p>636. Which is a modal verb?</p>
+  <p>A) could</p>
+  <p>B) running</p>
+  <p>C) quickly</p>
+  <p>D) book</p>
+  <p class="show-answer" onclick="toggleAnswer('ans136')">Show Answer</p>
+  <p id="ans136" class="answer">Answer: A) could</p>
+</div>
+<div class="question">
+  <p>637. Which is a past modal?</p>
+  <p>A) could have</p>
+  <p>B) could</p>
+  <p>C) will</p>
+  <p>D) can</p>
+  <p class="show-answer" onclick="toggleAnswer('ans137')">Show Answer</p>
+  <p id="ans137" class="answer">Answer: A) could have</p>
+</div>
+<div class="question">
+  <p>638. Which is a regular verb?</p>
+  <p>A) start</p>
+  <p>B) go</p>
+  <p>C) eat</p>
+  <p>D) see</p>
+  <p class="show-answer" onclick="toggleAnswer('ans138')">Show Answer</p>
+  <p id="ans138" class="answer">Answer: A) start</p>
+</div>
+<div class="question">
+  <p>639. Which is an irregular verb?</p>
+  <p>A) eat</p>
+  <p>B) start</p>
+  <p>C) talk</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans139')">Show Answer</p>
+  <p id="ans139" class="answer">Answer: A) eat</p>
+</div>
+<div class="question">
+  <p>640. Which is a gerund?</p>
+  <p>A) starting</p>
+  <p>B) start</p>
+  <p>C) starts</p>
+  <p>D) to start</p>
+  <p class="show-answer" onclick="toggleAnswer('ans140')">Show Answer</p>
+  <p id="ans140" class="answer">Answer: A) starting</p>
+</div>
+<div class="question">
+  <p>641. Which is an infinitive?</p>
+  <p>A) to start</p>
+  <p>B) starting</p>
+  <p>C) start</p>
+  <p>D) starts</p>
+  <p class="show-answer" onclick="toggleAnswer('ans141')">Show Answer</p>
+  <p id="ans141" class="answer">Answer: A) to start</p>
+</div>
+<div class="question">
+  <p>642. Which is a past participle?</p>
+  <p>A) started</p>
+  <p>B) start</p>
+  <p>C) starts</p>
+  <p>D) starting</p>
+  <p class="show-answer" onclick="toggleAnswer('ans142')">Show Answer</p>
+  <p id="ans142" class="answer">Answer: A) started</p>
+</div>
+<div class="question">
+  <p>643. Which is a present participle?</p>
+  <p>A) starting</p>
+  <p>B) start</p>
+  <p>C) starts</p>
+  <p>D) started</p>
+  <p class="show-answer" onclick="toggleAnswer('ans143')">Show Answer</p>
+  <p id="ans143" class="answer">Answer: A) starting</p>
+</div>
+<div class="question">
+  <p>644. Which is a noun phrase?</p>
+  <p>A) the big house</p>
+  <p>B) starting quickly</p>
+  <p>C) to start soon</p>
+  <p>D) starts quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans144')">Show Answer</p>
+  <p id="ans144" class="answer">Answer: A) the big house</p>
+</div>
+<div class="question">
+  <p>645. Which is a verb phrase?</p>
+  <p>A) has been starting</p>
+  <p>B) big house</p>
+  <p>C) under the table</p>
+  <p>D) quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans145')">Show Answer</p>
+  <p id="ans145" class="answer">Answer: A) has been starting</p>
+</div>
+<div class="question">
+  <p>646. Which is an adjective phrase?</p>
+  <p>A) full of ideas</p>
+  <p>B) starting quickly</p>
+  <p>C) to start soon</p>
+  <p>D) starts quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans146')">Show Answer</p>
+  <p id="ans146" class="answer">Answer: A) full of ideas</p>
+</div>
+<div class="question">
+  <p>647. Which is an adverb phrase?</p>
+  <p>A) very slowly</p>
+  <p>B) the big house</p>
+  <p>C) under the table</p>
+  <p>D) to start soon</p>
+  <p class="show-answer" onclick="toggleAnswer('ans147')">Show Answer</p>
+  <p id="ans147" class="answer">Answer: A) very slowly</p>
+</div>
+<div class="question">
+  <p>648. Which is a prepositional phrase?</p>
+  <p>A) near the station</p>
+  <p>B) starting quickly</p>
+  <p>C) to start soon</p>
+  <p>D) starts quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans148')">Show Answer</p>
+  <p id="ans148" class="answer">Answer: A) near the station</p>
+</div>
+<div class="question">
+  <p>649. Which is a clause?</p>
+  <p>A) since he left</p>
+  <p>B) near the station</p>
+  <p>C) to start soon</p>
+  <p>D) starting quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans149')">Show Answer</p>
+  <p id="ans149" class="answer">Answer: A) since he left</p>
+</div>
+<div class="question">
+  <p>650. Which is a main clause?</p>
+  <p>A) She went home</p>
+  <p>B) since he left</p>
+  <p>C) starting quickly</p>
+  <p>D) near the station</p>
+  <p class="show-answer" onclick="toggleAnswer('ans150')">Show Answer</p>
+  <p id="ans150" class="answer">Answer: A) She went home</p>
+</div>
+<div class="question">
+  <p>651. Which is a subordinate clause?</p>
+  <p>A) since he left</p>
+  <p>B) She is happy</p>
+  <p>C) the big house</p>
+  <p>D) starting quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans151')">Show Answer</p>
+  <p id="ans151" class="answer">Answer: A) since he left</p>
+</div>
+<div class="question">
+  <p>652. Which is a noun clause?</p>
+  <p>A) what he did</p>
+  <p>B) near the station</p>
+  <p>C) to start soon</p>
+  <p>D) starting quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans152')">Show Answer</p>
+  <p id="ans152" class="answer">Answer: A) what he did</p>
+</div>
+<div class="question">
+  <p>653. Which is an adjective clause?</p>
+  <p>A) who called yesterday</p>
+  <p>B) near the station</p>
+  <p>C) to start soon</p>
+  <p>D) starting quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans153')">Show Answer</p>
+  <p id="ans153" class="answer">Answer: A) who called yesterday</p>
+</div>
+<div class="question">
+  <p>654. Which is an adverb clause?</p>
+  <p>A) while the rain falls</p>
+  <p>B) the big house</p>
+  <p>C) under the table</p>
+  <p>D) to start soon</p>
+  <p class="show-answer" onclick="toggleAnswer('ans154')">Show Answer</p>
+  <p id="ans154" class="answer">Answer: A) while the rain falls</p>
+</div>
+<div class="question">
+  <p>655. Which is a simple sentence?</p>
+  <p>A) He likes pears.</p>
+  <p>B) He likes pears, and she likes apples.</p>
+  <p>C) Because he likes pears, she likes apples.</p>
+  <p>D) He likes pears if she likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans155')">Show Answer</p>
+  <p id="ans155" class="answer">Answer: A) He likes pears.</p>
+</div>
+<div class="question">
+  <p>656. Which is a compound sentence?</p>
+  <p>A) He likes pears, and she likes apples.</p>
+  <p>B) He likes pears.</p>
+  <p>C) Because he likes pears, she likes apples.</p>
+  <p>D) He likes pears if she likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans156')">Show Answer</p>
+  <p id="ans156" class="answer">Answer: A) He likes pears, and she likes apples.</p>
+</div>
+<div class="question">
+  <p>657. Which is a complex sentence?</p>
+  <p>A) Because he likes pears, she likes apples.</p>
+  <p>B) He likes pears.</p>
+  <p>C) He likes pears, and she likes apples.</p>
+  <p>D) He likes pears if she likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans157')">Show Answer</p>
+  <p id="ans157" class="answer">Answer: A) Because he likes pears, she likes apples.</p>
+</div>
+<div class="question">
+  <p>658. Which is a compound-complex sentence?</p>
+  <p>A) He likes pears, and she likes apples because they are sweet.</p>
+  <p>B) He likes pears.</p>
+  <p>C) He likes pears, and she likes apples.</p>
+  <p>D) Because he likes pears, she likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans158')">Show Answer</p>
+  <p id="ans158" class="answer">Answer: A) He likes pears, and she likes apples because they are sweet.</p>
+</div>
+<div class="question">
+  <p>659. Which is a declarative sentence?</p>
+  <p>A) The mountain is high.</p>
+  <p>B) Is the mountain high?</p>
+  <p>C) What a high mountain!</p>
+  <p>D) Please look at the mountain.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans159')">Show Answer</p>
+  <p id="ans159" class="answer">Answer: A) The mountain is high.</p>
+</div>
+<div class="question">
+  <p>660. Which is an interrogative sentence?</p>
+  <p>A) Is the mountain high?</p>
+  <p>B) The mountain is high.</p>
+  <p>C) What a high mountain!</p>
+  <p>D) Please look at the mountain.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans160')">Show Answer</p>
+  <p id="ans160" class="answer">Answer: A) Is the mountain high?</p>
+</div>
+<div class="question">
+  <p>661. Which is an imperative sentence?</p>
+  <p>A) Please look at the mountain.</p>
+  <p>B) The mountain is high.</p>
+  <p>C) Is the mountain high?</p>
+  <p>D) What a high mountain!</p>
+  <p class="show-answer" onclick="toggleAnswer('ans161')">Show Answer</p>
+  <p id="ans161" class="answer">Answer: A) Please look at the mountain.</p>
+</div>
+<div class="question">
+  <p>662. Which is an exclamatory sentence?</p>
+  <p>A) What a high mountain!</p>
+  <p>B) The mountain is high.</p>
+  <p>C) Is the mountain high?</p>
+  <p>D) Please look at the mountain.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans162')">Show Answer</p>
+  <p id="ans162" class="answer">Answer: A) What a high mountain!</p>
+</div>
+<div class="question">
+  <p>663. Which is a definite article?</p>
+  <p>A) the</p>
+  <p>B) a</p>
+  <p>C) an</p>
+  <p>D) some</p>
+  <p class="show-answer" onclick="toggleAnswer('ans163')">Show Answer</p>
+  <p id="ans163" class="answer">Answer: A) the</p>
+</div>
+<div class="question">
+  <p>664. Which is an indefinite article?</p>
+  <p>A) a</p>
+  <p>B) the</p>
+  <p>C) some</p>
+  <p>D) this</p>
+  <p class="show-answer" onclick="toggleAnswer('ans164')">Show Answer</p>
+  <p id="ans164" class="answer">Answer: A) a</p>
+</div>
+<div class="question">
+  <p>665. Which is a demonstrative pronoun?</p>
+  <p>A) these</p>
+  <p>B) they</p>
+  <p>C) their</p>
+  <p>D) them</p>
+  <p class="show-answer" onclick="toggleAnswer('ans165')">Show Answer</p>
+  <p id="ans165" class="answer">Answer: A) these</p>
+</div>
+<div class="question">
+  <p>666. Which is a possessive adjective?</p>
+  <p>A) our</p>
+  <p>B) we</p>
+  <p>C) us</p>
+  <p>D) ours</p>
+  <p class="show-answer" onclick="toggleAnswer('ans166')">Show Answer</p>
+  <p id="ans166" class="answer">Answer: A) our</p>
+</div>
+<div class="question">
+  <p>667. Which is a possessive pronoun?</p>
+  <p>A) ours</p>
+  <p>B) our</p>
+  <p>C) us</p>
+  <p>D) we</p>
+  <p class="show-answer" onclick="toggleAnswer('ans167')">Show Answer</p>
+  <p id="ans167" class="answer">Answer: A) ours</p>
+</div>
+<div class="question">
+  <p>668. Which is a reflexive pronoun?</p>
+  <p>A) ourselves</p>
+  <p>B) us</p>
+  <p>C) we</p>
+  <p>D) our</p>
+  <p class="show-answer" onclick="toggleAnswer('ans168')">Show Answer</p>
+  <p id="ans168" class="answer">Answer: A) ourselves</p>
+</div>
+<div class="question">
+  <p>669. Which is a subject pronoun?</p>
+  <p>A) we</p>
+  <p>B) us</p>
+  <p>C) our</p>
+  <p>D) ours</p>
+  <p class="show-answer" onclick="toggleAnswer('ans169')">Show Answer</p>
+  <p id="ans169" class="answer">Answer: A) we</p>
+</div>
+<div class="question">
+  <p>670. Which is an object pronoun?</p>
+  <p>A) us</p>
+  <p>B) we</p>
+  <p>C) our</p>
+  <p>D) ours</p>
+  <p class="show-answer" onclick="toggleAnswer('ans170')">Show Answer</p>
+  <p id="ans170" class="answer">Answer: A) us</p>
+</div>
+<div class="question">
+  <p>671. Which is a relative pronoun?</p>
+  <p>A) which</p>
+  <p>B) she</p>
+  <p>C) he</p>
+  <p>D) it</p>
+  <p class="show-answer" onclick="toggleAnswer('ans171')">Show Answer</p>
+  <p id="ans171" class="answer">Answer: A) which</p>
+</div>
+<div class="question">
+  <p>672. Which is an interrogative pronoun?</p>
+  <p>A) whose</p>
+  <p>B) his</p>
+  <p>C) her</p>
+  <p>D) their</p>
+  <p class="show-answer" onclick="toggleAnswer('ans172')">Show Answer</p>
+  <p id="ans172" class="answer">Answer: A) whose</p>
+</div>
+<div class="question">
+  <p>673. Which is a linking verb?</p>
+  <p>A) become</p>
+  <p>B) run</p>
+  <p>C) eat</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans173')">Show Answer</p>
+  <p id="ans173" class="answer">Answer: A) become</p>
+</div>
+<div class="question">
+  <p>674. Which is an auxiliary verb?</p>
+  <p>A) have</p>
+  <p>B) run</p>
+  <p>C) eat</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans174')">Show Answer</p>
+  <p id="ans174" class="answer">Answer: A) have</p>
+</div>
+<div class="question">
+  <p>675. Which is a modal verb?</p>
+  <p>A) may</p>
+  <p>B) running</p>
+  <p>C) quickly</p>
+  <p>D) book</p>
+  <p class="show-answer" onclick="toggleAnswer('ans175')">Show Answer</p>
+  <p id="ans175" class="answer">Answer: A) may</p>
+</div>
+<div class="question">
+  <p>676. Which is a past modal?</p>
+  <p>A) may have</p>
+  <p>B) may</p>
+  <p>C) will</p>
+  <p>D) can</p>
+  <p class="show-answer" onclick="toggleAnswer('ans176')">Show Answer</p>
+  <p id="ans176" class="answer">Answer: A) may have</p>
+</div>
+<div class="question">
+  <p>677. Which is a regular verb?</p>
+  <p>A) help</p>
+  <p>B) go</p>
+  <p>C) eat</p>
+  <p>D) see</p>
+  <p class="show-answer" onclick="toggleAnswer('ans177')">Show Answer</p>
+  <p id="ans177" class="answer">Answer: A) help</p>
+</div>
+<div class="question">
+  <p>678. Which is an irregular verb?</p>
+  <p>A) see</p>
+  <p>B) help</p>
+  <p>C) talk</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans178')">Show Answer</p>
+  <p id="ans178" class="answer">Answer: A) see</p>
+</div>
+<div class="question">
+  <p>679. Which is a gerund?</p>
+  <p>A) helping</p>
+  <p>B) help</p>
+  <p>C) helps</p>
+  <p>D) to help</p>
+  <p class="show-answer" onclick="toggleAnswer('ans179')">Show Answer</p>
+  <p id="ans179" class="answer">Answer: A) helping</p>
+</div>
+<div class="question">
+  <p>680. Which is an infinitive?</p>
+  <p>A) to help</p>
+  <p>B) helping</p>
+  <p>C) help</p>
+  <p>D) helps</p>
+  <p class="show-answer" onclick="toggleAnswer('ans180')">Show Answer</p>
+  <p id="ans180" class="answer">Answer: A) to help</p>
+</div>
+<div class="question">
+  <p>681. Which is a past participle?</p>
+  <p>A) helped</p>
+  <p>B) help</p>
+  <p>C) helps</p>
+  <p>D) helping</p>
+  <p class="show-answer" onclick="toggleAnswer('ans181')">Show Answer</p>
+  <p id="ans181" class="answer">Answer: A) helped</p>
+</div>
+<div class="question">
+  <p>682. Which is a present participle?</p>
+  <p>A) helping</p>
+  <p>B) help</p>
+  <p>C) helps</p>
+  <p>D) helped</p>
+  <p class="show-answer" onclick="toggleAnswer('ans182')">Show Answer</p>
+  <p id="ans182" class="answer">Answer: A) helping</p>
+</div>
+<div class="question">
+  <p>683. Which is a noun phrase?</p>
+  <p>A) the happy child</p>
+  <p>B) helping quickly</p>
+  <p>C) to help soon</p>
+  <p>D) helps quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans183')">Show Answer</p>
+  <p id="ans183" class="answer">Answer: A) the happy child</p>
+</div>
+<div class="question">
+  <p>684. Which is a verb phrase?</p>
+  <p>A) has been helping</p>
+  <p>B) happy child</p>
+  <p>C) under the table</p>
+  <p>D) quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans184')">Show Answer</p>
+  <p id="ans184" class="answer">Answer: A) has been helping</p>
+</div>
+<div class="question">
+  <p>685. Which is an adjective phrase?</p>
+  <p>A) full of hope</p>
+  <p>B) helping quickly</p>
+  <p>C) to help soon</p>
+  <p>D) helps quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans185')">Show Answer</p>
+  <p id="ans185" class="answer">Answer: A) full of hope</p>
+</div>
+<div class="question">
+  <p>686. Which is an adverb phrase?</p>
+  <p>A) very kindly</p>
+  <p>B) the happy child</p>
+  <p>C) under the table</p>
+  <p>D) to help soon</p>
+  <p class="show-answer" onclick="toggleAnswer('ans186')">Show Answer</p>
+  <p id="ans186" class="answer">Answer: A) very kindly</p>
+</div>
+<div class="question">
+  <p>687. Which is a prepositional phrase?</p>
+  <p>A) beside the road</p>
+  <p>B) helping quickly</p>
+  <p>C) to help soon</p>
+  <p>D) helps quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans187')">Show Answer</p>
+  <p id="ans187" class="answer">Answer: A) beside the road</p>
+</div>
+<div class="question">
+  <p>688. Which is a clause?</p>
+  <p>A) if she calls</p>
+  <p>B) beside the road</p>
+  <p>C) to help soon</p>
+  <p>D) helping quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans188')">Show Answer</p>
+  <p id="ans188" class="answer">Answer: A) if she calls</p>
+</div>
+<div class="question">
+  <p>689. Which is a main clause?</p>
+  <p>A) She left early</p>
+  <p>B) if she calls</p>
+  <p>C) helping quickly</p>
+  <p>D) beside the road</p>
+  <p class="show-answer" onclick="toggleAnswer('ans189')">Show Answer</p>
+  <p id="ans189" class="answer">Answer: A) She left early</p>
+</div>
+<div class="question">
+  <p>690. Which is a subordinate clause?</p>
+  <p>A) if she calls</p>
+  <p>B) She is happy</p>
+  <p>C) the happy child</p>
+  <p>D) helping quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans190')">Show Answer</p>
+  <p id="ans190" class="answer">Answer: A) if she calls</p>
+</div>
+<div class="question">
+  <p>691. Which is a noun clause?</p>
+  <p>A) what she wants</p>
+  <p>B) beside the road</p>
+  <p>C) to help soon</p>
+  <p>D) helping quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans191')">Show Answer</p>
+  <p id="ans191" class="answer">Answer: A) what she wants</p>
+</div>
+<div class="question">
+  <p>692. Which is an adjective clause?</p>
+  <p>A) who won the prize</p>
+  <p>B) beside the road</p>
+  <p>C) to help soon</p>
+  <p>D) helping quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans192')">Show Answer</p>
+  <p id="ans192" class="answer">Answer: A) who won the prize</p>
+</div>
+<div class="question">
+  <p>693. Which is an adverb clause?</p>
+  <p>A) while the rain falls</p>
+  <p>B) the happy child</p>
+  <p>C) under the table</p>
+  <p>D) to help soon</p>
+  <p class="show-answer" onclick="toggleAnswer('ans193')">Show Answer</p>
+  <p id="ans193" class="answer">Answer: A) while the rain falls</p>
+</div>
+<div class="question">
+  <p>694. Which is a simple sentence?</p>
+  <p>A) She likes pineapples.</p>
+  <p>B) She likes pineapples, and he likes apples.</p>
+  <p>C) Because she likes pineapples, he likes apples.</p>
+  <p>D) She likes pineapples if he likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans194')">Show Answer</p>
+  <p id="ans194" class="answer">Answer: A) She likes pineapples.</p>
+</div>
+<div class="question">
+  <p>695. Which is a compound sentence?</p>
+  <p>A) She likes pineapples, and he likes apples.</p>
+  <p>B) She likes pineapples.</p>
+  <p>C) Because she likes pineapples, he likes apples.</p>
+  <p>D) She likes pineapples if he likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans195')">Show Answer</p>
+  <p id="ans195" class="answer">Answer: A) She likes pineapples, and he likes apples.</p>
+</div>
+<div class="question">
+  <p>696. Which is a complex sentence?</p>
+  <p>A) Because she likes pineapples, he likes apples.</p>
+  <p>B) She likes pineapples.</p>
+  <p>C) She likes pineapples, and he likes apples.</p>
+  <p>D) She likes pineapples if he likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans196')">Show Answer</p>
+  <p id="ans196" class="answer">Answer: A) Because she likes pineapples, he likes apples.</p>
+</div>
+<div class="question">
+  <p>697. Which is a compound-complex sentence?</p>
+  <p>A) She likes pineapples, and he likes apples because they are sweet.</p>
+  <p>B) She likes pineapples.</p>
+  <p>C) She likes pineapples, and he likes apples.</p>
+  <p>D) Because she likes pineapples, he likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans197')">Show Answer</p>
+  <p id="ans197" class="answer">Answer: A) She likes pineapples, and he likes apples because they are sweet.</p>
+</div>
+<div class="question">
+  <p>698. Which is a declarative sentence?</p>
+  <p>A) The desert is dry.</p>
+  <p>B) Is the desert dry?</p>
+  <p>C) What a dry desert!</p>
+  <p>D) Please look at the desert.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans198')">Show Answer</p>
+  <p id="ans198" class="answer">Answer: A) The desert is dry.</p>
+</div>
+<div class="question">
+  <p>699. Which is an interrogative sentence?</p>
+  <p>A) Is the desert dry?</p>
+  <p>B) The desert is dry.</p>
+  <p>C) What a dry desert!</p>
+  <p>D) Please look at the desert.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans199')">Show Answer</p>
+  <p id="ans199" class="answer">Answer: A) Is the desert dry?</p>
+</div>
+<div class="question">
+  <p>700. Which is an imperative sentence?</p>
+  <p>A) Please look at the desert.</p>
+  <p>B) The desert is dry.</p>
+  <p>C) Is the desert dry?</p>
+  <p>D) What a dry desert!</p>
+  <p class="show-answer" onclick="toggleAnswer('ans200')">Show Answer</p>
+  <p id="ans200" class="answer">Answer: A) Please look at the desert.</p>
+</div>
+<div class="question">
+  <p>701. Which is an exclamatory sentence?</p>
+  <p>A) What a dry desert!</p>
+  <p>B) The desert is dry.</p>
+  <p>C) Is the desert dry?</p>
+  <p>D) Please look at the desert.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans201')">Show Answer</p>
+  <p id="ans201" class="answer">Answer: A) What a dry desert!</p>
+</div>
+<div class="question">
+  <p>702. Which is a definite article?</p>
+  <p>A) the</p>
+  <p>B) a</p>
+  <p>C) an</p>
+  <p>D) some</p>
+  <p class="show-answer" onclick="toggleAnswer('ans202')">Show Answer</p>
+  <p id="ans202" class="answer">Answer: A) the</p>
+</div>
+<div class="question">
+  <p>703. Which is an indefinite article?</p>
+  <p>A) a</p>
+  <p>B) the</p>
+  <p>C) some</p>
+  <p>D) this</p>
+  <p class="show-answer" onclick="toggleAnswer('ans203')">Show Answer</p>
+  <p id="ans203" class="answer">Answer: A) a</p>
+</div>
+<div class="question">
+  <p>704. Which is a demonstrative pronoun?</p>
+  <p>A) that</p>
+  <p>B) they</p>
+  <p>C) their</p>
+  <p>D) them</p>
+  <p class="show-answer" onclick="toggleAnswer('ans204')">Show Answer</p>
+  <p id="ans204" class="answer">Answer: A) that</p>
+</div>
+<div class="question">
+  <p>705. Which is a possessive adjective?</p>
+  <p>A) her</p>
+  <p>B) she</p>
+  <p>C) hers</p>
+  <p>D) herself</p>
+  <p class="show-answer" onclick="toggleAnswer('ans205')">Show Answer</p>
+  <p id="ans205" class="answer">Answer: A) her</p>
+</div>
+<div class="question">
+  <p>706. Which is a possessive pronoun?</p>
+  <p>A) hers</p>
+  <p>B) her</p>
+  <p>C) she</p>
+  <p>D) herself</p>
+  <p class="show-answer" onclick="toggleAnswer('ans206')">Show Answer</p>
+  <p id="ans206" class="answer">Answer: A) hers</p>
+</div>
+<div class="question">
+  <p>707. Which is a reflexive pronoun?</p>
+  <p>A) herself</p>
+  <p>B) her</p>
+  <p>C) hers</p>
+  <p>D) she</p>
+  <p class="show-answer" onclick="toggleAnswer('ans207')">Show Answer</p>
+  <p id="ans207" class="answer">Answer: A) herself</p>
+</div>
+<div class="question">
+  <p>708. Which is a subject pronoun?</p>
+  <p>A) you</p>
+  <p>B) your</p>
+  <p>C) yours</p>
+  <p>D) yourself</p>
+  <p class="show-answer" onclick="toggleAnswer('ans208')">Show Answer</p>
+  <p id="ans208" class="answer">Answer: A) you</p>
+</div>
+<div class="question">
+  <p>709. Which is an object pronoun?</p>
+  <p>A) us</p>
+  <p>B) we</p>
+  <p>C) our</p>
+  <p>D) ours</p>
+  <p class="show-answer" onclick="toggleAnswer('ans209')">Show Answer</p>
+  <p id="ans209" class="answer">Answer: A) us</p>
+</div>
+<div class="question">
+  <p>710. Which is a relative pronoun?</p>
+  <p>A) whose</p>
+  <p>B) she</p>
+  <p>C) he</p>
+  <p>D) it</p>
+  <p class="show-answer" onclick="toggleAnswer('ans210')">Show Answer</p>
+  <p id="ans210" class="answer">Answer: A) whose</p>
+</div>
+<div class="question">
+  <p>711. Which is an interrogative pronoun?</p>
+  <p>A) what</p>
+  <p>B) his</p>
+  <p>C) her</p>
+  <p>D) their</p>
+  <p class="show-answer" onclick="toggleAnswer('ans211')">Show Answer</p>
+  <p id="ans211" class="answer">Answer: A) what</p>
+</div>
+<div class="question">
+  <p>712. Which is a linking verb?</p>
+  <p>A) remain</p>
+  <p>B) run</p>
+  <p>C) eat</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans212')">Show Answer</p>
+  <p id="ans212" class="answer">Answer: A) remain</p>
+</div>
+<div class="question">
+  <p>713. Which is an auxiliary verb?</p>
+  <p>A) am</p>
+  <p>B) run</p>
+  <p>C) eat</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans213')">Show Answer</p>
+  <p id="ans213" class="answer">Answer: A) am</p>
+</div>
+<div class="question">
+  <p>714. Which is a modal verb?</p>
+  <p>A) shall</p>
+  <p>B) running</p>
+  <p>C) quickly</p>
+  <p>D) book</p>
+  <p class="show-answer" onclick="toggleAnswer('ans214')">Show Answer</p>
+  <p id="ans214" class="answer">Answer: A) shall</p>
+</div>
+<div class="question">
+  <p>715. Which is a past modal?</p>
+  <p>A) should have</p>
+  <p>B) should</p>
+  <p>C) will</p>
+  <p>D) can</p>
+  <p class="show-answer" onclick="toggleAnswer('ans215')">Show Answer</p>
+  <p id="ans215" class="answer">Answer: A) should have</p>
+</div>
+<div class="question">
+  <p>716. Which is a regular verb?</p>
+  <p>A) play</p>
+  <p>B) go</p>
+  <p>C) eat</p>
+  <p>D) see</p>
+  <p class="show-answer" onclick="toggleAnswer('ans216')">Show Answer</p>
+  <p id="ans216" class="answer">Answer: A) play</p>
+</div>
+<div class="question">
+  <p>717. Which is an irregular verb?</p>
+  <p>A) see</p>
+  <p>B) play</p>
+  <p>C) walk</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans217')">Show Answer</p>
+  <p id="ans217" class="answer">Answer: A) see</p>
+</div>
+<div class="question">
+  <p>718. Which is a gerund?</p>
+  <p>A) playing</p>
+  <p>B) play</p>
+  <p>C) plays</p>
+  <p>D) to play</p>
+  <p class="show-answer" onclick="toggleAnswer('ans218')">Show Answer</p>
+  <p id="ans218" class="answer">Answer: A) playing</p>
+</div>
+<div class="question">
+  <p>719. Which is an infinitive?</p>
+  <p>A) to play</p>
+  <p>B) playing</p>
+  <p>C) play</p>
+  <p>D) plays</p>
+  <p class="show-answer" onclick="toggleAnswer('ans219')">Show Answer</p>
+  <p id="ans219" class="answer">Answer: A) to play</p>
+</div>
+<div class="question">
+  <p>720. Which is a past participle?</p>
+  <p>A) played</p>
+  <p>B) play</p>
+  <p>C) plays</p>
+  <p>D) playing</p>
+  <p class="show-answer" onclick="toggleAnswer('ans220')">Show Answer</p>
+  <p id="ans220" class="answer">Answer: A) played</p>
+</div>
+<div class="question">
+  <p>721. Which is a present participle?</p>
+  <p>A) playing</p>
+  <p>B) play</p>
+  <p>C) plays</p>
+  <p>D) played</p>
+  <p class="show-answer" onclick="toggleAnswer('ans221')">Show Answer</p>
+  <p id="ans221" class="answer">Answer: A) playing</p>
+</div>
+<div class="question">
+  <p>722. Which is a noun phrase?</p>
+  <p>A) the white horse</p>
+  <p>B) playing loudly</p>
+  <p>C) to play well</p>
+  <p>D) plays loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans222')">Show Answer</p>
+  <p id="ans222" class="answer">Answer: A) the white horse</p>
+</div>
+<div class="question">
+  <p>723. Which is a verb phrase?</p>
+  <p>A) has been playing</p>
+  <p>B) white horse</p>
+  <p>C) under the table</p>
+  <p>D) loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans223')">Show Answer</p>
+  <p id="ans223" class="answer">Answer: A) has been playing</p>
+</div>
+<div class="question">
+  <p>724. Which is an adjective phrase?</p>
+  <p>A) full of energy</p>
+  <p>B) playing loudly</p>
+  <p>C) to play well</p>
+  <p>D) plays loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans224')">Show Answer</p>
+  <p id="ans224" class="answer">Answer: A) full of energy</p>
+</div>
+<div class="question">
+  <p>725. Which is an adverb phrase?</p>
+  <p>A) very softly</p>
+  <p>B) the white horse</p>
+  <p>C) under the table</p>
+  <p>D) to play well</p>
+  <p class="show-answer" onclick="toggleAnswer('ans225')">Show Answer</p>
+  <p id="ans225" class="answer">Answer: A) very softly</p>
+</div>
+<div class="question">
+  <p>726. Which is a prepositional phrase?</p>
+  <p>A) over the hill</p>
+  <p>B) playing loudly</p>
+  <p>C) to play well</p>
+  <p>D) plays loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans226')">Show Answer</p>
+  <p id="ans226" class="answer">Answer: A) over the hill</p>
+</div>
+<div class="question">
+  <p>727. Which is a clause?</p>
+  <p>A) unless he calls</p>
+  <p>B) over the hill</p>
+  <p>C) to play well</p>
+  <p>D) playing loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans227')">Show Answer</p>
+  <p id="ans227" class="answer">Answer: A) unless he calls</p>
+</div>
+<div class="question">
+  <p>728. Which is a main clause?</p>
+  <p>A) She left early</p>
+  <p>B) unless she was tired</p>
+  <p>C) playing loudly</p>
+  <p>D) over the hill</p>
+  <p class="show-answer" onclick="toggleAnswer('ans228')">Show Answer</p>
+  <p id="ans228" class="answer">Answer: A) She left early</p>
+</div>
+<div class="question">
+  <p>729. Which is a subordinate clause?</p>
+  <p>A) unless he calls</p>
+  <p>B) She is happy</p>
+  <p>C) the white horse</p>
+  <p>D) playing loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans229')">Show Answer</p>
+  <p id="ans229" class="answer">Answer: A) unless he calls</p>
+</div>
+<div class="question">
+  <p>730. Which is a noun clause?</p>
+  <p>A) why she left</p>
+  <p>B) over the hill</p>
+  <p>C) to play well</p>
+  <p>D) playing loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans230')">Show Answer</p>
+  <p id="ans230" class="answer">Answer: A) why she left</p>
+</div>
+<div class="question">
+  <p>731. Which is an adjective clause?</p>
+  <p>A) who won the race</p>
+  <p>B) over the hill</p>
+  <p>C) to play well</p>
+  <p>D) playing loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans231')">Show Answer</p>
+  <p id="ans231" class="answer">Answer: A) who won the race</p>
+</div>
+<div class="question">
+  <p>732. Which is an adverb clause?</p>
+  <p>A) after the show ends</p>
+  <p>B) the white horse</p>
+  <p>C) under the table</p>
+  <p>D) to play well</p>
+  <p class="show-answer" onclick="toggleAnswer('ans232')">Show Answer</p>
+  <p id="ans232" class="answer">Answer: A) after the show ends</p>
+</div>
+<div class="question">
+  <p>733. Which is a simple sentence?</p>
+  <p>A) She likes grapes.</p>
+  <p>B) She likes grapes, and he likes apples.</p>
+  <p>C) Because she likes grapes, he likes apples.</p>
+  <p>D) She likes grapes if he likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans233')">Show Answer</p>
+  <p id="ans233" class="answer">Answer: A) She likes grapes.</p>
+</div>
+<div class="question">
+  <p>734. Which is a compound sentence?</p>
+  <p>A) She likes grapes, and he likes apples.</p>
+  <p>B) She likes grapes.</p>
+  <p>C) Because she likes grapes, he likes apples.</p>
+  <p>D) She likes grapes if he likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans234')">Show Answer</p>
+  <p id="ans234" class="answer">Answer: A) She likes grapes, and he likes apples.</p>
+</div>
+<div class="question">
+  <p>735. Which is a complex sentence?</p>
+  <p>A) Because she likes grapes, he likes apples.</p>
+  <p>B) She likes grapes.</p>
+  <p>C) She likes grapes, and he likes apples.</p>
+  <p>D) She likes grapes if he likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans235')">Show Answer</p>
+  <p id="ans235" class="answer">Answer: A) Because she likes grapes, he likes apples.</p>
+</div>
+<div class="question">
+  <p>736. Which is a compound-complex sentence?</p>
+  <p>A) She likes grapes, and he likes apples because they are sweet.</p>
+  <p>B) She likes grapes.</p>
+  <p>C) She likes grapes, and he likes apples.</p>
+  <p>D) Because she likes grapes, he likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans236')">Show Answer</p>
+  <p id="ans236" class="answer">Answer: A) She likes grapes, and he likes apples because they are sweet.</p>
+</div>
+<div class="question">
+  <p>737. Which is a declarative sentence?</p>
+  <p>A) The moon is bright.</p>
+  <p>B) Is the moon bright?</p>
+  <p>C) What a bright moon!</p>
+  <p>D) Please look at the moon.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans237')">Show Answer</p>
+  <p id="ans237" class="answer">Answer: A) The moon is bright.</p>
+</div>
+<div class="question">
+  <p>738. Which is an interrogative sentence?</p>
+  <p>A) Is the moon bright?</p>
+  <p>B) The moon is bright.</p>
+  <p>C) What a bright moon!</p>
+  <p>D) Please look at the moon.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans238')">Show Answer</p>
+  <p id="ans238" class="answer">Answer: A) Is the moon bright?</p>
+</div>
+<div class="question">
+  <p>739. Which is an imperative sentence?</p>
+  <p>A) Please look at the moon.</p>
+  <p>B) The moon is bright.</p>
+  <p>C) Is the moon bright?</p>
+  <p>D) What a bright moon!</p>
+  <p class="show-answer" onclick="toggleAnswer('ans239')">Show Answer</p>
+  <p id="ans239" class="answer">Answer: A) Please look at the moon.</p>
+</div>
+<div class="question">
+  <p>740. Which is an exclamatory sentence?</p>
+  <p>A) What a bright moon!</p>
+  <p>B) The moon is bright.</p>
+  <p>C) Is the moon bright?</p>
+  <p>D) Please look at the moon.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans240')">Show Answer</p>
+  <p id="ans240" class="answer">Answer: A) What a bright moon!</p>
+</div>
+<div class="question">
+  <p>741. Which is a definite article?</p>
+  <p>A) the</p>
+  <p>B) a</p>
+  <p>C) an</p>
+  <p>D) some</p>
+  <p class="show-answer" onclick="toggleAnswer('ans241')">Show Answer</p>
+  <p id="ans241" class="answer">Answer: A) the</p>
+</div>
+<div class="question">
+  <p>742. Which is an indefinite article?</p>
+  <p>A) a</p>
+  <p>B) the</p>
+  <p>C) some</p>
+  <p>D) this</p>
+  <p class="show-answer" onclick="toggleAnswer('ans242')">Show Answer</p>
+  <p id="ans242" class="answer">Answer: A) a</p>
+</div>
+<div class="question">
+  <p>743. Which is a demonstrative pronoun?</p>
+  <p>A) this</p>
+  <p>B) they</p>
+  <p>C) their</p>
+  <p>D) them</p>
+  <p class="show-answer" onclick="toggleAnswer('ans243')">Show Answer</p>
+  <p id="ans243" class="answer">Answer: A) this</p>
+</div>
+<div class="question">
+  <p>744. Which is a possessive adjective?</p>
+  <p>A) my</p>
+  <p>B) me</p>
+  <p>C) mine</p>
+  <p>D) myself</p>
+  <p class="show-answer" onclick="toggleAnswer('ans244')">Show Answer</p>
+  <p id="ans244" class="answer">Answer: A) my</p>
+</div>
+<div class="question">
+  <p>745. Which is a possessive pronoun?</p>
+  <p>A) mine</p>
+  <p>B) my</p>
+  <p>C) me</p>
+  <p>D) myself</p>
+  <p class="show-answer" onclick="toggleAnswer('ans245')">Show Answer</p>
+  <p id="ans245" class="answer">Answer: A) mine</p>
+</div>
+<div class="question">
+  <p>746. Which is a reflexive pronoun?</p>
+  <p>A) myself</p>
+  <p>B) me</p>
+  <p>C) mine</p>
+  <p>D) I</p>
+  <p class="show-answer" onclick="toggleAnswer('ans246')">Show Answer</p>
+  <p id="ans246" class="answer">Answer: A) myself</p>
+</div>
+<div class="question">
+  <p>747. Which is a subject pronoun?</p>
+  <p>A) she</p>
+  <p>B) her</p>
+  <p>C) hers</p>
+  <p>D) herself</p>
+  <p class="show-answer" onclick="toggleAnswer('ans247')">Show Answer</p>
+  <p id="ans247" class="answer">Answer: A) she</p>
+</div>
+<div class="question">
+  <p>748. Which is an object pronoun?</p>
+  <p>A) her</p>
+  <p>B) she</p>
+  <p>C) hers</p>
+  <p>D) herself</p>
+  <p class="show-answer" onclick="toggleAnswer('ans248')">Show Answer</p>
+  <p id="ans248" class="answer">Answer: A) her</p>
+</div>
+<div class="question">
+  <p>749. Which is a relative pronoun?</p>
+  <p>A) who</p>
+  <p>B) she</p>
+  <p>C) he</p>
+  <p>D) it</p>
+  <p class="show-answer" onclick="toggleAnswer('ans249')">Show Answer</p>
+  <p id="ans249" class="answer">Answer: A) who</p>
+</div>
+<div class="question">
+  <p>750. Which is an interrogative pronoun?</p>
+  <p>A) who</p>
+  <p>B) his</p>
+  <p>C) her</p>
+  <p>D) their</p>
+  <p class="show-answer" onclick="toggleAnswer('ans250')">Show Answer</p>
+  <p id="ans250" class="answer">Answer: A) who</p>
+</div>
+<div class="question">
+  <p>751. Which is a linking verb?</p>
+  <p>A) feel</p>
+  <p>B) run</p>
+  <p>C) eat</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans251')">Show Answer</p>
+  <p id="ans251" class="answer">Answer: A) feel</p>
+</div>
+<div class="question">
+  <p>752. Which is an auxiliary verb?</p>
+  <p>A) is</p>
+  <p>B) run</p>
+  <p>C) eat</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans252')">Show Answer</p>
+  <p id="ans252" class="answer">Answer: A) is</p>
+</div>
+<div class="question">
+  <p>753. Which is a modal verb?</p>
+  <p>A) can</p>
+  <p>B) running</p>
+  <p>C) quickly</p>
+  <p>D) book</p>
+  <p class="show-answer" onclick="toggleAnswer('ans253')">Show Answer</p>
+  <p id="ans253" class="answer">Answer: A) can</p>
+</div>
+<div class="question">
+  <p>754. Which is a past modal?</p>
+  <p>A) could have</p>
+  <p>B) could</p>
+  <p>C) will</p>
+  <p>D) can</p>
+  <p class="show-answer" onclick="toggleAnswer('ans254')">Show Answer</p>
+  <p id="ans254" class="answer">Answer: A) could have</p>
+</div>
+<div class="question">
+  <p>755. Which is a regular verb?</p>
+  <p>A) jump</p>
+  <p>B) go</p>
+  <p>C) eat</p>
+  <p>D) see</p>
+  <p class="show-answer" onclick="toggleAnswer('ans255')">Show Answer</p>
+  <p id="ans255" class="answer">Answer: A) jump</p>
+</div>
+<div class="question">
+  <p>756. Which is an irregular verb?</p>
+  <p>A) go</p>
+  <p>B) jump</p>
+  <p>C) talk</p>
+  <p>D) walk</p>
+  <p class="show-answer" onclick="toggleAnswer('ans256')">Show Answer</p>
+  <p id="ans256" class="answer">Answer: A) go</p>
+</div>
+<div class="question">
+  <p>757. Which is a gerund?</p>
+  <p>A) jumping</p>
+  <p>B) jump</p>
+  <p>C) jumps</p>
+  <p>D) to jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans257')">Show Answer</p>
+  <p id="ans257" class="answer">Answer: A) jumping</p>
+</div>
+<div class="question">
+  <p>758. Which is an infinitive?</p>
+  <p>A) to jump</p>
+  <p>B) jumping</p>
+  <p>C) jump</p>
+  <p>D) jumps</p>
+  <p class="show-answer" onclick="toggleAnswer('ans258')">Show Answer</p>
+  <p id="ans258" class="answer">Answer: A) to jump</p>
+</div>
+<div class="question">
+  <p>759. Which is a past participle?</p>
+  <p>A) jumped</p>
+  <p>B) jump</p>
+  <p>C) jumps</p>
+  <p>D) jumping</p>
+  <p class="show-answer" onclick="toggleAnswer('ans259')">Show Answer</p>
+  <p id="ans259" class="answer">Answer: A) jumped</p>
+</div>
+<div class="question">
+  <p>760. Which is a present participle?</p>
+  <p>A) jumping</p>
+  <p>B) jump</p>
+  <p>C) jumps</p>
+  <p>D) jumped</p>
+  <p class="show-answer" onclick="toggleAnswer('ans260')">Show Answer</p>
+  <p id="ans260" class="answer">Answer: A) jumping</p>
+</div>
+<div class="question">
+  <p>761. Which is a noun phrase?</p>
+  <p>A) the green tree</p>
+  <p>B) jumping quickly</p>
+  <p>C) to jump high</p>
+  <p>D) jumps quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans261')">Show Answer</p>
+  <p id="ans261" class="answer">Answer: A) the green tree</p>
+</div>
+<div class="question">
+  <p>762. Which is a verb phrase?</p>
+  <p>A) has been jumping</p>
+  <p>B) green tree</p>
+  <p>C) under the table</p>
+  <p>D) quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans262')">Show Answer</p>
+  <p id="ans262" class="answer">Answer: A) has been jumping</p>
+</div>
+<div class="question">
+  <p>763. Which is an adjective phrase?</p>
+  <p>A) full of life</p>
+  <p>B) jumping quickly</p>
+  <p>C) to jump high</p>
+  <p>D) jumps quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans263')">Show Answer</p>
+  <p id="ans263" class="answer">Answer: A) full of life</p>
+</div>
+<div class="question">
+  <p>764. Which is an adverb phrase?</p>
+  <p>A) very quietly</p>
+  <p>B) the green tree</p>
+  <p>C) under the table</p>
+  <p>D) to jump high</p>
+  <p class="show-answer" onclick="toggleAnswer('ans264')">Show Answer</p>
+  <p id="ans264" class="answer">Answer: A) very quietly</p>
+</div>
+<div class="question">
+  <p>765. Which is a prepositional phrase?</p>
+  <p>A) across the field</p>
+  <p>B) jumping quickly</p>
+  <p>C) to jump high</p>
+  <p>D) jumps quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans265')">Show Answer</p>
+  <p id="ans265" class="answer">Answer: A) across the field</p>
+</div>
+<div class="question">
+  <p>766. Which is a clause?</p>
+  <p>A) after she arrived</p>
+  <p>B) across the field</p>
+  <p>C) to jump high</p>
+  <p>D) jumping quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans266')">Show Answer</p>
+  <p id="ans266" class="answer">Answer: A) after she arrived</p>
+</div>
+<div class="question">
+  <p>767. Which is a main clause?</p>
+  <p>A) She went home</p>
+  <p>B) after she arrived</p>
+  <p>C) jumping quickly</p>
+  <p>D) across the field</p>
+  <p class="show-answer" onclick="toggleAnswer('ans267')">Show Answer</p>
+  <p id="ans267" class="answer">Answer: A) She went home</p>
+</div>
+<div class="question">
+  <p>768. Which is a subordinate clause?</p>
+  <p>A) after she arrived</p>
+  <p>B) She is happy</p>
+  <p>C) the green tree</p>
+  <p>D) jumping quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans268')">Show Answer</p>
+  <p id="ans268" class="answer">Answer: A) after she arrived</p>
+</div>
+<div class="question">
+  <p>769. Which is a noun clause?</p>
+  <p>A) what she said</p>
+  <p>B) across the field</p>
+  <p>C) to jump high</p>
+  <p>D) jumping quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans269')">Show Answer</p>
+  <p id="ans269" class="answer">Answer: A) what she said</p>
+</div>
+<div class="question">
+  <p>770. Which is an adjective clause?</p>
+  <p>A) who lives next door</p>
+  <p>B) across</p>
+  <p>Answer from Perplexity: pplx.ai/share</p>
+  <p>770. Which is an adjective clause?</p>
+  <p>A) who lives next door</p>
+  <p>B) across the field</p>
+  <p>C) to jump high</p>
+  <p>D) jumping quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans270')">Show Answer</p>
+  <p id="ans270" class="answer">Answer: A) who lives next door</p>
+</div>
+<div class="question">
+  <p>771. Which is an adverb clause?</p>
+  <p>A) because he was late</p>
+  <p>B) the green tree</p>
+  <p>C) under the table</p>
+  <p>D) to jump high</p>
+  <p class="show-answer" onclick="toggleAnswer('ans271')">Show Answer</p>
+  <p id="ans271" class="answer">Answer: A) because he was late</p>
+</div>
+<div class="question">
+  <p>772. What is the subject in the sentence: "The old man smiled kindly"?</p>
+  <p>A) The</p>
+  <p>B) man</p>
+  <p>C) The old man</p>
+  <p>D) smiled kindly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans272')">Show Answer</p>
+  <p id="ans272" class="answer">Answer: C) The old man</p>
+</div>
+<div class="question">
+  <p>773. Which is the correct form: "Each of the boys ___ playing"?</p>
+  <p>A) are</p>
+  <p>B) is</p>
+  <p>C) were</p>
+  <p>D) be</p>
+  <p class="show-answer" onclick="toggleAnswer('ans273')">Show Answer</p>
+  <p id="ans273" class="answer">Answer: B) is</p>
+</div>
+<div class="question">
+  <p>774. Which is a noun clause?</p>
+  <p>A) what she believes</p>
+  <p>B) under the tree</p>
+  <p>C) to believe</p>
+  <p>D) believing</p>
+  <p class="show-answer" onclick="toggleAnswer('ans274')">Show Answer</p>
+  <p id="ans274" class="answer">Answer: A) what she believes</p>
+</div>
+<div class="question">
+  <p>775. Which is a predicate adjective?</p>
+  <p>A) The soup tastes salty.</p>
+  <p>B) The soup tastes.</p>
+  <p>C) The soup is.</p>
+  <p>D) The soup salty.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans275')">Show Answer</p>
+  <p id="ans275" class="answer">Answer: A) The soup tastes salty.</p>
+</div>
+<div class="question">
+  <p>776. Which is a present perfect continuous tense sentence?</p>
+  <p>A) She has been reading for hours.</p>
+  <p>B) She reads for hours.</p>
+  <p>C) She read for hours.</p>
+  <p>D) She will read for hours.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans276')">Show Answer</p>
+  <p id="ans276" class="answer">Answer: A) She has been reading for hours.</p>
+</div>
+<div class="question">
+  <p>777. Which is a correct use of a preposition?</p>
+  <p>A) She arrived at the station.</p>
+  <p>B) She arrived in the station.</p>
+  <p>C) She arrived on the station.</p>
+  <p>D) She arrived by the station.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans277')">Show Answer</p>
+  <p id="ans277" class="answer">Answer: A) She arrived at the station.</p>
+</div>
+<div class="question">
+  <p>778. Which is a compound-complex sentence?</p>
+  <p>A) I went home, and she cooked dinner because we were tired.</p>
+  <p>B) I went home.</p>
+  <p>C) I went home and cooked dinner.</p>
+  <p>D) Because I was tired, I went home.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans278')">Show Answer</p>
+  <p id="ans278" class="answer">Answer: A) I went home, and she cooked dinner because we were tired.</p>
+</div>
+<div class="question">
+  <p>779. Identify the modal in this sentence: "You must finish your homework."</p>
+  <p>A) must</p>
+  <p>B) finish</p>
+  <p>C) homework</p>
+  <p>D) you</p>
+  <p class="show-answer" onclick="toggleAnswer('ans279')">Show Answer</p>
+  <p id="ans279" class="answer">Answer: A) must</p>
+</div>
+<div class="question">
+  <p>780. Which is a correct example of direct speech?</p>
+  <p>A) He said, "I am coming."</p>
+  <p>B) He said he is coming.</p>
+  <p>C) He coming.</p>
+  <p>D) He says coming.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans280')">Show Answer</p>
+  <p id="ans280" class="answer">Answer: A) He said, "I am coming."</p>
+</div>
+<div class="question">
+  <p>781. Which is a past participle used as an adjective?</p>
+  <p>A) broken glass</p>
+  <p>B) break glass</p>
+  <p>C) breaks glass</p>
+  <p>D) breaking glass</p>
+  <p class="show-answer" onclick="toggleAnswer('ans281')">Show Answer</p>
+  <p id="ans281" class="answer">Answer: A) broken glass</p>
+</div>
+<div class="question">
+  <p>782. Which is a gerund phrase?</p>
+  <p>A) Swimming in the lake</p>
+  <p>B) To swim in the lake</p>
+  <p>C) Swam in the lake</p>
+  <p>D) Swims in the lake</p>
+  <p class="show-answer" onclick="toggleAnswer('ans282')">Show Answer</p>
+  <p id="ans282" class="answer">Answer: A) Swimming in the lake</p>
+</div>
+<div class="question">
+  <p>783. Which is the correct passive voice form?</p>
+  <p>A) The letter was written by Sam.</p>
+  <p>B) Sam wrote by the letter.</p>
+  <p>C) The letter wrote Sam.</p>
+  <p>D) Sam was written by the letter.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans283')">Show Answer</p>
+  <p id="ans283" class="answer">Answer: A) The letter was written by Sam.</p>
+</div>
+<div class="question">
+  <p>784. Which is a correct example of a dangling modifier?</p>
+  <p>A) While driving to work, the rain started.</p>
+  <p>B) While driving to work, I saw the rain start.</p>
+  <p>C) I drove to work.</p>
+  <p>D) The rain started.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans284')">Show Answer</p>
+  <p id="ans284" class="answer">Answer: A) While driving to work, the rain started.</p>
+</div>
+<div class="question">
+  <p>785. Which is a correct example of a predicate nominative?</p>
+  <p>A) She is a leader.</p>
+  <p>B) She leads.</p>
+  <p>C) She leader.</p>
+  <p>D) She leading.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans285')">Show Answer</p>
+  <p id="ans285" class="answer">Answer: A) She is a leader.</p>
+</div>
+<div class="question">
+  <p>786. Which is a correct example of a subject complement?</p>
+  <p>A) The winner is John.</p>
+  <p>B) The winner John.</p>
+  <p>C) The winner wins.</p>
+  <p>D) John winner.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans286')">Show Answer</p>
+  <p id="ans286" class="answer">Answer: A) The winner is John.</p>
+</div>
+<div class="question">
+  <p>787. Which is a correct example of a finite verb?</p>
+  <p>A) runs</p>
+  <p>B) running</p>
+  <p>C) to run</p>
+  <p>D) run</p>
+  <p class="show-answer" onclick="toggleAnswer('ans287')">Show Answer</p>
+  <p id="ans287" class="answer">Answer: A) runs</p>
+</div>
+<div class="question">
+  <p>788. Which is a non-finite verb?</p>
+  <p>A) to run</p>
+  <p>B) runs</p>
+  <p>C) ran</p>
+  <p>D) run</p>
+  <p class="show-answer" onclick="toggleAnswer('ans288')">Show Answer</p>
+  <p id="ans288" class="answer">Answer: A) to run</p>
+</div>
+<div class="question">
+  <p>789. Which is a correct example of a direct object?</p>
+  <p>A) She found the keys.</p>
+  <p>B) She found.</p>
+  <p>C) She keys.</p>
+  <p>D) She is found.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans289')">Show Answer</p>
+  <p id="ans289" class="answer">Answer: A) She found the keys.</p>
+</div>
+<div class="question">
+  <p>790. Which is a correct example of an indirect object?</p>
+  <p>A) She gave her friend a card.</p>
+  <p>B) She gave a card.</p>
+  <p>C) She gave her friend.</p>
+  <p>D) She gave.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans290')">Show Answer</p>
+  <p id="ans290" class="answer">Answer: A) She gave her friend a card.</p>
+</div>
+<div class="question">
+  <p>791. Which is a correct example of a prepositional phrase?</p>
+  <p>A) on the shelf</p>
+  <p>B) shelf on</p>
+  <p>C) on shelf</p>
+  <p>D) shelf the on</p>
+  <p class="show-answer" onclick="toggleAnswer('ans291')">Show Answer</p>
+  <p id="ans291" class="answer">Answer: A) on the shelf</p>
+</div>
+<div class="question">
+  <p>792. Which is a correct example of an adverb clause?</p>
+  <p>A) because he was tired</p>
+  <p>B) the tired boy</p>
+  <p>C) tiredly</p>
+  <p>D) to be tired</p>
+  <p class="show-answer" onclick="toggleAnswer('ans292')">Show Answer</p>
+  <p id="ans292" class="answer">Answer: A) because he was tired</p>
+</div>
+<div class="question">
+  <p>793. Which is a correct example of a noun phrase?</p>
+  <p>A) the tall building</p>
+  <p>B) building tall</p>
+  <p>C) tall the building</p>
+  <p>D) building the tall</p>
+  <p class="show-answer" onclick="toggleAnswer('ans293')">Show Answer</p>
+  <p id="ans293" class="answer">Answer: A) the tall building</p>
+</div>
+<div class="question">
+  <p>794. Which is a correct example of a verb phrase?</p>
+  <p>A) has been working</p>
+  <p>B) working has been</p>
+  <p>C) has working been</p>
+  <p>D) been has working</p>
+  <p class="show-answer" onclick="toggleAnswer('ans294')">Show Answer</p>
+  <p id="ans294" class="answer">Answer: A) has been working</p>
+</div>
+<div class="question">
+  <p>795. Which is a correct example of an adjective phrase?</p>
+  <p>A) full of water</p>
+  <p>B) water of full</p>
+  <p>C) full water of</p>
+  <p>D) of water full</p>
+  <p class="show-answer" onclick="toggleAnswer('ans295')">Show Answer</p>
+  <p id="ans295" class="answer">Answer: A) full of water</p>
+</div>
+<div class="question">
+  <p>796. Which is a correct example of an adverb phrase?</p>
+  <p>A) very quickly</p>
+  <p>B) quick very</p>
+  <p>C) quickly very</p>
+  <p>D) very quick</p>
+  <p class="show-answer" onclick="toggleAnswer('ans296')">Show Answer</p>
+  <p id="ans296" class="answer">Answer: A) very quickly</p>
+</div>
+<div class="question">
+  <p>797. Which is a correct example of a main clause?</p>
+  <p>A) She went home</p>
+  <p>B) when she went home</p>
+  <p>C) going home</p>
+  <p>D) to go home</p>
+  <p class="show-answer" onclick="toggleAnswer('ans297')">Show Answer</p>
+  <p id="ans297" class="answer">Answer: A) She went home</p>
+</div>
+<div class="question">
+  <p>798. Which is a correct example of a subordinate clause?</p>
+  <p>A) because she was late</p>
+  <p>B) she is late</p>
+  <p>C) she was late</p>
+  <p>D) late she was</p>
+  <p class="show-answer" onclick="toggleAnswer('ans298')">Show Answer</p>
+  <p id="ans298" class="answer">Answer: A) because she was late</p>
+</div>
+<div class="question">
+  <p>799. Which is a correct example of a simple sentence?</p>
+  <p>A) The sun is shining.</p>
+  <p>B) The sun is shining, and the birds are singing.</p>
+  <p>C) Because the sun is shining, the birds are singing.</p>
+  <p>D) The sun is shining if the birds are singing.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans299')">Show Answer</p>
+  <p id="ans299" class="answer">Answer: A) The sun is shining.</p>
+</div>
+<div class="question">
+  <p>800. Which is a correct example of a compound sentence?</p>
+  <p>A) The sun is shining, and the birds are singing.</p>
+  <p>B) The sun is shining.</p>
+  <p>C) Because the sun is shining, the birds are singing.</p>
+  <p>D) The sun is shining if the birds are singing.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans300')">Show Answer</p>
+  <p id="ans300" class="answer">Answer: A) The sun is shining, and the birds are singing.</p>
+</div>
+<div class="question">
+  <p>801. Which is a correct example of a complex sentence?</p>
+  <p>A) Because the sun is shining, the birds are singing.</p>
+  <p>B) The sun is shining.</p>
+  <p>C) The sun is shining, and the birds are singing.</p>
+  <p>D) The sun is shining if the birds are singing.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans301')">Show Answer</p>
+  <p id="ans301" class="answer">Answer: A) Because the sun is shining, the birds are singing.</p>
+</div>
+<div class="question">
+  <p>802. Which is a correct example of a compound-complex sentence?</p>
+  <p>A) The sun is shining, and the birds are singing because it is morning.</p>
+  <p>B) The sun is shining.</p>
+  <p>C) The sun is shining, and the birds are singing.</p>
+  <p>D) Because the sun is shining, the birds are singing.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans302')">Show Answer</p>
+  <p id="ans302" class="answer">Answer: A) The sun is shining, and the birds are singing because it is morning.</p>
+</div>
+<div class="question">
+  <p>803. Which is a correct example of a declarative sentence?</p>
+  <p>A) The book is on the table.</p>
+  <p>B) Is the book on the table?</p>
+  <p>C) What a book!</p>
+  <p>D) Please put the book on the table.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans303')">Show Answer</p>
+  <p id="ans303" class="answer">Answer: A) The book is on the table.</p>
+</div>
+<div class="question">
+  <p>804. Which is a correct example of an interrogative sentence?</p>
+  <p>A) Is the book on the table?</p>
+  <p>B) The book is on the table.</p>
+  <p>C) What a book!</p>
+  <p>D) Please put the book on the table.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans304')">Show Answer</p>
+  <p id="ans304" class="answer">Answer: A) Is the book on the table?</p>
+</div>
+<div class="question">
+  <p>805. Which is a correct example of an imperative sentence?</p>
+  <p>A) Please put the book on the table.</p>
+  <p>B) The book is on the table.</p>
+  <p>C) Is the book on the table?</p>
+  <p>D) What a book!</p>
+  <p class="show-answer" onclick="toggleAnswer('ans305')">Show Answer</p>
+  <p id="ans305" class="answer">Answer: A) Please put the book on the table.</p>
+</div>
+<div class="question">
+  <p>806. Which is a correct example of an exclamatory sentence?</p>
+  <p>A) What a beautiful book!</p>
+  <p>B) The book is beautiful.</p>
+  <p>C) Is the book beautiful?</p>
+  <p>D) Please look at the book.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans306')">Show Answer</p>
+  <p id="ans306" class="answer">Answer: A) What a beautiful book!</p>
+</div>
+<div class="question">
+  <p>807. Which is a correct example of a definite article?</p>
+  <p>A) the</p>
+  <p>B) a</p>
+  <p>C) an</p>
+  <p>D) some</p>
+  <p class="show-answer" onclick="toggleAnswer('ans307')">Show Answer</p>
+  <p id="ans307" class="answer">Answer: A) the</p>
+</div>
+<div class="question">
+  <p>808. Which is a correct example of an indefinite article?</p>
+  <p>A) a</p>
+  <p>B) the</p>
+  <p>C) some</p>
+  <p>D) this</p>
+  <p class="show-answer" onclick="toggleAnswer('ans308')">Show Answer</p>
+  <p id="ans308" class="answer">Answer: A) a</p>
+</div>
+<div class="question">
+  <p>809. Which is a correct example of a demonstrative pronoun?</p>
+  <p>A) those</p>
+  <p>B) they</p>
+  <p>C) their</p>
+  <p>D) them</p>
+  <p class="show-answer" onclick="toggleAnswer('ans309')">Show Answer</p>
+  <p id="ans309" class="answer">Answer: A) those</p>
+</div>
+<div class="question">
+  <p>810. Which is a correct example of a possessive adjective?</p>
+  <p>A) our</p>
+  <p>B) we</p>
+  <p>C) us</p>
+  <p>D) ours</p>
+  <p class="show-answer" onclick="toggleAnswer('ans310')">Show Answer</p>
+  <p id="ans310" class="answer">Answer: A) our</p>
+</div>
+<div class="question">
+  <p>811. Which is a correct example of a possessive pronoun?</p>
+  <p>A) ours</p>
+  <p>B) our</p>
+  <p>C) us</p>
+  <p>D) we</p>
+  <p class="show-answer" onclick="toggleAnswer('ans311')">Show Answer</p>
+  <p id="ans311" class="answer">Answer: A) ours</p>
+</div>
+<div class="question">
+  <p>812. Which is a correct example of a reflexive pronoun?</p>
+  <p>A) ourselves</p>
+  <p>B) us</p>
+  <p>C) we</p>
+  <p>D) our</p>
+  <p class="show-answer" onclick="toggleAnswer('ans312')">Show Answer</p>
+  <p id="ans312" class="answer">Answer: A) ourselves</p>
+</div>
+<div class="question">
+  <p>813. Which is a correct example of a subject pronoun?</p>
+  <p>A) they</p>
+  <p>B) them</p>
+  <p>C) their</p>
+  <p>D) theirs</p>
+  <p class="show-answer" onclick="toggleAnswer('ans313')">Show Answer</p>
+  <p id="ans313" class="answer">Answer: A) they</p>
+</div>
+<div class="question">
+  <p>814. Which is a correct example of an object pronoun?</p>
+  <p>A) them</p>
+  <p>B) they</p>
+  <p>C) their</p>
+  <p>D) theirs</p>
+  <p class="show-answer" onclick="toggleAnswer('ans314')">Show Answer</p>
+  <p id="ans314" class="answer">Answer: A) them</p>
+</div>
+<div class="question">
+  <p>815. Which is a correct example of a relative pronoun?</p>
+  <p>A) which</p>
+  <p>B) she</p>
+  <p>C) he</p>
+  <p>D) it</p>
+  <p class="show-answer" onclick="toggleAnswer('ans315')">Show Answer</p>
+  <p id="ans315" class="answer">Answer: A) which</p>
+</div>
+<div class="question">
+  <p>816. Which is a correct example of an interrogative pronoun?</p>
+  <p>A) which</p>
+  <p>B) his</p>
+  <p>C) her</p>
+  <p>D) their</p>
+  <p class="show-answer" onclick="toggleAnswer('ans316')">Show Answer</p>
+  <p id="ans316" class="answer">Answer: A) which</p>
+</div>
+<div class="question">
+  <p>817. Which is a correct example of a linking verb?</p>
+  <p>A) become</p>
+  <p>B) run</p>
+  <p>C) eat</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans317')">Show Answer</p>
+  <p id="ans317" class="answer">Answer: A) become</p>
+</div>
+<div class="question">
+  <p>818. Which is a correct example of an auxiliary verb?</p>
+  <p>A) have</p>
+  <p>B) run</p>
+  <p>C) eat</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans318')">Show Answer</p>
+  <p id="ans318" class="answer">Answer: A) have</p>
+</div>
+<div class="question">
+  <p>819. Which is a correct example of a modal verb?</p>
+  <p>A) should</p>
+  <p>B) running</p>
+  <p>C) quickly</p>
+  <p>D) book</p>
+  <p class="show-answer" onclick="toggleAnswer('ans319')">Show Answer</p>
+  <p id="ans319" class="answer">Answer: A) should</p>
+</div>
+<div class="question">
+  <p>820. Which is a correct example of a past modal?</p>
+  <p>A) should have</p>
+  <p>B) should</p>
+  <p>C) will</p>
+  <p>D) can</p>
+  <p class="show-answer" onclick="toggleAnswer('ans320')">Show Answer</p>
+  <p id="ans320" class="answer">Answer: A) should have</p>
+</div>
+<div class="question">
+  <p>821. Which is a correct example of a regular verb?</p>
+  <p>A) play</p>
+  <p>B) go</p>
+  <p>C) eat</p>
+  <p>D) see</p>
+  <p class="show-answer" onclick="toggleAnswer('ans321')">Show Answer</p>
+  <p id="ans321" class="answer">Answer: A) play</p>
+</div>
+<div class="question">
+  <p>822. Which is a correct example of an irregular verb?</p>
+  <p>A) go</p>
+  <p>B) play</p>
+  <p>C) talk</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans322')">Show Answer</p>
+  <p id="ans322" class="answer">Answer: A) go</p>
+</div>
+<div class="question">
+  <p>823. Which is a correct example of a gerund?</p>
+  <p>A) playing</p>
+  <p>B) play</p>
+  <p>C) plays</p>
+  <p>D) to play</p>
+  <p class="show-answer" onclick="toggleAnswer('ans323')">Show Answer</p>
+  <p id="ans323" class="answer">Answer: A) playing</p>
+</div>
+<div class="question">
+  <p>824. Which is a correct example of an infinitive?</p>
+  <p>A) to play</p>
+  <p>B) playing</p>
+  <p>C) play</p>
+  <p>D) plays</p>
+  <p class="show-answer" onclick="toggleAnswer('ans324')">Show Answer</p>
+  <p id="ans324" class="answer">Answer: A) to play</p>
+</div>
+<div class="question">
+  <p>825. Which is a correct example of a past participle?</p>
+  <p>A) played</p>
+  <p>B) play</p>
+  <p>C) plays</p>
+  <p>D) playing</p>
+  <p class="show-answer" onclick="toggleAnswer('ans325')">Show Answer</p>
+  <p id="ans325" class="answer">Answer: A) played</p>
+</div>
+<div class="question">
+  <p>826. Which is a correct example of a present participle?</p>
+  <p>A) playing</p>
+  <p>B) play</p>
+  <p>C) plays</p>
+  <p>D) played</p>
+  <p class="show-answer" onclick="toggleAnswer('ans326')">Show Answer</p>
+  <p id="ans326" class="answer">Answer: A) playing</p>
+</div>
+<div class="question">
+  <p>827. Which is a correct example of a noun phrase?</p>
+  <p>A) the white horse</p>
+  <p>B) playing loudly</p>
+  <p>C) to play well</p>
+  <p>D) plays loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans327')">Show Answer</p>
+  <p id="ans327" class="answer">Answer: A) the white horse</p>
+</div>
+<div class="question">
+  <p>828. Which is a correct example of a verb phrase?</p>
+  <p>A) has been playing</p>
+  <p>B) white horse</p>
+  <p>C) under the table</p>
+  <p>D) loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans328')">Show Answer</p>
+  <p id="ans328" class="answer">Answer: A) has been playing</p>
+</div>
+<div class="question">
+  <p>829. Which is a correct example of an adjective phrase?</p>
+  <p>A) full of energy</p>
+  <p>B) playing loudly</p>
+  <p>C) to play well</p>
+  <p>D) plays loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans329')">Show Answer</p>
+  <p id="ans329" class="answer">Answer: A) full of energy</p>
+</div>
+<div class="question">
+  <p>830. Which is a correct example of an adverb phrase?</p>
+  <p>A) very softly</p>
+  <p>B) the white horse</p>
+  <p>C) under the table</p>
+  <p>D) to play well</p>
+  <p class="show-answer" onclick="toggleAnswer('ans330')">Show Answer</p>
+  <p id="ans330" class="answer">Answer: A) very softly</p>
+</div>
+<div class="question">
+  <p>831. Which is a correct example of a prepositional phrase?</p>
+  <p>A) over the hill</p>
+  <p>B) playing loudly</p>
+  <p>C) to play well</p>
+  <p>D) plays loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans331')">Show Answer</p>
+  <p id="ans331" class="answer">Answer: A) over the hill</p>
+</div>
+<div class="question">
+  <p>832. Which is a correct example of a clause?</p>
+  <p>A) unless he calls</p>
+  <p>B) over the hill</p>
+  <p>C) to play well</p>
+  <p>D) playing loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans332')">Show Answer</p>
+  <p id="ans332" class="answer">Answer: A) unless he calls</p>
+</div>
+<div class="question">
+  <p>833. Which is a correct example of a main clause?</p>
+  <p>A) She left early</p>
+  <p>B) unless she was tired</p>
+  <p>C) playing loudly</p>
+  <p>D) over the hill</p>
+  <p class="show-answer" onclick="toggleAnswer('ans333')">Show Answer</p>
+  <p id="ans333" class="answer">Answer: A) She left early</p>
+</div>
+<div class="question">
+  <p>834. Which is a correct example of a subordinate clause?</p>
+  <p>A) unless he calls</p>
+  <p>B) She is happy</p>
+  <p>C) the white horse</p>
+  <p>D) playing loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans334')">Show Answer</p>
+  <p id="ans334" class="answer">Answer: A) unless he calls</p>
+</div>
+<div class="question">
+  <p>835. Which is a correct example of a noun clause?</p>
+  <p>A) why she left</p>
+  <p>B) over the hill</p>
+  <p>C) to play well</p>
+  <p>D) playing loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans335')">Show Answer</p>
+  <p id="ans335" class="answer">Answer: A) why she left</p>
+</div>
+<div class="question">
+  <p>836. Which is a correct example of an adjective clause?</p>
+  <p>A) who won the race</p>
+  <p>B) over the hill</p>
+  <p>C) to play well</p>
+  <p>D) playing loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans336')">Show Answer</p>
+  <p id="ans336" class="answer">Answer: A) who won the race</p>
+</div>
+<div class="question">
+  <p>837. Which is a correct example of an adverb clause?</p>
+  <p>A) after the show ends</p>
+  <p>B) the white horse</p>
+  <p>C) under the table</p>
+  <p>D) to play well</p>
+  <p class="show-answer" onclick="toggleAnswer('ans337')">Show Answer</p>
+  <p id="ans337" class="answer">Answer: A) after the show ends</p>
+</div>
+<div class="question">
+  <p>838. Which is a correct example of a simple sentence?</p>
+  <p>A) She likes grapes.</p>
+  <p>B) She likes grapes, and he likes apples.</p>
+  <p>C) Because she likes grapes, he likes apples.</p>
+  <p>D) She likes grapes if he likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans338')">Show Answer</p>
+  <p id="ans338" class="answer">Answer: A) She likes grapes.</p>
+</div>
+<div class="question">
+  <p>839. Which is a correct example of a compound sentence?</p>
+  <p>A) She likes grapes, and he likes apples.</p>
+  <p>B) She likes grapes.</p>
+  <p>C) Because she likes grapes, he likes apples.</p>
+  <p>D) She likes grapes if he likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans339')">Show Answer</p>
+  <p id="ans339" class="answer">Answer: A) She likes grapes, and he likes apples.</p>
+</div>
+<div class="question">
+  <p>840. Which is a correct example of a complex sentence?</p>
+  <p>A) Because she likes grapes, he likes apples.</p>
+  <p>B) She likes grapes.</p>
+  <p>C) She likes grapes, and he likes apples.</p>
+  <p>D) She likes grapes if he likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans340')">Show Answer</p>
+  <p id="ans340" class="answer">Answer: A) Because she likes grapes, he likes apples.</p>
+</div>
+<div class="question">
+  <p>841. Which is a correct example of a compound-complex sentence?</p>
+  <p>A) She likes grapes, and he likes apples because they are sweet.</p>
+  <p>B) She likes grapes.</p>
+  <p>C) She likes grapes, and he likes apples.</p>
+  <p>D) Because she likes grapes, he likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans341')">Show Answer</p>
+  <p id="ans341" class="answer">Answer: A) She likes grapes, and he likes apples because they are sweet.</p>
+</div>
+<div class="question">
+  <p>842. Which is a correct example of a declarative sentence?</p>
+  <p>A) The moon is bright.</p>
+  <p>B) Is the moon bright?</p>
+  <p>C) What a bright moon!</p>
+  <p>D) Please look at the moon.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans342')">Show Answer</p>
+  <p id="ans342" class="answer">Answer: A) The moon is bright.</p>
+</div>
+<div class="question">
+  <p>843. Which is a correct example of an interrogative sentence?</p>
+  <p>A) Is the moon bright?</p>
+  <p>B) The moon is bright.</p>
+  <p>C) What a bright moon!</p>
+  <p>D) Please look at the moon.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans343')">Show Answer</p>
+  <p id="ans343" class="answer">Answer: A) Is the moon bright?</p>
+</div>
+<div class="question">
+  <p>844. Which is a correct example of an imperative sentence?</p>
+  <p>A) Please look at the moon.</p>
+  <p>B) The moon is bright.</p>
+  <p>C) Is the moon bright?</p>
+  <p>D) What a bright moon!</p>
+  <p class="show-answer" onclick="toggleAnswer('ans344')">Show Answer</p>
+  <p id="ans344" class="answer">Answer: A) Please look at the moon.</p>
+</div>
+<div class="question">
+  <p>845. Which is a correct example of an exclamatory sentence?</p>
+  <p>A) What a bright moon!</p>
+  <p>B) The moon is bright.</p>
+  <p>C) Is the moon bright?</p>
+  <p>D) Please look at the moon.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans345')">Show Answer</p>
+  <p id="ans345" class="answer">Answer: A) What a bright moon!</p>
+</div>
+<div class="question">
+  <p>846. Which is a correct example of a definite article?</p>
+  <p>A) the</p>
+  <p>B) a</p>
+  <p>C) an</p>
+  <p>D) some</p>
+  <p class="show-answer" onclick="toggleAnswer('ans346')">Show Answer</p>
+  <p id="ans346" class="answer">Answer: A) the</p>
+</div>
+<div class="question">
+  <p>847. Which is a correct example of an indefinite article?</p>
+  <p>A) an</p>
+  <p>B) the</p>
+  <p>C) some</p>
+  <p>D) this</p>
+  <p class="show-answer" onclick="toggleAnswer('ans347')">Show Answer</p>
+  <p id="ans347" class="answer">Answer: A) an</p>
+</div>
+<div class="question">
+  <p>848. Which is a correct example of a demonstrative pronoun?</p>
+  <p>A) this</p>
+  <p>B) they</p>
+  <p>C) their</p>
+  <p>D) them</p>
+  <p class="show-answer" onclick="toggleAnswer('ans348')">Show Answer</p>
+  <p id="ans348" class="answer">Answer: A) this</p>
+</div>
+<div class="question">
+  <p>849. Which is a correct example of a possessive adjective?</p>
+  <p>A) my</p>
+  <p>B) me</p>
+  <p>C) mine</p>
+  <p>D) myself</p>
+  <p class="show-answer" onclick="toggleAnswer('ans349')">Show Answer</p>
+  <p id="ans349" class="answer">Answer: A) my</p>
+</div>
+<div class="question">
+  <p>850. Which is a correct example of a possessive pronoun?</p>
+  <p>A) mine</p>
+  <p>B) my</p>
+  <p>C) me</p>
+  <p>D) myself</p>
+  <p class="show-answer" onclick="toggleAnswer('ans350')">Show Answer</p>
+  <p id="ans350" class="answer">Answer: A) mine</p>
+</div>
+<div class="question">
+  <p>851. Which is a correct example of a reflexive pronoun?</p>
+  <p>A) myself</p>
+  <p>B) me</p>
+  <p>C) mine</p>
+  <p>D) I</p>
+  <p class="show-answer" onclick="toggleAnswer('ans351')">Show Answer</p>
+  <p id="ans351" class="answer">Answer: A) myself</p>
+</div>
+<div class="question">
+  <p>852. Which is a correct example of a subject pronoun?</p>
+  <p>A) she</p>
+  <p>B) her</p>
+  <p>C) hers</p>
+  <p>D) herself</p>
+  <p class="show-answer" onclick="toggleAnswer('ans352')">Show Answer</p>
+  <p id="ans352" class="answer">Answer: A) she</p>
+</div>
+<div class="question">
+  <p>853. Which is a correct example of an object pronoun?</p>
+  <p>A) her</p>
+  <p>B) she</p>
+  <p>C) hers</p>
+  <p>D) herself</p>
+  <p class="show-answer" onclick="toggleAnswer('ans353')">Show Answer</p>
+  <p id="ans353" class="answer">Answer: A) her</p>
+</div>
+<div class="question">
+  <p>854. Which is a correct example of a relative pronoun?</p>
+  <p>A) who</p>
+  <p>B) she</p>
+  <p>C) he</p>
+  <p>D) it</p>
+  <p class="show-answer" onclick="toggleAnswer('ans354')">Show Answer</p>
+  <p id="ans354" class="answer">Answer: A) who</p>
+</div>
+<div class="question">
+  <p>855. Which is a correct example of an interrogative pronoun?</p>
+  <p>A) who</p>
+  <p>B) his</p>
+  <p>C) her</p>
+  <p>D) their</p>
+  <p class="show-answer" onclick="toggleAnswer('ans355')">Show Answer</p>
+  <p id="ans355" class="answer">Answer: A) who</p>
+</div>
+<div class="question">
+  <p>856. Which is a correct example of a linking verb?</p>
+  <p>A) feel</p>
+  <p>B) run</p>
+  <p>C) eat</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans356')">Show Answer</p>
+  <p id="ans356" class="answer">Answer: A) feel</p>
+</div>
+<div class="question">
+  <p>857. Which is a correct example of an auxiliary verb?</p>
+  <p>A) is</p>
+  <p>B) run</p>
+  <p>C) eat</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans357')">Show Answer</p>
+  <p id="ans357" class="answer">Answer: A) is</p>
+</div>
+<div class="question">
+  <p>858. Which is a correct example of a modal verb?</p>
+  <p>A) can</p>
+  <p>B) running</p>
+  <p>C) quickly</p>
+  <p>D) book</p>
+  <p class="show-answer" onclick="toggleAnswer('ans358')">Show Answer</p>
+  <p id="ans358" class="answer">Answer: A) can</p>
+</div>
+<div class="question">
+  <p>859. Which is a correct example of a past modal?</p>
+  <p>A) could have</p>
+  <p>B) could</p>
+  <p>C) will</p>
+  <p>D) can</p>
+  <p class="show-answer" onclick="toggleAnswer('ans359')">Show Answer</p>
+  <p id="ans359" class="answer">Answer: A) could have</p>
+</div>
+<div class="question">
+  <p>860. Which is a correct example of a regular verb?</p>
+  <p>A) jump</p>
+  <p>B) go</p>
+  <p>C) eat</p>
+  <p>D) see</p>
+  <p class="show-answer" onclick="toggleAnswer('ans360')">Show Answer</p>
+  <p id="ans360" class="answer">Answer: A) jump</p>
+</div>
+<div class="question">
+  <p>861. Which is a correct example of an irregular verb?</p>
+  <p>A) go</p>
+  <p>B) jump</p>
+  <p>C) talk</p>
+  <p>D) walk</p>
+  <p class="show-answer" onclick="toggleAnswer('ans361')">Show Answer</p>
+  <p id="ans361" class="answer">Answer: A) go</p>
+</div>
+<div class="question">
+  <p>862. Which is a correct example of a gerund?</p>
+  <p>A) jumping</p>
+  <p>B) jump</p>
+  <p>C) jumps</p>
+  <p>D) to jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans362')">Show Answer</p>
+  <p id="ans362" class="answer">Answer: A) jumping</p>
+</div>
+<div class="question">
+  <p>863. Which is a correct example of an infinitive?</p>
+  <p>A) to jump</p>
+  <p>B) jumping</p>
+  <p>C) jump</p>
+  <p>D) jumps</p>
+  <p class="show-answer" onclick="toggleAnswer('ans363')">Show Answer</p>
+  <p id="ans363" class="answer">Answer: A) to jump</p>
+</div>
+<div class="question">
+  <p>864. Which is a correct example of a past participle?</p>
+  <p>A) jumped</p>
+  <p>B) jump</p>
+  <p>C) jumps</p>
+  <p>D) jumping</p>
+  <p class="show-answer" onclick="toggleAnswer('ans364')">Show Answer</p>
+  <p id="ans364" class="answer">Answer: A) jumped</p>
+</div>
+<div class="question">
+  <p>865. Which is a correct example of a present participle?</p>
+  <p>A) jumping</p>
+  <p>B) jump</p>
+  <p>C) jumps</p>
+  <p>D) jumped</p>
+  <p class="show-answer" onclick="toggleAnswer('ans365')">Show Answer</p>
+  <p id="ans365" class="answer">Answer: A) jumping</p>
+</div>
+<div class="question">
+  <p>866. Which is a correct example of a noun phrase?</p>
+  <p>A) the green tree</p>
+  <p>B) jumping quickly</p>
+  <p>C) to jump high</p>
+  <p>D) jumps quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans366')">Show Answer</p>
+  <p id="ans366" class="answer">Answer: A) the green tree</p>
+</div>
+<div class="question">
+  <p>867. Which is a correct example of a verb phrase?</p>
+  <p>A) has been jumping</p>
+  <p>B) green tree</p>
+  <p>C) under the table</p>
+  <p>D) quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans367')">Show Answer</p>
+  <p id="ans367" class="answer">Answer: A) has been jumping</p>
+</div>
+<div class="question">
+  <p>868. Which is a correct example of an adjective phrase?</p>
+  <p>A) full of life</p>
+  <p>B) jumping quickly</p>
+  <p>C) to jump high</p>
+  <p>D) jumps quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans368')">Show Answer</p>
+  <p id="ans368" class="answer">Answer: A) full of life</p>
+</div>
+<div class="question">
+  <p>869. Which is a correct example of an adverb phrase?</p>
+  <p>A) very quietly</p>
+  <p>B) the green tree</p>
+  <p>C) under the table</p>
+  <p>D) to jump high</p>
+  <p class="show-answer" onclick="toggleAnswer('ans369')">Show Answer</p>
+  <p id="ans369" class="answer">Answer: A) very quietly</p>
+</div>
+<div class="question">
+  <p>870. Which is a correct example of a prepositional phrase?</p>
+  <p>A) across the field</p>
+  <p>B) jumping quickly</p>
+  <p>C) to jump high</p>
+  <p>D) jumps quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans370')">Show Answer</p>
+  <p id="ans370" class="answer">Answer: A) across the field</p>
+</div>
+<div class="question">
+  <p>871. Which is a correct example of a clause?</p>
+  <p>A) after she arrived</p>
+  <p>B) across the field</p>
+  <p>C) to jump high</p>
+  <p>D) jumping quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans371')">Show Answer</p>
+  <p id="ans371" class="answer">Answer: A) after she arrived</p>
+</div>
+<div class="question">
+  <p>872. Which is a correct example of a main clause?</p>
+  <p>A) She went home</p>
+  <p>B) after she arrived</p>
+  <p>C) jumping quickly</p>
+  <p>D) across the field</p>
+  <p class="show-answer" onclick="toggleAnswer('ans372')">Show Answer</p>
+  <p id="ans372" class="answer">Answer: A) She went home</p>
+</div>
+<div class="question">
+  <p>873. Which is a correct example of a subordinate clause?</p>
+  <p>A) after she arrived</p>
+  <p>B) She is happy</p>
+  <p>C) the green tree</p>
+  <p>D) jumping quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans373')">Show Answer</p>
+  <p id="ans373" class="answer">Answer: A) after she arrived</p>
+</div>
+<div class="question">
+  <p>874. Which is a correct example of a noun clause?</p>
+  <p>A) what she said</p>
+  <p>B) across the field</p>
+  <p>C) to jump high</p>
+  <p>D) jumping quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans374')">Show Answer</p>
+  <p id="ans374" class="answer">Answer: A) what she said</p>
+</div>
+<div class="question">
+  <p>875. Which is a correct example of an adjective clause?</p>
+  <p>A) who lives next door</p>
+  <p>B) across the field</p>
+  <p>C) to jump high</p>
+  <p>D) jumping quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans375')">Show Answer</p>
+  <p id="ans375" class="answer">Answer: A) who lives next door</p>
+</div>
+<div class="question">
+  <p>876. Which is a correct example of an adverb clause?</p>
+  <p>A) when the bell rings</p>
+  <p>B) the green tree</p>
+  <p>C) under the table</p>
+  <p>D) to jump high</p>
+  <p class="show-answer" onclick="toggleAnswer('ans376')">Show Answer</p>
+  <p id="ans376" class="answer">Answer: A) when the bell rings</p>
+</div>
+<div class="question">
+  <p>877. Which is a correct example of a simple sentence?</p>
+  <p>A) She likes lemons.</p>
+  <p>B) She likes lemons, and he likes oranges.</p>
+  <p>C) Because she likes lemons, he likes oranges.</p>
+  <p>D) She likes lemons if he likes oranges.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans377')">Show Answer</p>
+  <p id="ans377" class="answer">Answer: A) She likes lemons.</p>
+</div>
+<div class="question">
+  <p>878. Which is a correct example of a compound sentence?</p>
+  <p>A) She likes lemons, and he likes oranges.</p>
+  <p>B) She likes lemons.</p>
+  <p>C) Because she likes lemons, he likes oranges.</p>
+  <p>D) She likes lemons if he likes oranges.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans378')">Show Answer</p>
+  <p id="ans378" class="answer">Answer: A) She likes lemons, and he likes oranges.</p>
+</div>
+<div class="question">
+  <p>879. Which is a correct example of a complex sentence?</p>
+  <p>A) Because she likes lemons, he likes oranges.</p>
+  <p>B) She likes lemons.</p>
+  <p>C) She likes lemons, and he likes oranges.</p>
+  <p>D) She likes lemons if he likes oranges.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans379')">Show Answer</p>
+  <p id="ans379" class="answer">Answer: A) Because she likes lemons, he likes oranges.</p>
+</div>
+<div class="question">
+  <p>880. Which is a correct example of a compound-complex sentence?</p>
+  <p>A) She likes lemons, and he likes oranges because they are sweet.</p>
+  <p>B) She likes lemons.</p>
+  <p>C) She likes lemons, and he likes oranges.</p>
+  <p>D) Because she likes lemons, he likes oranges.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans380')">Show Answer</p>
+  <p id="ans380" class="answer">Answer: A) She likes lemons, and he likes oranges because they are sweet.</p>
+</div>
+<div class="question">
+  <p>881. Which is a correct example of a declarative sentence?</p>
+  <p>A) The river is long.</p>
+  <p>B) Is the river long?</p>
+  <p>C) What a long river!</p>
+  <p>D) Please look at the river.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans381')">Show Answer</p>
+  <p id="ans381" class="answer">Answer: A) The river is long.</p>
+</div>
+<div class="question">
+  <p>882. Which is a correct example of an interrogative sentence?</p>
+  <p>A) Is the river long?</p>
+  <p>B) The river is long.</p>
+  <p>C) What a long river!</p>
+  <p>D) Please look at the river.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans382')">Show Answer</p>
+  <p id="ans382" class="answer">Answer: A) Is the river long?</p>
+</div>
+<div class="question">
+  <p>883. Which is a correct example of an imperative sentence?</p>
+  <p>A) Please look at the river.</p>
+  <p>B) The river is long.</p>
+  <p>C) Is the river long?</p>
+  <p>D) What a long river!</p>
+  <p class="show-answer" onclick="toggleAnswer('ans383')">Show Answer</p>
+  <p id="ans383" class="answer">Answer: A) Please look at the river.</p>
+</div>
+<div class="question">
+  <p>884. Which is a correct example of an exclamatory sentence?</p>
+  <p>A) What a long river!</p>
+  <p>B) The river is long.</p>
+  <p>C) Is the river long?</p>
+  <p>D) Please look at the river.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans384')">Show Answer</p>
+  <p id="ans384" class="answer">Answer: A) What a long river!</p>
+</div>
+<div class="question">
+  <p>885. Which is a correct example of a definite article?</p>
+  <p>A) the</p>
+  <p>B) a</p>
+  <p>C) an</p>
+  <p>D) some</p>
+  <p class="show-answer" onclick="toggleAnswer('ans385')">Show Answer</p>
+  <p id="ans385" class="answer">Answer: A) the</p>
+</div>
+<div class="question">
+  <p>886. Which is a correct example of an indefinite article?</p>
+  <p>A) an</p>
+  <p>B) the</p>
+  <p>C) some</p>
+  <p>D) this</p>
+  <p class="show-answer" onclick="toggleAnswer('ans386')">Show Answer</p>
+  <p id="ans386" class="answer">Answer: A) an</p>
+</div>
+<div class="question">
+  <p>887. Which is a correct example of a demonstrative pronoun?</p>
+  <p>A) those</p>
+  <p>B) they</p>
+  <p>C) their</p>
+  <p>D) them</p>
+  <p class="show-answer" onclick="toggleAnswer('ans387')">Show Answer</p>
+  <p id="ans387" class="answer">Answer: A) those</p>
+</div>
+<div class="question">
+  <p>888. Which is a correct example of a possessive adjective?</p>
+  <p>A) their</p>
+  <p>B) they</p>
+  <p>C) them</p>
+  <p>D) theirs</p>
+  <p class="show-answer" onclick="toggleAnswer('ans388')">Show Answer</p>
+  <p id="ans388" class="answer">Answer: A) their</p>
+</div>
+<div class="question">
+  <p>889. Which is a correct example of a possessive pronoun?</p>
+  <p>A) theirs</p>
+  <p>B) their</p>
+  <p>C) them</p>
+  <p>D) they</p>
+  <p class="show-answer" onclick="toggleAnswer('ans389')">Show Answer</p>
+  <p id="ans389" class="answer">Answer: A) theirs</p>
+</div>
+<div class="question">
+  <p>890. Which is a correct example of a reflexive pronoun?</p>
+  <p>A) themselves</p>
+  <p>B) them</p>
+  <p>C) their</p>
+  <p>D) they</p>
+  <p class="show-answer" onclick="toggleAnswer('ans390')">Show Answer</p>
+  <p id="ans390" class="answer">Answer: A) themselves</p>
+</div>
+<div class="question">
+  <p>891. Which is a correct example of a subject pronoun?</p>
+  <p>A) they</p>
+  <p>B) them</p>
+  <p>C) their</p>
+  <p>D) theirs</p>
+  <p class="show-answer" onclick="toggleAnswer('ans391')">Show Answer</p>
+  <p id="ans391" class="answer">Answer: A) they</p>
+</div>
+<div class="question">
+  <p>892. Which is a correct example of an object pronoun?</p>
+  <p>A) them</p>
+  <p>B) they</p>
+  <p>C) their</p>
+  <p>D) theirs</p>
+  <p class="show-answer" onclick="toggleAnswer('ans392')">Show Answer</p>
+  <p id="ans392" class="answer">Answer: A) them</p>
+</div>
+<div class="question">
+  <p>893. Which is a correct example of a relative pronoun?</p>
+  <p>A) that</p>
+  <p>B) she</p>
+  <p>C) he</p>
+  <p>D) it</p>
+  <p class="show-answer" onclick="toggleAnswer('ans393')">Show Answer</p>
+  <p id="ans393" class="answer">Answer: A) that</p>
+</div>
+<div class="question">
+  <p>894. Which is a correct example of an interrogative pronoun?</p>
+  <p>A) which</p>
+  <p>B) his</p>
+  <p>C) her</p>
+  <p>D) their</p>
+  <p class="show-answer" onclick="toggleAnswer('ans394')">Show Answer</p>
+  <p id="ans394" class="answer">Answer: A) which</p>
+</div>
+<div class="question">
+  <p>895. Which is a correct example of a linking verb?</p>
+  <p>A) seem</p>
+  <p>B) run</p>
+  <p>C) eat</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans395')">Show Answer</p>
+  <p id="ans395" class="answer">Answer: A) seem</p>
+</div>
+<div class="question">
+  <p>896. Which is a correct example of an auxiliary verb?</p>
+  <p>A) were</p>
+  <p>B) run</p>
+  <p>C) eat</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans396')">Show Answer</p>
+  <p id="ans396" class="answer">Answer: A) were</p>
+</div>
+<div class="question">
+  <p>897. Which is a correct example of a modal verb?</p>
+  <p>A) could</p>
+  <p>B) running</p>
+  <p>C) quickly</p>
+  <p>D) book</p>
+  <p class="show-answer" onclick="toggleAnswer('ans397')">Show Answer</p>
+  <p id="ans397" class="answer">Answer: A) could</p>
+</div>
+<div class="question">
+  <p>898. Which is a correct example of a past modal?</p>
+  <p>A) could have</p>
+  <p>B) could</p>
+  <p>C) will</p>
+  <p>D) can</p>
+  <p class="show-answer" onclick="toggleAnswer('ans398')">Show Answer</p>
+  <p id="ans398" class="answer">Answer: A) could have</p>
+</div>
+<div class="question">
+  <p>899. Which is a correct example of a regular verb?</p>
+  <p>A) start</p>
+  <p>B) go</p>
+  <p>C) eat</p>
+  <p>D) see</p>
+  <p class="show-answer" onclick="toggleAnswer('ans399')">Show Answer</p>
+  <p id="ans399" class="answer">Answer: A) start</p>
+</div>
+<div class="question">
+  <p>900. Which is a correct example of an irregular verb?</p>
+  <p>A) eat</p>
+  <p>B) start</p>
+  <p>C) talk</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans400')">Show Answer</p>
+  <p id="ans400" class="answer">Answer: A) eat</p>
+</div>
+<div class="question">
+  <p>901. Which is a correct example of a gerund?</p>
+  <p>A) starting</p>
+  <p>B) start</p>
+  <p>C) starts</p>
+  <p>D) to start</p>
+  <p class="show-answer" onclick="toggleAnswer('ans401')">Show Answer</p>
+  <p id="ans401" class="answer">Answer: A) starting</p>
+</div>
+<div class="question">
+  <p>902. Which is a correct example of an infinitive?</p>
+  <p>A) to start</p>
+  <p>B) starting</p>
+  <p>C) start</p>
+  <p>D) starts</p>
+  <p class="show-answer" onclick="toggleAnswer('ans402')">Show Answer</p>
+  <p id="ans402" class="answer">Answer: A) to start</p>
+</div>
+<div class="question">
+  <p>903. Which is a correct example of a past participle?</p>
+  <p>A) started</p>
+  <p>B) start</p>
+  <p>C) starts</p>
+  <p>D) starting</p>
+  <p class="show-answer" onclick="toggleAnswer('ans403')">Show Answer</p>
+  <p id="ans403" class="answer">Answer: A) started</p>
+</div>
+<div class="question">
+  <p>904. Which is a correct example of a present participle?</p>
+  <p>A) starting</p>
+  <p>B) start</p>
+  <p>C) starts</p>
+  <p>D) started</p>
+  <p class="show-answer" onclick="toggleAnswer('ans404')">Show Answer</p>
+  <p id="ans404" class="answer">Answer: A) starting</p>
+</div>
+<div class="question">
+  <p>905. Which is a correct example of a noun phrase?</p>
+  <p>A) the big house</p>
+  <p>B) starting quickly</p>
+  <p>C) to start soon</p>
+  <p>D) starts quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans405')">Show Answer</p>
+  <p id="ans405" class="answer">Answer: A) the big house</p>
+</div>
+<div class="question">
+  <p>906. Which is a correct example of a verb phrase?</p>
+  <p>A) has been starting</p>
+  <p>B) big house</p>
+  <p>C) under the table</p>
+  <p>D) quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans406')">Show Answer</p>
+  <p id="ans406" class="answer">Answer: A) has been starting</p>
+</div>
+<div class="question">
+  <p>907. Which is a correct example of an adjective phrase?</p>
+  <p>A) full of ideas</p>
+  <p>B) starting quickly</p>
+  <p>C) to start soon</p>
+  <p>D) starts quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans407')">Show Answer</p>
+  <p id="ans407" class="answer">Answer: A) full of ideas</p>
+</div>
+<div class="question">
+  <p>908. Which is a correct example of an adverb phrase?</p>
+  <p>A) very slowly</p>
+  <p>B) the big house</p>
+  <p>C) under the table</p>
+  <p>D) to start soon</p>
+  <p class="show-answer" onclick="toggleAnswer('ans408')">Show Answer</p>
+  <p id="ans408" class="answer">Answer: A) very slowly</p>
+</div>
+<div class="question">
+  <p>909. Which is a correct example of a prepositional phrase?</p>
+  <p>A) near the station</p>
+  <p>B) starting quickly</p>
+  <p>C) to start soon</p>
+  <p>D) starts quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans409')">Show Answer</p>
+  <p id="ans409" class="answer">Answer: A) near the station</p>
+</div>
+<div class="question">
+  <p>910. Which is a correct example of a clause?</p>
+  <p>A) since he left</p>
+  <p>B) near the station</p>
+  <p>C) to start soon</p>
+  <p>D) starting quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans410')">Show Answer</p>
+  <p id="ans410" class="answer">Answer: A) since he left</p>
+</div>
+<div class="question">
+  <p>911. Which is a correct example of a main clause?</p>
+  <p>A) She went home</p>
+  <p>B) since he left</p>
+  <p>C) starting quickly</p>
+  <p>D) near the station</p>
+  <p class="show-answer" onclick="toggleAnswer('ans411')">Show Answer</p>
+  <p id="ans411" class="answer">Answer: A) She went home</p>
+</div>
+<div class="question">
+  <p>912. Which is a correct example of a subordinate clause?</p>
+  <p>A) since he left</p>
+  <p>B) She is happy</p>
+  <p>C) the big house</p>
+  <p>D) starting quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans412')">Show Answer</p>
+  <p id="ans412" class="answer">Answer: A) since he left</p>
+</div>
+<div class="question">
+  <p>913. Which is a correct example of a noun clause?</p>
+  <p>A) what he did</p>
+  <p>B) near the station</p>
+  <p>C) to start soon</p>
+  <p>D) starting quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans413')">Show Answer</p>
+  <p id="ans413" class="answer">Answer: A) what he did</p>
+</div>
+<div class="question">
+  <p>914. Which is a correct example of an adjective clause?</p>
+  <p>A) who called yesterday</p>
+  <p>B) near the station</p>
+  <p>C) to start soon</p>
+  <p>D) starting quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans414')">Show Answer</p>
+  <p id="ans414" class="answer">Answer: A) who called yesterday</p>
+</div>
+<div class="question">
+  <p>915. Which is a correct example of an adverb clause?</p>
+  <p>A) while the rain falls</p>
+  <p>B) the big house</p>
+  <p>C) under the table</p>
+  <p>D) to start soon</p>
+  <p class="show-answer" onclick="toggleAnswer('ans415')">Show Answer</p>
+  <p id="ans415" class="answer">Answer: A) while the rain falls</p>
+</div>
+<div class="question">
+  <p>916. Which is a correct example of a simple sentence?</p>
+  <p>A) He likes pears.</p>
+  <p>B) He likes pears, and she likes apples.</p>
+  <p>C) Because he likes pears, she likes apples.</p>
+  <p>D) He likes pears if she likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans416')">Show Answer</p>
+  <p id="ans416" class="answer">Answer: A) He likes pears.</p>
+</div>
+<div class="question">
+  <p>917. Which is a correct example of a compound sentence?</p>
+  <p>A) He likes pears, and she likes apples.</p>
+  <p>B) He likes pears.</p>
+  <p>C) Because he likes pears, she likes apples.</p>
+  <p>D) He likes pears if she likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans417')">Show Answer</p>
+  <p id="ans417" class="answer">Answer: A) He likes pears, and she likes apples.</p>
+</div>
+<div class="question">
+  <p>918. Which is a correct example of a complex sentence?</p>
+  <p>A) Because he likes pears, she likes apples.</p>
+  <p>B) He likes pears.</p>
+  <p>C) He likes pears, and she likes apples.</p>
+  <p>D) He likes pears if she likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans418')">Show Answer</p>
+  <p id="ans418" class="answer">Answer: A</p>
+</div>
+<div class="question">
+  <p>919. Which is a correct example of a compound-complex sentence?</p>
+  <p>A) He likes pears, and she likes apples because they are sweet.</p>
+  <p>B) He likes pears.</p>
+  <p>C) He likes pears, and she likes apples.</p>
+  <p>D) Because he likes pears, she likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans419')">Show Answer</p>
+  <p id="ans419" class="answer">Answer: A) He likes pears, and she likes apples because they are sweet.</p>
+</div>
+<div class="question">
+  <p>920. Which is a correct example of a declarative sentence?</p>
+  <p>A) The mountain is high.</p>
+  <p>B) Is the mountain high?</p>
+  <p>C) What a high mountain!</p>
+  <p>D) Please look at the mountain.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans420')">Show Answer</p>
+  <p id="ans420" class="answer">Answer: A) The mountain is high.</p>
+</div>
+<div class="question">
+  <p>921. Which is a correct example of an interrogative sentence?</p>
+  <p>A) Is the mountain high?</p>
+  <p>B) The mountain is high.</p>
+  <p>C) What a high mountain!</p>
+  <p>D) Please look at the mountain.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans421')">Show Answer</p>
+  <p id="ans421" class="answer">Answer: A) Is the mountain high?</p>
+</div>
+<div class="question">
+  <p>922. Which is a correct example of an imperative sentence?</p>
+  <p>A) Please look at the mountain.</p>
+  <p>B) The mountain is high.</p>
+  <p>C) Is the mountain high?</p>
+  <p>D) What a high mountain!</p>
+  <p class="show-answer" onclick="toggleAnswer('ans422')">Show Answer</p>
+  <p id="ans422" class="answer">Answer: A) Please look at the mountain.</p>
+</div>
+<div class="question">
+  <p>923. Which is a correct example of an exclamatory sentence?</p>
+  <p>A) What a high mountain!</p>
+  <p>B) The mountain is high.</p>
+  <p>C) Is the mountain high?</p>
+  <p>D) Please look at the mountain.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans423')">Show Answer</p>
+  <p id="ans423" class="answer">Answer: A) What a high mountain!</p>
+</div>
+<div class="question">
+  <p>924. Which is a correct example of a definite article?</p>
+  <p>A) the</p>
+  <p>B) a</p>
+  <p>C) an</p>
+  <p>D) some</p>
+  <p class="show-answer" onclick="toggleAnswer('ans424')">Show Answer</p>
+  <p id="ans424" class="answer">Answer: A) the</p>
+</div>
+<div class="question">
+  <p>925. Which is a correct example of an indefinite article?</p>
+  <p>A) a</p>
+  <p>B) the</p>
+  <p>C) some</p>
+  <p>D) this</p>
+  <p class="show-answer" onclick="toggleAnswer('ans425')">Show Answer</p>
+  <p id="ans425" class="answer">Answer: A) a</p>
+</div>
+<div class="question">
+  <p>926. Which is a correct example of a demonstrative pronoun?</p>
+  <p>A) these</p>
+  <p>B) they</p>
+  <p>C) their</p>
+  <p>D) them</p>
+  <p class="show-answer" onclick="toggleAnswer('ans426')">Show Answer</p>
+  <p id="ans426" class="answer">Answer: A) these</p>
+</div>
+<div class="question">
+  <p>927. Which is a correct example of a possessive adjective?</p>
+  <p>A) our</p>
+  <p>B) we</p>
+  <p>C) us</p>
+  <p>D) ours</p>
+  <p class="show-answer" onclick="toggleAnswer('ans427')">Show Answer</p>
+  <p id="ans427" class="answer">Answer: A) our</p>
+</div>
+<div class="question">
+  <p>928. Which is a correct example of a possessive pronoun?</p>
+  <p>A) ours</p>
+  <p>B) our</p>
+  <p>C) us</p>
+  <p>D) we</p>
+  <p class="show-answer" onclick="toggleAnswer('ans428')">Show Answer</p>
+  <p id="ans428" class="answer">Answer: A) ours</p>
+</div>
+<div class="question">
+  <p>929. Which is a correct example of a reflexive pronoun?</p>
+  <p>A) ourselves</p>
+  <p>B) us</p>
+  <p>C) we</p>
+  <p>D) our</p>
+  <p class="show-answer" onclick="toggleAnswer('ans429')">Show Answer</p>
+  <p id="ans429" class="answer">Answer: A) ourselves</p>
+</div>
+<div class="question">
+  <p>930. Which is a correct example of a subject pronoun?</p>
+  <p>A) we</p>
+  <p>B) us</p>
+  <p>C) our</p>
+  <p>D) ours</p>
+  <p class="show-answer" onclick="toggleAnswer('ans430')">Show Answer</p>
+  <p id="ans430" class="answer">Answer: A) we</p>
+</div>
+<div class="question">
+  <p>931. Which is a correct example of an object pronoun?</p>
+  <p>A) us</p>
+  <p>B) we</p>
+  <p>C) our</p>
+  <p>D) ours</p>
+  <p class="show-answer" onclick="toggleAnswer('ans431')">Show Answer</p>
+  <p id="ans431" class="answer">Answer: A) us</p>
+</div>
+<div class="question">
+  <p>932. Which is a correct example of a relative pronoun?</p>
+  <p>A) which</p>
+  <p>B) she</p>
+  <p>C) he</p>
+  <p>D) it</p>
+  <p class="show-answer" onclick="toggleAnswer('ans432')">Show Answer</p>
+  <p id="ans432" class="answer">Answer: A) which</p>
+</div>
+<div class="question">
+  <p>933. Which is a correct example of an interrogative pronoun?</p>
+  <p>A) whose</p>
+  <p>B) his</p>
+  <p>C) her</p>
+  <p>D) their</p>
+  <p class="show-answer" onclick="toggleAnswer('ans433')">Show Answer</p>
+  <p id="ans433" class="answer">Answer: A) whose</p>
+</div>
+<div class="question">
+  <p>934. Which is a correct example of a linking verb?</p>
+  <p>A) become</p>
+  <p>B) run</p>
+  <p>C) eat</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans434')">Show Answer</p>
+  <p id="ans434" class="answer">Answer: A) become</p>
+</div>
+<div class="question">
+  <p>935. Which is a correct example of an auxiliary verb?</p>
+  <p>A) have</p>
+  <p>B) run</p>
+  <p>C) eat</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans435')">Show Answer</p>
+  <p id="ans435" class="answer">Answer: A) have</p>
+</div>
+<div class="question">
+  <p>936. Which is a correct example of a modal verb?</p>
+  <p>A) may</p>
+  <p>B) running</p>
+  <p>C) quickly</p>
+  <p>D) book</p>
+  <p class="show-answer" onclick="toggleAnswer('ans436')">Show Answer</p>
+  <p id="ans436" class="answer">Answer: A) may</p>
+</div>
+<div class="question">
+  <p>937. Which is a correct example of a past modal?</p>
+  <p>A) may have</p>
+  <p>B) may</p>
+  <p>C) will</p>
+  <p>D) can</p>
+  <p class="show-answer" onclick="toggleAnswer('ans437')">Show Answer</p>
+  <p id="ans437" class="answer">Answer: A) may have</p>
+</div>
+<div class="question">
+  <p>938. Which is a correct example of a regular verb?</p>
+  <p>A) help</p>
+  <p>B) go</p>
+  <p>C) eat</p>
+  <p>D) see</p>
+  <p class="show-answer" onclick="toggleAnswer('ans438')">Show Answer</p>
+  <p id="ans438" class="answer">Answer: A) help</p>
+</div>
+<div class="question">
+  <p>939. Which is a correct example of an irregular verb?</p>
+  <p>A) see</p>
+  <p>B) help</p>
+  <p>C) talk</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans439')">Show Answer</p>
+  <p id="ans439" class="answer">Answer: A) see</p>
+</div>
+<div class="question">
+  <p>940. Which is a correct example of a gerund?</p>
+  <p>A) helping</p>
+  <p>B) help</p>
+  <p>C) helps</p>
+  <p>D) to help</p>
+  <p class="show-answer" onclick="toggleAnswer('ans440')">Show Answer</p>
+  <p id="ans440" class="answer">Answer: A) helping</p>
+</div>
+<div class="question">
+  <p>941. Which is a correct example of an infinitive?</p>
+  <p>A) to help</p>
+  <p>B) helping</p>
+  <p>C) help</p>
+  <p>D) helps</p>
+  <p class="show-answer" onclick="toggleAnswer('ans441')">Show Answer</p>
+  <p id="ans441" class="answer">Answer: A) to help</p>
+</div>
+<div class="question">
+  <p>942. Which is a correct example of a past participle?</p>
+  <p>A) helped</p>
+  <p>B) help</p>
+  <p>C) helps</p>
+  <p>D) helping</p>
+  <p class="show-answer" onclick="toggleAnswer('ans442')">Show Answer</p>
+  <p id="ans442" class="answer">Answer: A) helped</p>
+</div>
+<div class="question">
+  <p>943. Which is a correct example of a present participle?</p>
+  <p>A) helping</p>
+  <p>B) help</p>
+  <p>C) helps</p>
+  <p>D) helped</p>
+  <p class="show-answer" onclick="toggleAnswer('ans443')">Show Answer</p>
+  <p id="ans443" class="answer">Answer: A) helping</p>
+</div>
+<div class="question">
+  <p>944. Which is a correct example of a noun phrase?</p>
+  <p>A) the happy child</p>
+  <p>B) helping quickly</p>
+  <p>C) to help soon</p>
+  <p>D) helps quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans444')">Show Answer</p>
+  <p id="ans444" class="answer">Answer: A) the happy child</p>
+</div>
+<div class="question">
+  <p>945. Which is a correct example of a verb phrase?</p>
+  <p>A) has been helping</p>
+  <p>B) happy child</p>
+  <p>C) under the table</p>
+  <p>D) quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans445')">Show Answer</p>
+  <p id="ans445" class="answer">Answer: A) has been helping</p>
+</div>
+<div class="question">
+  <p>946. Which is a correct example of an adjective phrase?</p>
+  <p>A) full of hope</p>
+  <p>B) helping quickly</p>
+  <p>C) to help soon</p>
+  <p>D) helps quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans446')">Show Answer</p>
+  <p id="ans446" class="answer">Answer: A) full of hope</p>
+</div>
+<div class="question">
+  <p>947. Which is a correct example of an adverb phrase?</p>
+  <p>A) very kindly</p>
+  <p>B) the happy child</p>
+  <p>C) under the table</p>
+  <p>D) to help soon</p>
+  <p class="show-answer" onclick="toggleAnswer('ans447')">Show Answer</p>
+  <p id="ans447" class="answer">Answer: A) very kindly</p>
+</div>
+<div class="question">
+  <p>948. Which is a correct example of a prepositional phrase?</p>
+  <p>A) beside the road</p>
+  <p>B) helping quickly</p>
+  <p>C) to help soon</p>
+  <p>D) helps quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans448')">Show Answer</p>
+  <p id="ans448" class="answer">Answer: A) beside the road</p>
+</div>
+<div class="question">
+  <p>949. Which is a correct example of a clause?</p>
+  <p>A) if she calls</p>
+  <p>B) beside the road</p>
+  <p>C) to help soon</p>
+  <p>D) helping quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans449')">Show Answer</p>
+  <p id="ans449" class="answer">Answer: A) if she calls</p>
+</div>
+<div class="question">
+  <p>950. Which is a correct example of a main clause?</p>
+  <p>A) She left early</p>
+  <p>B) if she calls</p>
+  <p>C) helping quickly</p>
+  <p>D) beside the road</p>
+  <p class="show-answer" onclick="toggleAnswer('ans450')">Show Answer</p>
+  <p id="ans450" class="answer">Answer: A) She left early</p>
+</div>
+<div class="question">
+  <p>951. Which is a correct example of a subordinate clause?</p>
+  <p>A) if she calls</p>
+  <p>B) She is happy</p>
+  <p>C) the happy child</p>
+  <p>D) helping quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans451')">Show Answer</p>
+  <p id="ans451" class="answer">Answer: A) if she calls</p>
+</div>
+<div class="question">
+  <p>952. Which is a correct example of a noun clause?</p>
+  <p>A) what she wants</p>
+  <p>B) beside the road</p>
+  <p>C) to help soon</p>
+  <p>D) helping quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans452')">Show Answer</p>
+  <p id="ans452" class="answer">Answer: A) what she wants</p>
+</div>
+<div class="question">
+  <p>953. Which is a correct example of an adjective clause?</p>
+  <p>A) who won the prize</p>
+  <p>B) beside the road</p>
+  <p>C) to help soon</p>
+  <p>D) helping quickly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans453')">Show Answer</p>
+  <p id="ans453" class="answer">Answer: A) who won the prize</p>
+</div>
+<div class="question">
+  <p>954. Which is a correct example of an adverb clause?</p>
+  <p>A) while the rain falls</p>
+  <p>B) the happy child</p>
+  <p>C) under the table</p>
+  <p>D) to help soon</p>
+  <p class="show-answer" onclick="toggleAnswer('ans454')">Show Answer</p>
+  <p id="ans454" class="answer">Answer: A) while the rain falls</p>
+</div>
+<div class="question">
+  <p>955. Which is a correct example of a simple sentence?</p>
+  <p>A) She likes pineapples.</p>
+  <p>B) She likes pineapples, and he likes apples.</p>
+  <p>C) Because she likes pineapples, he likes apples.</p>
+  <p>D) She likes pineapples if he likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans455')">Show Answer</p>
+  <p id="ans455" class="answer">Answer: A) She likes pineapples.</p>
+</div>
+<div class="question">
+  <p>956. Which is a correct example of a compound sentence?</p>
+  <p>A) She likes pineapples, and he likes apples.</p>
+  <p>B) She likes pineapples.</p>
+  <p>C) Because she likes pineapples, he likes apples.</p>
+  <p>D) She likes pineapples if he likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans456')">Show Answer</p>
+  <p id="ans456" class="answer">Answer: A) She likes pineapples, and he likes apples.</p>
+</div>
+<div class="question">
+  <p>957. Which is a correct example of a complex sentence?</p>
+  <p>A) Because she likes pineapples, he likes apples.</p>
+  <p>B) She likes pineapples.</p>
+  <p>C) She likes pineapples, and he likes apples.</p>
+  <p>D) She likes pineapples if he likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans457')">Show Answer</p>
+  <p id="ans457" class="answer">Answer: A) Because she likes pineapples, he likes apples.</p>
+</div>
+<div class="question">
+  <p>958. Which is a correct example of a compound-complex sentence?</p>
+  <p>A) She likes pineapples, and he likes apples because they are sweet.</p>
+  <p>B) She likes pineapples.</p>
+  <p>C) She likes pineapples, and he likes apples.</p>
+  <p>D) Because she likes pineapples, he likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans458')">Show Answer</p>
+  <p id="ans458" class="answer">Answer: A) She likes pineapples, and he likes apples because they are sweet.</p>
+</div>
+<div class="question">
+  <p>959. Which is a correct example of a declarative sentence?</p>
+  <p>A) The desert is dry.</p>
+  <p>B) Is the desert dry?</p>
+  <p>C) What a dry desert!</p>
+  <p>D) Please look at the desert.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans459')">Show Answer</p>
+  <p id="ans459" class="answer">Answer: A) The desert is dry.</p>
+</div>
+<div class="question">
+  <p>960. Which is a correct example of an interrogative sentence?</p>
+  <p>A) Is the desert dry?</p>
+  <p>B) The desert is dry.</p>
+  <p>C) What a dry desert!</p>
+  <p>D) Please look at the desert.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans460')">Show Answer</p>
+  <p id="ans460" class="answer">Answer: A) Is the desert dry?</p>
+</div>
+<div class="question">
+  <p>961. Which is a correct example of an imperative sentence?</p>
+  <p>A) Please look at the desert.</p>
+  <p>B) The desert is dry.</p>
+  <p>C) Is the desert dry?</p>
+  <p>D) What a dry desert!</p>
+  <p class="show-answer" onclick="toggleAnswer('ans461')">Show Answer</p>
+  <p id="ans461" class="answer">Answer: A) Please look at the desert.</p>
+</div>
+<div class="question">
+  <p>962. Which is a correct example of an exclamatory sentence?</p>
+  <p>A) What a dry desert!</p>
+  <p>B) The desert is dry.</p>
+  <p>C) Is the desert dry?</p>
+  <p>D) Please look at the desert.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans462')">Show Answer</p>
+  <p id="ans462" class="answer">Answer: A) What a dry desert!</p>
+</div>
+<div class="question">
+  <p>963. Which is a correct example of a definite article?</p>
+  <p>A) the</p>
+  <p>B) a</p>
+  <p>C) an</p>
+  <p>D) some</p>
+  <p class="show-answer" onclick="toggleAnswer('ans463')">Show Answer</p>
+  <p id="ans463" class="answer">Answer: A) the</p>
+</div>
+<div class="question">
+  <p>964. Which is a correct example of an indefinite article?</p>
+  <p>A) a</p>
+  <p>B) the</p>
+  <p>C) some</p>
+  <p>D) this</p>
+  <p class="show-answer" onclick="toggleAnswer('ans464')">Show Answer</p>
+  <p id="ans464" class="answer">Answer: A) a</p>
+</div>
+<div class="question">
+  <p>965. Which is a correct example of a demonstrative pronoun?</p>
+  <p>A) that</p>
+  <p>B) they</p>
+  <p>C) their</p>
+  <p>D) them</p>
+  <p class="show-answer" onclick="toggleAnswer('ans465')">Show Answer</p>
+  <p id="ans465" class="answer">Answer: A) that</p>
+</div>
+<div class="question">
+  <p>966. Which is a correct example of a possessive adjective?</p>
+  <p>A) her</p>
+  <p>B) she</p>
+  <p>C) hers</p>
+  <p>D) herself</p>
+  <p class="show-answer" onclick="toggleAnswer('ans466')">Show Answer</p>
+  <p id="ans466" class="answer">Answer: A) her</p>
+</div>
+<div class="question">
+  <p>967. Which is a correct example of a possessive pronoun?</p>
+  <p>A) hers</p>
+  <p>B) her</p>
+  <p>C) she</p>
+  <p>D) herself</p>
+  <p class="show-answer" onclick="toggleAnswer('ans467')">Show Answer</p>
+  <p id="ans467" class="answer">Answer: A) hers</p>
+</div>
+<div class="question">
+  <p>968. Which is a correct example of a reflexive pronoun?</p>
+  <p>A) herself</p>
+  <p>B) her</p>
+  <p>C) hers</p>
+  <p>D) she</p>
+  <p class="show-answer" onclick="toggleAnswer('ans468')">Show Answer</p>
+  <p id="ans468" class="answer">Answer: A) herself</p>
+</div>
+<div class="question">
+  <p>969. Which is a correct example of a subject pronoun?</p>
+  <p>A) you</p>
+  <p>B) your</p>
+  <p>C) yours</p>
+  <p>D) yourself</p>
+  <p class="show-answer" onclick="toggleAnswer('ans469')">Show Answer</p>
+  <p id="ans469" class="answer">Answer: A) you</p>
+</div>
+<div class="question">
+  <p>970. Which is a correct example of an object pronoun?</p>
+  <p>A) us</p>
+  <p>B) we</p>
+  <p>C) our</p>
+  <p>D) ours</p>
+  <p class="show-answer" onclick="toggleAnswer('ans470')">Show Answer</p>
+  <p id="ans470" class="answer">Answer: A) us</p>
+</div>
+<div class="question">
+  <p>971. Which is a correct example of a relative pronoun?</p>
+  <p>A) whose</p>
+  <p>B) she</p>
+  <p>C) he</p>
+  <p>D) it</p>
+  <p class="show-answer" onclick="toggleAnswer('ans471')">Show Answer</p>
+  <p id="ans471" class="answer">Answer: A) whose</p>
+</div>
+<div class="question">
+  <p>972. Which is a correct example of an interrogative pronoun?</p>
+  <p>A) what</p>
+  <p>B) his</p>
+  <p>C) her</p>
+  <p>D) their</p>
+  <p class="show-answer" onclick="toggleAnswer('ans472')">Show Answer</p>
+  <p id="ans472" class="answer">Answer: A) what</p>
+</div>
+<div class="question">
+  <p>973. Which is a correct example of a linking verb?</p>
+  <p>A) remain</p>
+  <p>B) run</p>
+  <p>C) eat</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans473')">Show Answer</p>
+  <p id="ans473" class="answer">Answer: A) remain</p>
+</div>
+<div class="question">
+  <p>974. Which is a correct example of an auxiliary verb?</p>
+  <p>A) am</p>
+  <p>B) run</p>
+  <p>C) eat</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans474')">Show Answer</p>
+  <p id="ans474" class="answer">Answer: A) am</p>
+</div>
+<div class="question">
+  <p>975. Which is a correct example of a modal verb?</p>
+  <p>A) shall</p>
+  <p>B) running</p>
+  <p>C) quickly</p>
+  <p>D) book</p>
+  <p class="show-answer" onclick="toggleAnswer('ans475')">Show Answer</p>
+  <p id="ans475" class="answer">Answer: A) shall</p>
+</div>
+<div class="question">
+  <p>976. Which is a correct example of a past modal?</p>
+  <p>A) should have</p>
+  <p>B) should</p>
+  <p>C) will</p>
+  <p>D) can</p>
+  <p class="show-answer" onclick="toggleAnswer('ans476')">Show Answer</p>
+  <p id="ans476" class="answer">Answer: A) should have</p>
+</div>
+<div class="question">
+  <p>977. Which is a correct example of a regular verb?</p>
+  <p>A) play</p>
+  <p>B) go</p>
+  <p>C) eat</p>
+  <p>D) see</p>
+  <p class="show-answer" onclick="toggleAnswer('ans477')">Show Answer</p>
+  <p id="ans477" class="answer">Answer: A) play</p>
+</div>
+<div class="question">
+  <p>978. Which is a correct example of an irregular verb?</p>
+  <p>A) see</p>
+  <p>B) play</p>
+  <p>C) walk</p>
+  <p>D) jump</p>
+  <p class="show-answer" onclick="toggleAnswer('ans478')">Show Answer</p>
+  <p id="ans478" class="answer">Answer: A) see</p>
+</div>
+<div class="question">
+  <p>979. Which is a correct example of a gerund?</p>
+  <p>A) playing</p>
+  <p>B) play</p>
+  <p>C) plays</p>
+  <p>D) to play</p>
+  <p class="show-answer" onclick="toggleAnswer('ans479')">Show Answer</p>
+  <p id="ans479" class="answer">Answer: A) playing</p>
+</div>
+<div class="question">
+  <p>980. Which is a correct example of an infinitive?</p>
+  <p>A) to play</p>
+  <p>B) playing</p>
+  <p>C) play</p>
+  <p>D) plays</p>
+  <p class="show-answer" onclick="toggleAnswer('ans480')">Show Answer</p>
+  <p id="ans480" class="answer">Answer: A) to play</p>
+</div>
+<div class="question">
+  <p>981. Which is a correct example of a past participle?</p>
+  <p>A) played</p>
+  <p>B) play</p>
+  <p>C) plays</p>
+  <p>D) playing</p>
+  <p class="show-answer" onclick="toggleAnswer('ans481')">Show Answer</p>
+  <p id="ans481" class="answer">Answer: A) played</p>
+</div>
+<div class="question">
+  <p>982. Which is a correct example of a present participle?</p>
+  <p>A) playing</p>
+  <p>B) play</p>
+  <p>C) plays</p>
+  <p>D) played</p>
+  <p class="show-answer" onclick="toggleAnswer('ans482')">Show Answer</p>
+  <p id="ans482" class="answer">Answer: A) playing</p>
+</div>
+<div class="question">
+  <p>983. Which is a correct example of a noun phrase?</p>
+  <p>A) the white horse</p>
+  <p>B) playing loudly</p>
+  <p>C) to play well</p>
+  <p>D) plays loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans483')">Show Answer</p>
+  <p id="ans483" class="answer">Answer: A) the white horse</p>
+</div>
+<div class="question">
+  <p>984. Which is a correct example of a verb phrase?</p>
+  <p>A) has been playing</p>
+  <p>B) white horse</p>
+  <p>C) under the table</p>
+  <p>D) loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans484')">Show Answer</p>
+  <p id="ans484" class="answer">Answer: A) has been playing</p>
+</div>
+<div class="question">
+  <p>985. Which is a correct example of an adjective phrase?</p>
+  <p>A) full of energy</p>
+  <p>B) playing loudly</p>
+  <p>C) to play well</p>
+  <p>D) plays loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans485')">Show Answer</p>
+  <p id="ans485" class="answer">Answer: A) full of energy</p>
+</div>
+<div class="question">
+  <p>986. Which is a correct example of an adverb phrase?</p>
+  <p>A) very softly</p>
+  <p>B) the white horse</p>
+  <p>C) under the table</p>
+  <p>D) to play well</p>
+  <p class="show-answer" onclick="toggleAnswer('ans486')">Show Answer</p>
+  <p id="ans486" class="answer">Answer: A) very softly</p>
+</div>
+<div class="question">
+  <p>987. Which is a correct example of a prepositional phrase?</p>
+  <p>A) over the hill</p>
+  <p>B) playing loudly</p>
+  <p>C) to play well</p>
+  <p>D) plays loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans487')">Show Answer</p>
+  <p id="ans487" class="answer">Answer: A) over the hill</p>
+</div>
+<div class="question">
+  <p>988. Which is a correct example of a clause?</p>
+  <p>A) unless he calls</p>
+  <p>B) over the hill</p>
+  <p>C) to play well</p>
+  <p>D) playing loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans488')">Show Answer</p>
+  <p id="ans488" class="answer">Answer: A) unless he calls</p>
+</div>
+<div class="question">
+  <p>989. Which is a correct example of a main clause?</p>
+  <p>A) She left early</p>
+  <p>B) unless she was tired</p>
+  <p>C) playing loudly</p>
+  <p>D) over the hill</p>
+  <p class="show-answer" onclick="toggleAnswer('ans489')">Show Answer</p>
+  <p id="ans489" class="answer">Answer: A) She left early</p>
+</div>
+<div class="question">
+  <p>990. Which is a correct example of a subordinate clause?</p>
+  <p>A) unless he calls</p>
+  <p>B) She is happy</p>
+  <p>C) the white horse</p>
+  <p>D) playing loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans490')">Show Answer</p>
+  <p id="ans490" class="answer">Answer: A) unless he calls</p>
+</div>
+<div class="question">
+  <p>991. Which is a correct example of a noun clause?</p>
+  <p>A) why she left</p>
+  <p>B) over the hill</p>
+  <p>C) to play well</p>
+  <p>D) playing loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans491')">Show Answer</p>
+  <p id="ans491" class="answer">Answer: A) why she left</p>
+</div>
+<div class="question">
+  <p>992. Which is a correct example of an adjective clause?</p>
+  <p>A) who won the race</p>
+  <p>B) over the hill</p>
+  <p>C) to play well</p>
+  <p>D) playing loudly</p>
+  <p class="show-answer" onclick="toggleAnswer('ans492')">Show Answer</p>
+  <p id="ans492" class="answer">Answer: A) who won the race</p>
+</div>
+<div class="question">
+  <p>993. Which is a correct example of an adverb clause?</p>
+  <p>A) after the show ends</p>
+  <p>B) the white horse</p>
+  <p>C) under the table</p>
+  <p>D) to play well</p>
+  <p class="show-answer" onclick="toggleAnswer('ans493')">Show Answer</p>
+  <p id="ans493" class="answer">Answer: A) after the show ends</p>
+</div>
+<div class="question">
+  <p>994. Which is a correct example of a simple sentence?</p>
+  <p>A) She likes grapes.</p>
+  <p>B) She likes grapes, and he likes apples.</p>
+  <p>C) Because she likes grapes, he likes apples.</p>
+  <p>D) She likes grapes if he likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans494')">Show Answer</p>
+  <p id="ans494" class="answer">Answer: A) She likes grapes.</p>
+</div>
+<div class="question">
+  <p>995. Which is a correct example of a compound sentence?</p>
+  <p>A) She likes grapes, and he likes apples.</p>
+  <p>B) She likes grapes.</p>
+  <p>C) Because she likes grapes, he likes apples.</p>
+  <p>D) She likes grapes if he likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans495')">Show Answer</p>
+  <p id="ans495" class="answer">Answer: A) She likes grapes, and he likes apples.</p>
+</div>
+<div class="question">
+  <p>996. Which is a correct example of a complex sentence?</p>
+  <p>A) Because she likes grapes, he likes apples.</p>
+  <p>B) She likes grapes.</p>
+  <p>C) She likes grapes, and he likes apples.</p>
+  <p>D) She likes grapes if he likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans496')">Show Answer</p>
+  <p id="ans496" class="answer">Answer: A) Because she likes grapes, he likes apples.</p>
+</div>
+<div class="question">
+  <p>997. Which is a correct example of a compound-complex sentence?</p>
+  <p>A) She likes grapes, and he likes apples because they are sweet.</p>
+  <p>B) She likes grapes.</p>
+  <p>C) She likes grapes, and he likes apples.</p>
+  <p>D) Because she likes grapes, he likes apples.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans497')">Show Answer</p>
+  <p id="ans497" class="answer">Answer: A) She likes grapes, and he likes apples because they are sweet.</p>
+</div>
+<div class="question">
+  <p>998. Which is a correct example of a declarative sentence?</p>
+  <p>A) The moon is bright.</p>
+  <p>B) Is the moon bright?</p>
+  <p>C) What a bright moon!</p>
+  <p>D) Please look at the moon.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans498')">Show Answer</p>
+  <p id="ans498" class="answer">Answer: A) The moon is bright.</p>
+</div>
+<div class="question">
+  <p>999. Which is a correct example of an interrogative sentence?</p>
+  <p>A) Is the moon bright?</p>
+  <p>B) The moon is bright.</p>
+  <p>C) What a bright moon!</p>
+  <p>D) Please look at the moon.</p>
+  <p class="show-answer" onclick="toggleAnswer('ans499')">Show Answer</p>
+  <p id="ans499" class="answer">Answer: A) Is the moon bright?</p>
+</div>
+<div class="question">
+  <p>1000. Which is a correct example of an imperative sentence?</p>
+  <p>A) Please look at the moon.</p>
+  <p>B) The moon is bright.</p>
+  <p>C) Is the moon bright?</p>
+  <p>D) What a bright moon!</p>
+  <p class="show-answer" onclick="toggleAnswer('ans500')">Show Answer</p>
+  <p id="ans500" class="answer">Answer: A) Please look at the moon.</p>
+</div>
+
+<script>
+  function toggleAnswer(id) {
+    var ans = document.getElementById(id);
+    ans.style.display = ans.style.display === "none" ? "block" : "none";
+  }
+</script>
+</body>
+</html>

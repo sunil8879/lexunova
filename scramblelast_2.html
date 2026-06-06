@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Welcome to scramble - a fun way to learn vocabulary</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+
+    h1 {
+      font-size: 32px;
+      color: #333333;
+      margin-bottom: 30px;
+    }
+
+    .scrambled-button {
+      background: linear-gradient(to bottom, #333333, #808080);
+      color: white;
+      padding: 15px 30px;
+      font-size: 24px;
+      font-weight: bold;
+      border: none;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      cursor: default;
+    }
+
+    input[type="text"] {
+      padding: 12px;
+      font-size: 18px;
+      width: 300px;
+      border-radius: 8px;
+      border: 1px solid #aaa;
+      margin-bottom: 20px;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      width: 300px;
+      margin: 0 auto 20px;
+    }
+
+    .dashboard-button {
+      background: linear-gradient(to bottom, #333333, #808080);
+      color: white;
+      padding: 10px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    .result, .score, .timer {
+      margin-top: 10px;
+      font-size: 20px;
+    }
+
+    .score {
+      color: green;
+    }
+
+    .timer {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Scramble - A Fun Way to Learn Vocabulary</h1>
+
+  <button class="scrambled-button" id="scrambledWord">Loading...</button><br>
+  <input type="text" id="userGuess" placeholder="Enter your answer here" /><br>
+
+  <div class="nav-buttons">
+    <button class="dashboard-button" onclick="prevWord()">Previous</button>
+    <button class="dashboard-button" onclick="nextWord()">Next</button>
+  </div>
+
+  <button class="dashboard-button" onclick="checkAnswer()">Submit</button>
+
+  <div class="result" id="result"></div>
+  <div class="score" id="score">Score: 0</div>
+  <div class="timer" id="timer">Time left: 30s</div>
+
+  <script>
+    const wordList = [
+      "apple", "banana", "orange", "mango", "zebra", "planet", "school", "friend", "yellow", "purple", "number", "circle",
+      "tiger", "dance", "house", "light", "happy", "sadness", "hope", "scared", "cloud", "earth", "moon", "sunshine",
+      "game", "river", "train", "window", "laugh", "brush", "candle", "sugar", "mirror", "ocean", "bottle", "forest",
+      "castle", "guitar", "bubble", "garden", "pencil", "rocket", "doctor", "kitten", "puzzle", "wizard", "silver",
+      "spider", "camera", "ticket", "bridge", "monkey", "button", "remote", "cookie", "helmet", "rabbit", "wallet",
+      "hammer", "goggles", "butter", "magnet", "dragon", "shovel", "carpet", "wallet", "energy", "goblet", "ladder",
+      "planet", "quartz", "velvet", "nugget", "lantern", "rocket", "scroll", "violin", "castle", "sleeve", "parrot",
+      "jungle", "breeze", "memory", "flavor", "valley", "target", "wizard", "eraser", "glider", "grapes", "cactus",
+      // 100 four-letter words
+"ball", "book", "lamp", "tree", "milk", "door", "fish", "game", "coat", "face",
+"ring", "shoe", "sock", "kite", "frog", "goat", "duck", "nest", "ship", "cake",
+"fork", "rain", "snow", "fire", "wind", "cold", "warm", "wave", "pond", "hill",
+"baby", "bird", "lion", "bear", "wolf", "deer", "leaf", "rock", "star", "moon",
+"road", "farm", "barn", "corn", "toys", "coin", "girl", "boy", "hand", "nose",
+"eyes", "lips", "chin", "neck", "legs", "feet", "back", "belt", "rope", "soap",
+"tool", "iron", "nail", "tile", "oven", "sink", "fork", "pest", "trap", "bell",
+"drum", "book", "page", "note", "clip", "glue", "eras", "quiz", "card", "bead",
+"vase", "tape", "wire", "plug", "bolt", "gear", "ring", "jade", "ruby", "pear",
+"mint", "lime", "fizz", "cake", "corn", "wool", "meat", "rice", "bean", "salt",
+
+// 100 five-letter words
+"apple", "bread", "chair", "dance", "earth", "flame", "grape", "horse", "igloo", "jelly",
+"knife", "lemon", "mouse", "night", "ocean", "plant", "queen", "river", "snake", "table",
+"uncle", "vapor", "whale", "xenon", "youth", "zebra", "acorn", "badge", "candy", "drill",
+"eagle", "flock", "grind", "habit", "inbox", "joint", "kneel", "laser", "medal", "noble",
+"orbit", "paint", "quiet", "rider", "scale", "toast", "under", "vivid", "wrist", "xylem",
+"yeast", "zesty", "angel", "bacon", "cabin", "dream", "edges", "float", "glass", "honey",
+"index", "jumps", "knees", "liver", "magic", "nurse", "opens", "pearl", "quick", "ranch",
+"shoes", "teeth", "upper", "voter", "wedge", "xerox", "yacht", "zones", "apron", "beach",
+"crane", "drone", "event", "fable", "gifts", "hears", "ideal", "jokes", "kites", "lions",
+
+// 100 six-letter words
+"banana", "bottle", "circle", "castle", "danger", "easter", "forest", "guitar", "hammer", "island",
+"jungle", "kitten", "ladder", "monkey", "napkin", "orange", "pillow", "quartz", "rocket", "saddle",
+"tunnel", "update", "vacuum", "wallet", "xenial", "yellow", "zodiac", "absent", "basket", "carpet",
+"danger", "empire", "flavor", "gloves", "honest", "impact", "jacket", "kernel", "legend", "market",
+"notice", "object", "planet", "quiver", "repair", "silent", "talent", "united", "valley", "wealth",
+"xyster", "yogurt", "zipper", "artist", "bright", "candle", "dancer", "effort", "flower", "garage",
+"honour", "invite", "jungle", "kitten", "listen", "magnet", "nation", "office", "polish", "quartz",
+"relief", "season", "temple", "unique", "vision", "wander", "xenons", "yawner", "zenith", "anchor",
+"breeze", "clocks", "desert", "engine", "frozen", "gravel", "hazard", "injure", "jigsaw", "kidney",
+
+// 100 seven-letter words
+"animal", "bicycle", "cabinet", "default", "elastic", "farming", "gallery", "harvest", "iceberg", "jogging",
+"kingdom", "library", "monster", "natural", "officer", "penguin", "quarter", "respect", "student", "teacher",
+"unicorn", "village", "weather", "xanthic", "younger", "zealots", "amazing", "baggage", "captain", "diamond",
+"emerald", "freedom", "genuine", "harbour", "injured", "journal", "kingdom", "lantern", "machine", "network",
+"outcome", "passion", "quality", "routine", "shelter", "tractor", "utility", "victory", "welcome", "xeroxed",
+"yawning", "zippers", "absence", "balloon", "climate", "dolphin", "exhibit", "fantasy", "gravity", "horizon",
+"impress", "journey", "kitchen", "lawyers", "mystery", "nervous", "opinion", "picture", "quickly", "resolve",
+"skating", "tourism", "uniform", "vaccine", "warrior", "xylitol", "yogurts", "zealful", "airport", "bending",
+"central", "driving", "evening", "fiction", "grocery", "hunting", "imagine", "justice", "kidneys", "letters",
+
+// 100 eight-letter words
+"activity", "backpack", "campaign", "daylight", "elephant", "festival", "generate", "hospital", "internet", "juggling",
+"keyboard", "language", "mountain", "notebook", "operator", "painting", "question", "research", "suitable", "together",
+"umbrella", "vacation", "wildlife", "xylazine", "yardwork", "zookeeper", "advisory", "blessing", "children", "delicate",
+"educator", "feedback", "graphics", "handsome", "identity", "journaly", "knitting", "learning", "medicine", "neighbor",
+"observer", "packages", "quantity", "response", "strategy", "training", "ultimate", "velocity", "workshop", "yardline",
+"absolute", "building", "capacity", "database", "election", "frequent", "generate", "hardware", "informed", "junction",
+"kneecaps", "laughter", "material", "negative", "official", "painting", "question", "resource", "security", "thinking",
+"ultimate", "vacation", "wildlife", "xenolith", "yourself", "zookeeper", "airplane", "brushing", "critical", "daughter",
+"exercise", "friendly", "geometry", "homework", "industry", "justice", "keyboard", "learning", "mobility", "november",
+"activity", "backpack", "campaign", "daylight", "elephant", "festival", "generate", "hospital", "internet", "juggling",
+"keyboard", "language", "mountain", "notebook", "operator", "painting", "question", "research", "suitable", "together",
+"umbrella", "vacation", "wildlife", "absolute", "building", "capacity", "database", "election", "feedback", "graphics",
+"handsome", "identity", "journaly", "knitting", "learning", "medicine", "neighbor", "observer", "packages", "quantity",
+"response", "strategy", "training", "ultimate", "velocity", "workshop", "yardwork", "zookeeper", "airplane", "blessing",
+"children", "delicate", "educator", "feedback", "handsome", "industry", "junction", "kneecaps", "laughter", "material",
+"negative", "official", "resource", "security", "backfire", "campfire", "daydream", "exercise", "football", "graduate", "headache", "increase", "jealousy", "kneeling",
+"language", "magazine", "necklace", "occasion", "platform", "quagmire", "reliable", "scissors", "tailbone", "umbrella",
+"vacuumed", "weakness", "yearling", "admitted", "birthday", "civilian", "drainage", "elevator", "function", "grateful",
+"hardware", "insomnia", "jeopardy", "keyboard", "learning", "midpoint", "nonsense", "outreach", "painting", "question",
+"recharge", "sandwich", "thousand", "unlikely", "vigilant", "watchful", "yourself", "backyard", "champion", "delegate",
+"envelope", "firewood", "geometry", "handsome", "identity", "junction", "laughter", "movement", "notebook", "operator",
+"passport", "quantity", "reaction", "strategy", "timeline", "universe", "valuable", "wildlife", "yearbook", "airplane",
+"boundary", "casualty", "download", "estimate", "favorite", "gunpoint", "hospital", "interest", "judgment", "kickball",
+"lifeboat", "merchant", "negative", "observer", "panicked", "question", "railroad", "shoulder", "tracking", "uplifter",
+"backspace", "classical", "discharge", "earthworm", "floodgate", "goldsmith", "homeowner", "injustice", "joylessly", "knowledge",
+"lumbering", "margarine", "narration", "offspring", "playfully", "qualified", "releasing", "snowflake", "traveller", "undertake",
+"vaccinate", "waterfall", "agreement", "baseboard", "chartered", "developer", "education", "flattering", "generation", "heartbeat",
+"invention", "junkyards", "lawnmower", "moonlight", "navigated", "objective", "packaging", "questions", "recording", "sabotaged",
+"telegraph", "unpacking", "variation", "wavelength", "yellowish", "absorbent", "ballooned", "cleanroom", "deadlines", "everybody",
+"fireplace", "gathering", "hostility", "insulated", "jellyfish", "landscape", "mainframe", "nightmare", "operators", "platforms",
+"quickened", "reduction", "salesroom", "teamworks", "uncovered", "visionary", "workplace", "youngster", "zookeepers", "abduction",
+"bookstand", "closeness", "detergent", "equipment", "forbidden", "guidebook", "hurricanes", "integrate", "justified", "knowledge",
+"limestone", "machinery", "newsletter", "obstacles", "publisher", "restoring", "soundwave", "telepathy", "username", "viewpoint",
+"worksheet", "absurdity", "brightness", "caretaker", "dependent", "entertain", "fantasize", "guarantee", "happening", "illustrate"
+    ];
+
+    let currentIndex = 0;
+    let wordHistory = [];
+    let score = 0;
+    let timer;
+    let timeLeft = 30;
+
+    function scramble(word) {
+      return word.split('').sort(() => 0.5 - Math.random()).join('');
+    }
+
+    function loadWord(index) {
+      if (!wordHistory[index]) {
+        const word = wordList[Math.floor(Math.random() * wordList.length)];
+        wordHistory[index] = {
+          correct: word,
+          scrambled: scramble(word)
+        };
+      }
+
+      document.getElementById("scrambledWord").textContent = wordHistory[index].scrambled;
+      document.getElementById("userGuess").value = "";
+      document.getElementById("result").textContent = "";
+      document.getElementById("timer").textContent = "Time left: 30s";
+      startTimer();
+    }
+
+    function startTimer() {
+      clearInterval(timer);
+      timeLeft = 30;
+      timer = setInterval(() => {
+        timeLeft--;
+        document.getElementById("timer").textContent = "Time left: " + timeLeft + "s";
+        if (timeLeft === 0) {
+          clearInterval(timer);
+          document.getElementById("result").textContent = `Time's up! The correct word was "${wordHistory[currentIndex].correct}".`;
+        }
+      }, 1000);
+    }
+
+    function checkAnswer() {
+      const guess = document.getElementById("userGuess").value.trim().toLowerCase();
+      const correct = wordHistory[currentIndex].correct;
+      const result = document.getElementById("result");
+
+      if (guess === correct) {
+        result.textContent = "Correct!";
+        if (!wordHistory[currentIndex].answered) {
+          score++;
+          document.getElementById("score").textContent = "Score: " + score;
+          wordHistory[currentIndex].answered = true;
+        }
+      } else {
+        result.textContent = `Incorrect. The correct word was "${correct}".`;
+      }
+
+      clearInterval(timer);
+    }
+
+    function nextWord() {
+      currentIndex++;
+      loadWord(currentIndex);
+    }
+
+    function prevWord() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        loadWord(currentIndex);
+      }
+    }
+
+    // Load the first word
+    loadWord(currentIndex);
+  </script>
+</body>
+</html>
