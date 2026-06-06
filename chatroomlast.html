@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Spoken English Chatroom</title>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+  <style>
+    body {
+      background-color: #ffffff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+    h1 {
+      font-size: 36px;
+      color: #333333;
+      margin-bottom: 5px;
+    }
+    #chat {
+      width: 80%;
+      max-width: 600px;
+      margin: 20px auto;
+      text-align: left;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+      height: 300px;
+      overflow-y: scroll;
+    }
+    #messageInput {
+      width: 60%;
+      padding: 10px;
+      margin-right: 10px;
+    }
+    .dashboard-button {
+      background: linear-gradient(to bottom, #20c997, #17a2b8);
+      color: white;
+      padding: 15px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 20px;
+      box-shadow: inset 0 -3px 8px rgba(255, 255, 255, 0.4), 0 6px 15px rgba(0, 0, 0, 0.6);
+      width: 240px;
+      height: 70px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.3s ease;
+      margin-bottom: 20px;
+    }
+    .dashboard-button:hover {
+      box-shadow: inset 0 -3px 8px rgba(255, 255, 255, 0.6), 0 8px 20px rgba(0, 0, 0, 0.8);
+      transform: translateY(-2px);
+    }
+    input {
+      width: 240px;
+      height: 70px;
+      font-size: 18px;
+      padding: 0 30px;
+      border-radius: 20px;
+      border: none;
+      box-shadow: inset 0 -3px 8px rgba(255, 255, 255, 0.4), 0 6px 15px rgba(0, 0, 0, 0.6);
+      text-align: center;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+  <h1>Spoken English Chatroom</h1>
+
+  <div id="authSection">
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <input type="text" id="displayName" placeholder="Enter Your Name">
+      <input type="email" id="email" placeholder="Enter Email">
+      <input type="password" id="password" placeholder="Enter Password">
+      <button class="dashboard-button" onclick="proceed()">Proceed</button>
+    </div>
+    <p id="user-status"></p>
+  </div>
+
+  <div id="chatroom" style="display:none;">
+    <p id="welcome-message"></p>
+    <div id="chat"></div>
+    <input type="text" id="messageInput" placeholder="Type your message">
+    <button class="dashboard-button" onclick="sendMessage()">Send</button>
+    <p><strong>Online Users:</strong> <span id="onlineUsers">0</span></p>
+    <ul id="activeUsersList"></ul>
+    <button class="dashboard-button" onclick="logout()">Logout</button>
+  </div>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDSIfqq4PfQLlMuWedEgL_2wPdnmbDw9aQ",
+      authDomain: "health-plus-ce26a.firebaseapp.com",
+      projectId: "health-plus-ce26a",
+      storageBucket: "health-plus-ce26a.appspot.com",
+      messagingSenderId: "924721243511",
+      appId: "1:924721243511:web:a7cf539c25d2dcc57cad72"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    const rtdb = firebase.database();
+
+    let currentUser = null;
+    let currentUID = null;
+    let currentName = "";
+
+    function proceed() {
+      const name = document.getElementById('displayName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      if (!name || !email || !password) return alert("Please fill all fields.");
+      if (!email.includes('@') || !email.includes('.')) return alert("Enter a valid email.");
+      if (!/^(?=.*[a-zA-Z])(?=.*[0-9])/.test(password) || password.length < 6) {
+        return alert("Password must be alphanumeric and at least 6 characters long.");
+      }
+
+      auth.createUserWithEmailAndPassword(email, password)
+        .then(userCredential => {
+          const user = userCredential.user;
+          user.sendEmailVerification();
+          user.updateProfile({ displayName: name });
+          storeUserData(user.uid, name, email);
+          alert("Account created. Verification email sent. Please verify before logging in.");
+          auth.signOut();
+        })
+        .catch(error => {
+          if (error.code === 'auth/email-already-in-use') {
+            auth.signInWithEmailAndPassword(email, password)
+              .then(userCredential => {
+                const user = userCredential.user;
+                if (!user.emailVerified) {
+                  user.sendEmailVerification();
+                  alert("Verification email sent. Please verify before proceeding.");
+                  auth.signOut();
+                  return;
+                }
+                user.updateProfile({ displayName: name });
+                storeUserData(user.uid, name, email);
+                showChatroom(name);
+              })
+              .catch(err => alert(err.message));
+          } else {
+            alert(error.message);
+          }
+        });
+    }
+
+    function storeUserData(uid, name, email) {
+      db.collection("users").doc(uid).set({
+        name: name,
+        email: email,
+        joined: firebase.firestore.FieldValue.serverTimestamp()
+      });
+    }
+
+    function showChatroom(name) {
+      currentName = name;
+      document.getElementById('authSection').style.display = 'none';
+      document.getElementById('chatroom').style.display = 'block';
+      document.getElementById('welcome-message').innerText = `Welcome ${name}`;
+    }
+
+    function logout() {
+      document.getElementById('welcome-message').innerText = `Bye Bye ${currentName}`;
+      rtdb.ref("presence/" + currentUID).remove();
+      setTimeout(() => {
+        auth.signOut().then(() => {
+          location.reload();
+        });
+      }, 1500);
+    }
+
+    function sendMessage() {
+      const message = document.getElementById('messageInput').value;
+      if (!message.trim()) return;
+      rtdb.ref("chats").push({
+        name: currentName,
+        message: message,
+        timestamp: Date.now()
+      });
+      document.getElementById('messageInput').value = '';
+    }
+
+    rtdb.ref('chats').on('child_added', snapshot => {
+      const msg = snapshot.val();
+      const chatBox = document.getElementById('chat');
+      const p = document.createElement('p');
+      p.innerHTML = `<strong>${msg.name}:</strong> ${msg.message}`;
+      chatBox.appendChild(p);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    });
+
+    auth.onAuthStateChanged(user => {
+      if (user && user.emailVerified) {
+        currentUser = user;
+        currentUID = user.uid;
+        db.collection("users").doc(user.uid).get().then(doc => {
+          if (doc.exists) {
+            const name = doc.data().name;
+            currentName = name;
+            rtdb.ref("presence/" + user.uid).set(name);
+            rtdb.ref("presence/" + user.uid).onDisconnect().remove();
+            showChatroom(name);
+          }
+        });
+      }
+    });
+
+    rtdb.ref("presence").on("value", snapshot => {
+      const presence = snapshot.val() || {};
+      const names = Object.values(presence);
+      document.getElementById("onlineUsers").innerText = names.length;
+      const list = document.getElementById("activeUsersList");
+      list.innerHTML = "";
+      names.forEach(n => {
+        const li = document.createElement("li");
+        li.innerText = n;
+        list.appendChild(li);
+      });
+    });
+  </script>
+</body>
+</html>

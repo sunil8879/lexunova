@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sentence Builder - Spoken English</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #f0f2f5 0%, #7fffd4 100%);
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #1877F2;
+      text-transform: uppercase;
+      text-shadow: 2px 2px white;
+      margin-bottom: 10px;
+    }
+
+    .game-container {
+      background: white;
+      padding: 30px;
+      border-radius: 30px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    .instruction {
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .sentence-display {
+      min-height: 60px;
+      border: 3px dashed #1877F2;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      padding: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      background: #f9ffff;
+    }
+
+    .word-pool {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .word-btn {
+      background: #ffffff;
+      border: 2px solid #1877F2;
+      color: #1877F2;
+      padding: 10px 20px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.2s;
+      box-shadow: 0 4px 0 #1877F2;
+    }
+
+    .word-btn:hover { background: #7fffd4; transform: translateY(-2px); }
+    .word-btn:active { transform: translateY(4px); box-shadow: 0 0 0 transparent; }
+    .word-btn.used { opacity: 0; pointer-events: none; }
+
+    .controls { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+
+    .action-btn {
+      padding: 12px 25px;
+      border-radius: 15px;
+      border: none;
+      font-weight: 800;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 5px 0 #333;
+      transition: 0.1s;
+    }
+
+    .check-btn { background: #1877F2; color: white; box-shadow: 0 5px 0 #0d5bb5; }
+    .reset-btn { background: #ff4757; color: white; box-shadow: 0 5px 0 #c0392b; }
+    .next-btn { background: #2ed573; color: white; box-shadow: 0 5px 0 #218c74; display: none; }
+
+    .goto-container {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      align-items: center;
+    }
+
+    select {
+      padding: 10px;
+      border-radius: 10px;
+      border: 2px solid #1877F2;
+      font-family: inherit;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    #message { margin-top: 20px; font-weight: 700; font-size: 1.2rem; height: 30px; }
+    .score-board { margin-top: 20px; color: #1877F2; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <h1>🔗 Sentence Builder</h1>
+  <p class="instruction">Click the words in the correct order to make a sentence!</p>
+
+  <div class="game-container">
+    <!-- NEW GOTO SECTION -->
+    <div class="goto-container">
+      <select id="difficultySelect">
+        <option value="0">Simple (1-50)</option>
+        <option value="50">Hard (51-100)</option>
+        <option value="100">Harder (101-125)</option>
+        <option value="125">Hardest (126-150)</option>
+      </select>
+      <button class="action-btn check-btn" style="padding: 8px 15px; font-size: 0.8rem; box-shadow: 0 3px 0 #0d5bb5;" onclick="jumpToLevel()">GO TO</button>
+    </div>
+
+    <div class="sentence-display" id="sentenceDisplay"></div>
+    <div class="word-pool" id="wordPool"></div>
+
+    <div class="controls">
+      <button class="action-btn reset-btn" onclick="resetSentence()">Reset</button>
+      <button class="action-btn check-btn" id="checkBtn" onclick="checkAnswer()">Check Answer</button>
+      <button class="action-btn next-btn" id="nextBtn" onclick="nextLevel()">Next Level</button>
+    </div>
+
+    <div id="message"></div>
+    <!-- FIXED SCORE BOARD -->
+    <div class="score-board">Level: <span id="levelDisplay">1</span> / 150</div>
+  </div>
+
+  <script>
+    const levels = [
+    // === SIMPLE (50 SENTENCES) ===
+    { correct: "I like milk", jumbled: ["milk", "I", "like"] },
+    { correct: "She is happy", jumbled: ["happy", "is", "She"] },
+    { correct: "Cats hate water", jumbled: ["water", "Cats", "hate"] },
+    { correct: "The sun is hot", jumbled: ["is", "hot", "The", "sun"] },
+    { correct: "We eat bread", jumbled: ["bread", "eat", "We"] },
+    { correct: "Open the door", jumbled: ["the", "door", "Open"] },
+    { correct: "I can swim", jumbled: ["swim", "can", "I"] },
+    { correct: "It is raining", jumbled: ["raining", "is", "It"] },
+    { correct: "They are sleeping", jumbled: ["sleeping", "are", "They"] },
+    { correct: "Birds can fly", jumbled: ["fly", "can", "Birds"] },
+    { correct: "I have a car", jumbled: ["a", "car", "have", "I"] },
+    { correct: "He is my friend", jumbled: ["friend", "is", "my", "He"] },
+    { correct: "This is a book", jumbled: ["book", "a", "is", "This"] },
+    { correct: "Sit on the chair", jumbled: ["chair", "on", "the", "Sit"] },
+    { correct: "I am a student", jumbled: ["student", "am", "a", "I"] },
+    { correct: "She drinks tea", jumbled: ["tea", "drinks", "She"] },
+    { correct: "The sky is blue", jumbled: ["blue", "is", "The", "sky"] },
+    { correct: "We love music", jumbled: ["music", "love", "We"] },
+    { correct: "Dogs bark loudly", jumbled: ["loudly", "bark", "Dogs"] },
+    { correct: "Give me the pen", jumbled: ["the", "me", "pen", "Give"] },
+    { correct: "I feel sick", jumbled: ["sick", "feel", "I"] },
+    { correct: "Look at me", jumbled: ["at", "me", "Look"] },
+    { correct: "Close your eyes", jumbled: ["eyes", "your", "Close"] },
+    { correct: "He runs fast", jumbled: ["fast", "runs", "He"] },
+    { correct: "They walk home", jumbled: ["home", "walk", "They"] },
+    { correct: "It looks good", jumbled: ["good", "looks", "It"] },
+    { correct: "I am lost", jumbled: ["lost", "am", "I"] },
+    { correct: "She speaks English", jumbled: ["English", "speaks", "She"] },
+    { correct: "We are ready", jumbled: ["ready", "are", "We"] },
+    { correct: "Wait for me", jumbled: ["me", "for", "Wait"] },
+    { correct: "The water is cold", jumbled: ["cold", "is", "The", "water"] },
+    { correct: "I need help", jumbled: ["help", "need", "I"] },
+    { correct: "He works hard", jumbled: ["hard", "works", "He"] },
+    { correct: "They play games", jumbled: ["games", "play", "They"] },
+    { correct: "She is dancing", jumbled: ["dancing", "is", "She"] },
+    { correct: "I like apples", jumbled: ["apples", "like", "I"] },
+    { correct: "Wash your hands", jumbled: ["hands", "your", "Wash"] },
+    { correct: "The baby is crying", jumbled: ["crying", "is", "baby", "The"] },
+    { correct: "Time is money", jumbled: ["money", "is", "Time"] },
+    { correct: "Stop the car", jumbled: ["car", "the", "Stop"] },
+    { correct: "I am tired", jumbled: ["tired", "am", "I"] },
+    { correct: "Drink some water", jumbled: ["water", "some", "Drink"] },
+    { correct: "He plays guitar", jumbled: ["guitar", "plays", "He"] },
+    { correct: "She wears a hat", jumbled: ["hat", "a", "wears", "She"] },
+    { correct: "We live here", jumbled: ["here", "live", "We"] },
+    { correct: "Do you know", jumbled: ["know", "you", "Do"] },
+    { correct: "I want pizza", jumbled: ["pizza", "want", "I"] },
+    { correct: "The flower is red", jumbled: ["red", "is", "flower", "The"] },
+    { correct: "Call me later", jumbled: ["later", "me", "Call"] },
+    { correct: "I see you", jumbled: ["you", "see", "I"] },
+
+    // === HARD (50 SENTENCES) ===
+    { correct: "What is your name", jumbled: ["name", "is", "your", "What"] },
+    { correct: "I do not like this", jumbled: ["like", "this", "do", "not", "I"] },
+    { correct: "Can you speak more slowly", jumbled: ["slowly", "speak", "Can", "more", "you"] },
+    { correct: "Where do you want to go", jumbled: ["to", "go", "Where", "want", "do", "you"] },
+    { correct: "She is going to the store", jumbled: ["the", "to", "going", "is", "She", "store"] },
+    { correct: "He does not have a phone", jumbled: ["phone", "have", "does", "not", "a", "He"] },
+    { correct: "We are waiting for the bus", jumbled: ["the", "for", "waiting", "are", "We", "bus"] },
+    { correct: "I will see you tomorrow morning", jumbled: ["tomorrow", "you", "see", "will", "I", "morning"] },
+    { correct: "It is very cold outside today", jumbled: ["outside", "very", "cold", "is", "It", "today"] },
+    { correct: "They went to the beach yesterday", jumbled: ["to", "beach", "went", "They", "the", "yesterday"] },
+    { correct: "Do you like to play football", jumbled: ["play", "to", "football", "like", "Do", "you"] },
+    { correct: "I need to buy some groceries", jumbled: ["groceries", "buy", "to", "need", "I", "some"] },
+    { correct: "She works in a big office", jumbled: ["office", "a", "works", "She", "big", "in"] },
+    { correct: "Please turn off the lights now", jumbled: ["off", "turn", "lights", "the", "Please", "now"] },
+    { correct: "He is wearing a blue shirt", jumbled: ["blue", "a", "wearing", "is", "He", "shirt"] },
+    { correct: "What time does the movie start", jumbled: ["start", "movie", "the", "does", "What", "time"] },
+    { correct: "I am learning how to drive", jumbled: ["how", "learning", "am", "I", "to", "drive"] },
+    { correct: "They are coming to our house", jumbled: ["our", "to", "coming", "are", "They", "house"] },
+    { correct: "My sister is a very good doctor", jumbled: ["a", "doctor", "very", "good", "is", "sister", "My"] },
+    { correct: "I forgot to bring my umbrella", jumbled: ["umbrella", "bring", "to", "forgot", "my", "I"] },
+    { correct: "Why are you late for work", jumbled: ["work", "for", "late", "you", "are", "Why"] },
+    { correct: "She can play the piano well", jumbled: ["well", "piano", "the", "play", "can", "She"] },
+    { correct: "We must finish this project soon", jumbled: ["soon", "project", "this", "finish", "must", "We"] },
+    { correct: "The food tastes very delicious today", jumbled: ["today", "delicious", "very", "tastes", "food", "The"] },
+    { correct: "I have two brothers and one sister", jumbled: ["brothers", "two", "I", "have", "and", "one", "sister"] },
+    { correct: "Do you want to eat out tonight", jumbled: ["out", "eat", "to", "want", "Do", "you", "tonight"] },
+    { correct: "He is always late for meetings", jumbled: ["meetings", "for", "late", "always", "is", "He"] },
+    { correct: "I am going to take a nap", jumbled: ["nap", "a", "take", "to", "going", "am", "I"] },
+    { correct: "The train arrives at six o'clock", jumbled: ["six", "at", "arrives", "train", "The", "o'clock"] },
+    { correct: "She found a cat in the garden", jumbled: ["garden", "the", "in", "cat", "a", "found", "She"] },
+    { correct: "We traveled to Italy last summer", jumbled: ["summer", "last", "Italy", "to", "traveled", "We"] },
+    { correct: "I cannot find my car keys", jumbled: ["keys", "car", "my", "find", "cannot", "I"] },
+    { correct: "You should brush your teeth daily", jumbled: ["daily", "teeth", "your", "brush", "should", "You"] },
+    { correct: "There is a fly in my soup", jumbled: ["soup", "my", "in", "fly", "a", "is", "There"] },
+    { correct: "He wants to be an astronaut", jumbled: ["astronaut", "an", "be", "to", "wants", "He"] },
+    { correct: "They are building a new school", jumbled: ["school", "new", "a", "building", "are", "They"] },
+    { correct: "I will help you with homework", jumbled: ["homework", "with", "you", "help", "will", "I"] },
+    { correct: "She bought a beautiful new dress", jumbled: ["dress", "new", "beautiful", "a", "bought", "She"] },
+    { correct: "The children are playing in park", jumbled: ["park", "in", "playing", "are", "children", "The"] },
+    { correct: "It is important to sleep well", jumbled: ["well", "sleep", "to", "important", "is", "It"] },
+    { correct: "Can I have a glass of water", jumbled: ["water", "of", "glass", "a", "have", "I", "Can"] },
+    { correct: "He lost his wallet on the bus", jumbled: ["bus", "the", "on", "wallet", "his", "lost", "He"] },
+    { correct: "I really like listening to music", jumbled: ["music", "to", "listening", "like", "really", "I"] },
+    { correct: "The teacher is talking to students", jumbled: ["students", "to", "talking", "is", "teacher", "The"] },
+    { correct: "We need to save some money", jumbled: ["money", "some", "save", "to", "need", "We"] },
+    { correct: "Do you have any pets at home", jumbled: ["home", "at", "pets", "any", "have", "you", "Do"] },
+    { correct: "The mountain is covered in snow", jumbled: ["snow", "in", "covered", "is", "mountain", "The"] },
+    { correct: "She is taller than her brother", jumbled: ["brother", "her", "than", "taller", "is", "She"] },
+    { correct: "I am happy to meet you", jumbled: ["you", "meet", "to", "happy", "am", "I"] },
+    { correct: "They are very rich and famous", jumbled: ["famous", "and", "rich", "very", "are", "They"] },
+
+    // === HARDER (25 SENTENCES) ===
+    { correct: "I have been working here for five years", jumbled: ["five", "for", "here", "working", "been", "have", "I", "years"] },
+    { correct: "Would you mind closing the window for me", jumbled: ["me", "for", "window", "the", "closing", "mind", "you", "Would"] },
+    { correct: "If I were you I would take the job", jumbled: ["job", "the", "take", "would", "I", "you", "were", "I", "If"] },
+    { correct: "She had already left by the time I arrived", jumbled: ["arrived", "I", "time", "the", "by", "left", "already", "had", "She"] },
+    { correct: "We are looking forward to meeting your family", jumbled: ["family", "your", "meeting", "to", "forward", "looking", "are", "We"] },
+    { correct: "He was so tired that he fell asleep instantly", jumbled: ["instantly", "asleep", "fell", "he", "that", "tired", "so", "was", "He"] },
+    { correct: "I wish I could travel around the whole world", jumbled: ["world", "whole", "the", "around", "travel", "could", "I", "wish", "I"] },
+    { correct: "Neither my mother nor my father could come", jumbled: ["come", "could", "father", "my", "nor", "mother", "my", "Neither"] },
+    { correct: "You need to make up your mind very quickly", jumbled: ["quickly", "very", "mind", "your", "up", "make", "to", "need", "You"] },
+    { correct: "It was such a boring movie that I slept", jumbled: ["slept", "I", "that", "movie", "boring", "a", "such", "was", "It"] },
+    { correct: "He managed to pass the exam despite the difficulty", jumbled: ["difficulty", "the", "despite", "exam", "the", "pass", "to", "managed", "He"] },
+    { correct: "I am not used to waking up so early", jumbled: ["early", "so", "up", "waking", "to", "used", "not", "am", "I"] },
+    { correct: "She suggested going to the cinema on Friday night", jumbled: ["night", "Friday", "on", "cinema", "the", "to", "going", "suggested", "She"] },
+    { correct: "They have been married for more than thirty years", jumbled: ["years", "thirty", "than", "more", "for", "married", "been", "have", "They"] },
+    { correct: "I don't know where I put my house keys", jumbled: ["keys", "house", "my", "put", "I", "where", "know", "don't", "I"] },
+    { correct: "We should have invited them to the party yesterday", jumbled: ["yesterday", "party", "the", "to", "them", "invited", "have", "should", "We"] },
+    { correct: "Although it was raining they decided to go out", jumbled: ["out", "go", "to", "decided", "they", "raining", "was", "it", "Although"] },
+    { correct: "The results of the test will be announced tomorrow", jumbled: ["tomorrow", "announced", "be", "will", "test", "the", "of", "results", "The"] },
+    { correct: "I am thinking about moving to a new city", jumbled: ["city", "new", "a", "to", "moving", "about", "thinking", "am", "I"] },
+    { correct: "She might have forgotten about the meeting today", jumbled: ["today", "meeting", "the", "about", "forgotten", "have", "might", "She"] },
+    { correct: "He is the smartest person I have ever met", jumbled: ["met", "ever", "have", "I", "person", "smartest", "the", "is", "He"] },
+    { correct: "The car was being repaired when I saw it", jumbled: ["it", "saw", "I", "when", "repaired", "being", "was", "car", "The"] },
+    { correct: "Can you tell me how to get to library", jumbled: ["library", "to", "get", "how", "me", "tell", "you", "Can"] },
+    { correct: "I was wondering if you could help me out", jumbled: ["out", "me", "help", "could", "you", "if", "wondering", "was", "I"] },
+    { correct: "Stop making so much noise while I am working", jumbled: ["working", "am", "I", "while", "noise", "much", "so", "making", "Stop"] },
+
+    // === HARDEST (25 SENTENCES) ===
+    { correct: "Had I known about the weather I would not have gone", jumbled: ["gone", "have", "not", "would", "I", "weather", "the", "about", "known", "I", "Had"] },
+    { correct: "Not only did he arrive late but he also forgot his bag", jumbled: ["bag", "his", "forgot", "also", "he", "but", "late", "arrive", "he", "did", "only", "Not"] },
+    { correct: "Under no circumstances should you open this door during the flight", jumbled: ["flight", "the", "during", "door", "this", "open", "you", "should", "circumstances", "no", "Under"] },
+    { correct: "It is high time we started taking our environment more seriously", jumbled: ["seriously", "more", "environment", "our", "taking", "started", "we", "time", "high", "is", "It"] },
+    { correct: "The building which was destroyed in the fire is being rebuilt", jumbled: ["rebuilt", "being", "is", "fire", "the", "in", "destroyed", "was", "which", "building", "The"] },
+    { correct: "If she had followed my advice she would be rich by now", jumbled: ["now", "by", "rich", "be", "would", "she", "advice", "my", "followed", "had", "she", "If"] },
+    { correct: "I would rather stay at home than go out in this rain", jumbled: ["rain", "this", "in", "out", "go", "than", "home", "at", "stay", "rather", "would", "I"] },
+    { correct: "Hardly had I stepped out when it started to pour with rain", jumbled: ["rain", "with", "pour", "to", "started", "it", "when", "out", "stepped", "I", "had", "Hardly"] },
+    { correct: "The man whom you met yesterday is the president of our company", jumbled: ["company", "our", "of", "president", "the", "is", "yesterday", "met", "you", "whom", "man", "The"] },
+    { correct: "There are several issues that need to be addressed by the manager", jumbled: ["manager", "the", "by", "addressed", "be", "to", "need", "that", "issues", "several", "are", "There"] },
+    { correct: "No matter how hard he tries he cannot please his boss", jumbled: ["boss", "his", "please", "cannot", "he", "tries", "he", "hard", "how", "matter", "No"] },
+    { correct: "The reason why she left so early is still a mystery", jumbled: ["mystery", "a", "still", "is", "early", "so", "left", "she", "why", "reason", "The"] },
+    { correct: "You should have been told the truth from the very beginning", jumbled: ["beginning", "very", "the", "from", "truth", "the", "told", "been", "have", "should", "You"] },
+    { correct: "Rarely do we see such a talented young player in this league", jumbled: ["league", "this", "in", "player", "young", "talented", "a", "such", "see", "we", "do", "Rarely"] },
+    { correct: "It is essential that every student brings their own laptop to class", jumbled: ["class", "to", "laptop", "own", "their", "brings", "student", "every", "that", "essential", "is", "It"] },
+    { correct: "If I could have changed one thing I would have worked harder", jumbled: ["harder", "worked", "have", "would", "I", "thing", "one", "changed", "have", "could", "I", "If"] },
+    { correct: "Despite being very busy he always finds time to help others", jumbled: ["others", "help", "to", "time", "finds", "always", "he", "busy", "very", "being", "Despite"] },
+    { correct: "The more you practice the better your English speaking skills will become", jumbled: ["become", "will", "skills", "speaking", "English", "your", "better", "the", "practice", "you", "more", "The"] },
+    { correct: "I don't think it is worth spending so much money on clothes", jumbled: ["clothes", "on", "money", "much", "so", "spending", "worth", "is", "it", "think", "don't", "I"] },
+    { correct: "By the time we arrive the party will have already finished", jumbled: ["finished", "already", "have", "will", "party", "the", "arrive", "we", "time", "the", "By"] },
+    { correct: "She was the first person to volunteer for the dangerous mission", jumbled: ["mission", "dangerous", "the", "for", "volunteer", "to", "person", "first", "the", "was", "She"] },
+    { correct: "Never before have I witnessed such an amazing performance on stage", jumbled: ["stage", "on", "performance", "amazing", "an", "such", "witnessed", "I", "have", "before", "Never"] },
+    { correct: "I would like to know the exact reason for your decision", jumbled: ["decision", "your", "for", "reason", "exact", "the", "know", "to", "like", "would", "I"] },
+    { correct: "The police are carrying out an investigation into the mysterious disappearance", jumbled: ["disappearance", "mysterious", "the", "into", "investigation", "an", "out", "carrying", "are", "police", "The"] },
+    { correct: "Everything would have been different if you had just spoken the truth", jumbled: ["truth", "the", "spoken", "just", "had", "you", "if", "different", "been", "have", "would", "Everything"] }
+];
+
+    let currentLevel = 0;
+    let userSentence = [];
+
+    const sentenceDisplay = document.getElementById('sentenceDisplay');
+    const wordPool = document.getElementById('wordPool');
+    const message = document.getElementById('message');
+    const levelDisplay = document.getElementById('levelDisplay');
+
+    // JUMP LOGIC
+    function jumpToLevel() {
+      const select = document.getElementById('difficultySelect');
+      currentLevel = parseInt(select.value);
+      initGame();
+    }
+
+    function initGame() {
+      userSentence = [];
+      sentenceDisplay.innerHTML = '';
+      wordPool.innerHTML = '';
+      message.innerHTML = '';
+      message.style.color = 'black';
+      document.getElementById('checkBtn').style.display = 'inline-block';
+      document.getElementById('nextBtn').style.display = 'none';
+      levelDisplay.innerText = currentLevel + 1;
+
+      levels[currentLevel].jumbled.forEach((word, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'word-btn';
+        btn.innerText = word;
+        btn.id = 'word-' + index;
+        btn.onclick = () => addWord(word, 'word-' + index);
+        wordPool.appendChild(btn);
+      });
+    }
+
+    function addWord(word, btnId) {
+      userSentence.push(word);
+      const btn = document.getElementById(btnId);
+      btn.classList.add('used');
+
+      const span = document.createElement('button');
+      span.className = 'word-btn';
+      span.style.boxShadow = 'none';
+      span.innerText = word;
+      span.onclick = () => removeWord(word, btnId, span);
+      sentenceDisplay.appendChild(span);
+    }
+
+    function removeWord(word, btnId, spanElement) {
+      const index = userSentence.indexOf(word);
+      if (index > -1) userSentence.splice(index, 1);
+      document.getElementById(btnId).classList.remove('used');
+      spanElement.remove();
+    }
+
+    function resetSentence() {
+      initGame();
+    }
+
+    function checkAnswer() {
+      const finalResult = userSentence.join(' ');
+      if (finalResult === levels[currentLevel].correct) {
+        message.innerText = "🎉 Excellent! Correct sentence.";
+        message.style.color = "#2ed573";
+        document.getElementById('checkBtn').style.display = 'none';
+        document.getElementById('nextBtn').style.display = 'inline-block';
+      } else {
+        message.innerText = "❌ Try again. Check the word order.";
+        message.style.color = "#ff4757";
+      }
+    }
+
+    function nextLevel() {
+      currentLevel++;
+      if (currentLevel < levels.length) {
+        initGame();
+      } else {
+        message.innerText = "🏆 You built all the sentences!";
+        document.getElementById('nextBtn').style.display = 'none';
+      }
+    }
+
+    initGame();
+  </script>
+</body>
+</html>

@@ -1,0 +1,906 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wellspokn Spoken English Studio - Master English Communication</title>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-color: #007BFF; /* A professional blue */
+      --secondary-color: #0056b3;
+      --text-dark: #333;
+      --text-light: #f8f9fa;
+      --bg-light: #ffffff;
+      --bg-grey: #f8f9fa;
+    }
+
+    body {
+      background-color: var(--bg-light);
+      font-family: 'Poppins', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+
+    /* --- Navigation Bar --- */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 5%;
+      background-color: var(--bg-light);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+@keyframes rotateLogoAnimation {
+    from { 
+        transform: rotateY(0deg); 
+    }
+    to { 
+        transform: rotateY(360deg); 
+    }
+}
+
+    .nav-logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+    }
+    .nav-logo img {
+      width: 40px;
+      margin-right: 10px;
+animation: rotateLogoAnimation 5s linear infinite;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+    }
+    
+    .login-btn {
+      background-color: var(--primary-color);
+      color: var(--text-light);
+      padding: 0.5rem 1.5rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    .login-btn:hover {
+      background-color: var(--secondary-color);
+    }
+    
+    /* --- Hero Section --- */
+    .hero {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('media/banner1.png');
+      background-size: cover;
+      background-position: center;
+      color: var(--text-light);
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+    }
+
+    .cta-button {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 15px 35px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+    }
+    .cta-button:hover {
+      background-color: var(--secondary-color);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 123, 255, 0.5);
+    }
+    
+    /* --- General Section Styling --- */
+    .section {
+      padding: 80px 5%;
+      text-align: center;
+    }
+    
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background-color: var(--primary-color);
+      border-radius: 2px;
+    }
+
+    .section-subtitle {
+        font-size: 1.1rem;
+        color: #666;
+        max-width: 700px;
+        margin: 0 auto 50px auto;
+    }
+    
+    /* --- Features Section --- */
+    #features {
+      background-color: var(--bg-grey);
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 50px;
+      text-align: left;
+    }
+
+    .feature-card {
+      background-color: var(--bg-light);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    }
+
+    .feature-card i {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .feature-card p {
+        font-size: 1rem;
+        color: #555;
+    }
+    
+    /* --- Idiom of the Day Section --- */
+    #idiom-section {
+        background-color: var(--bg-light);
+    }
+
+    .idiom-container {
+        max-width: 800px;
+        margin: 50px auto 0 auto;
+        padding: 2rem;
+        background-color: var(--bg-grey);
+        border-left: 5px solid var(--primary-color);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        border-radius: 0 8px 8px 0;
+        text-align: left;
+    }
+
+    #idiom-text {
+        font-size: 1.2rem;
+        line-height: 1.8;
+    }
+    
+    /* --- Testimonials Section --- */
+    #testimonials {
+        background-color: var(--bg-grey);
+    }
+    
+    .testimonial-card {
+        max-width: 700px;
+        margin: 50px auto 0 auto;
+        padding: 2rem;
+        background-color: var(--bg-light);
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        position: relative;
+    }
+
+    .testimonial-card::before {
+        content: '\f10d';
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        position: absolute;
+        top: 1rem;
+        left: 1.5rem;
+        font-size: 2.5rem;
+        color: var(--primary-color);
+        opacity: 0.2;
+    }
+
+    .testimonial-text {
+        font-style: italic;
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+        color: #555;
+    }
+    
+    .testimonial-author {
+        font-weight: 600;
+        color: var(--text-dark);
+    }
+
+    /* --- Footer --- */
+    footer {
+      background-color: #222;
+      color: var(--text-light);
+      padding: 40px 5%;
+      text-align: center;
+    }
+    
+    .footer-links {
+        margin-bottom: 20px;
+    }
+
+    .footer-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      margin: 0 15px;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      color: var(--primary-color);
+    }
+    
+    .footer-copy {
+        font-size: 0.9rem;
+        opacity: 0.7;
+    }
+    
+    /* --- Responsive Design --- */
+    @media (max-width: 768px) {
+        .nav-links {
+            display: none; /* Hide nav links on mobile, or implement a hamburger menu */
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+        }
+        .section-title {
+            font-size: 2rem;
+        }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="#" class="nav-logo">
+      <img src="media/wellspokn.jpg" alt="Wellspokn Logo"/>
+      Wellspokn
+    </a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#idiom-section">Idiom of the Day</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="aboutlast.html">About</a></li>
+    </ul>
+    <button class="login-btn" onclick="emailLogin()">Login / Sign Up</button>
+  </nav>
+  
+  <div id="welcome-message" style="text-align: center; font-weight: bold; padding: 10px; background-color: #eaf5ff;"></div>
+
+
+  <header class="hero">
+    <h1>English Right, Future Bright</h1>
+    <p>Unlock your potential with expert guidance and cutting-edge AI tools.</p>
+    <a href="#features" class="cta-button">Explore Our Tools</a>
+  </header>
+
+  <main>
+    <section id="features" class="section">
+      <h2 class="section-title">Our Learning Toolkit</h2>
+      <p class="section-subtitle">Everything you need to master spoken English, all in one place. Choose a tool to get started.</p>
+      
+      <div class="features-grid">
+        <div class="feature-card" onclick="goToAISection()">
+          <i class="fas fa-robot"></i>
+          <h3>AI Conversation Practice</h3>
+          <p>Chat with our advanced AI to improve your fluency and confidence in real-time conversations.</p>
+        </div>
+
+        <div class="feature-card" onclick="goToLiveSessions()">
+          <i class="fas fa-video"></i>
+          <h3>Live Group Sessions</h3>
+          <p>Join interactive live classes with expert trainers and fellow students on Google Meet.</p>
+        </div>
+
+        <div class="feature-card" onclick="goToAITraining()">
+          <i class="fas fa-play-circle"></i>
+          <h3>AI Video Feedback</h3>
+          <p>Record yourself speaking and get instant, personalized feedback on your pronunciation and delivery.</p>
+        </div>
+
+        <div class="feature-card" onclick="goToGrammarConcepts()">
+          <i class="fas fa-book"></i>
+          <h3>Grammar Practice</h3>
+          <p>Sharpen your skills with a comprehensive library of grammar concepts and interactive exercises.</p>
+        </div>
+        
+        <div class="feature-card" onclick="window.location.href='quizlast1.html'">
+          <i class="fas fa-question-circle"></i>
+          <h3>Knowledge Quizzes</h3>
+          <p>Test your understanding of idioms, vocabulary, and grammar with our fun and challenging quizzes.</p>
+        </div>
+        
+        <div class="feature-card" onclick="window.location.href='chatroomlast.html'">
+          <i class="fas fa-comments"></i>
+          <h3>Student Chatroom</h3>
+          <p>Connect with other learners, practice your English, and share your journey in our community chatroom.</p>
+        </div>
+
+        <div class="feature-card" onclick="window.location.href='gameslast.html'">
+            <i class="fas fa-gamepad"></i>
+            <h3>Stories & Games</h3>
+            <p>Improve your skills in a fun and engaging way with interactive stories and language games.</p>
+        </div>
+
+        <div class="feature-card" onclick="window.location.href='imagelast.html'">
+            <i class="fas fa-image"></i>
+            <h3>Picture Speech</h3>
+            <p>Develop your descriptive skills by speaking about a variety of interesting images.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="idiom-section" class="section">
+        <h2 class="section-title">Idiom of the Day</h2>
+        <p class="section-subtitle">Expand your vocabulary with a new idiom every few seconds. Understand its meaning and see it in action.</p>
+        <div class="idiom-container">
+            <div id="idiom-text">Loading idioms...</div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="section">
+        <h2 class="section-title">What Our Students Say</h2>
+        <p class="section-subtitle">We're proud to have helped learners from all over the world find their voice.</p>
+        <div class="testimonial-card">
+            <p class="testimonial-text">"Wellspokn has completely transformed my confidence. The AI tools are fantastic for practice, and the live sessions are incredibly helpful. I highly recommend it to anyone serious about improving their English!"</p>
+            <p class="testimonial-author">- Priya, Software Engineer</p>
+            <br>
+            <a href="testimonialslast.html" class="cta-button" style="font-size: 1rem; padding: 10px 25px;">Read More Reviews</a>
+        </div>
+    </section>
+
+  </main>
+  
+  <footer>
+    <div class="footer-links">
+        <a href="aboutlast.html">About</a>
+        <a href="disclaimerlast.html">Disclaimer</a>
+        <a href="privacylast.html">Privacy Policy</a>
+        <a onclick="googleLogin()" style="cursor: pointer;">Google Login</a>
+    </div>
+    <div class="footer-copy">
+        &copy; 2024 Wellspokn Spoken English Studio. All Rights Reserved.
+    </div>
+  </footer>
+
+  <script>
+      const idioms = [
+    
+    "<b>A bad apple</b>:<br><b>A negative person who can negatively influence others</b><br>He's a bad apple in the group.<br>One bad apple can spoil the whole bunch.",
+  "<b>A bird in the hand is worth two in the bush</b>:<br><b>It's better to keep something you have than risk losing it by trying to get something better</b><br>I'll take the guaranteed offer; a bird in the hand is worth two in the bush.<br>Sometimes it's best to remember that a bird in the hand is worth two in the bush.",
+  "<b>A blessing in disguise</b>:<br><b>Something bad that turns out to be good</b><br>Losing that job was a blessing in disguise; I found a better one.<br>Sometimes what seems like a setback is a blessing in disguise.",
+  "<b>A dime a dozen</b>:<br><b>Very common and easy to find</b><br>Those kinds of toys are a dime a dozen.<br>Good employees are not a dime a dozen.",
+  "<b>A fool and his money are soon parted</b>:<br><b>People who are not careful with their money will lose it quickly</b><br>He bought that expensive gadget? Well, a fool and his money are soon parted.<br>The saying goes, a fool and his money are soon parted.",
+  "<b>A leopard can't change its spots</b>:<br><b>People cannot change their fundamental nature</b><br>I doubt he'll ever be reliable; a leopard can't change its spots.<br>You can't expect him to be different; a leopard can't change its spots.",
+  "<b>A penny saved is a penny earned</b>:<br><b>Saving money is as good as earning it</b><br>Remember, a penny saved is a penny earned.<br>She always tries to save because a penny saved is a penny earned.",
+  "<b>A perfect storm</b>:<br><b>A combination of bad circumstances that make a situation worse</b><br>The economic recession and the high unemployment created a perfect storm.<br>It was a perfect storm of unfortunate events.",
+  "<b>A piece of the action</b>:<br><b>A share of the profits or benefits</b><br>Everyone wants a piece of the action in this successful company.<br>He asked for a piece of the action.",
+  "<b>A slap on the wrist</b>:<br><b>A very light punishment</b><br>He got a slap on the wrist for his serious offense.<br>Many felt the punishment was just a slap on the wrist.",
+  "<b>A snowball effect</b>:<br><b>A process where something increases in momentum or size</b><br>The small marketing campaign had a snowball effect.<br>One problem led to a snowball effect of issues.",
+  "<b>A storm in a teacup</b>:<br><b>A big fuss about something unimportant</b><br>Their argument was just a storm in a teacup.<br>Don't worry; it's just a storm in a teacup.",
+  "<b>A taste of your own medicine</b>:<br><b>Experiencing the same bad treatment you've given others</b><br>He finally got a taste of his own medicine.<br>It's not pleasant to get a taste of your own medicine.",
+  "<b>A watched pot never boils</b>:<br><b>Time seems to pass more slowly when you're waiting for something</b><br>Stop checking the oven; a watched pot never boils.<br>Just be patient; a watched pot never boils.",
+  "<b>All that glitters is not gold</b>:<br><b>Things that look attractive are not always valuable</b><br>Be careful; all that glitters is not gold.<br>Don't be fooled by appearances; all that glitters is not gold.",
+  "<b>An arm and a leg</b>:<br><b>Very expensive</b><br>That car cost an arm and a leg.<br>The tickets cost me an arm and a leg.",
+  "<b>As easy as pie</b>:<br><b>Very easy</b><br>The test was as easy as pie.<br>Baking cookies is as easy as pie.",
+  "<b>At the eleventh hour</b>:<br><b>At the last possible moment</b><br>He submitted his application at the eleventh hour.<br>They arrived at the eleventh hour.",
+  "<b>Back to the drawing board</b>:<br><b>Start over because a plan failed</b><br>The project failed, so it's back to the drawing board.<br>If this doesn't work, we'll go back to the drawing board.",
+  "<b>Barking up the wrong tree</b>:<br><b>Looking in the wrong place or accusing the wrong person</b><br>If you think I did it, you're barking up the wrong tree.<br>The police were barking up the wrong tree.",
+  "<b>Beating a dead horse</b>:<br><b>Wasting time trying to revive an issue that is over</b><br>Let it go; you're just beating a dead horse.<br>There's no point in discussing it further; we're beating a dead horse.",
+  "<b>Bite the bullet</b>:<br><b>Face a difficult or unpleasant situation with courage</b><br>I had to bite the bullet and apologize.<br>He bit the bullet and went to the dentist.",
+  "<b>Blind leading the blind</b>:<br><b>People who know nothing are guiding others who know nothing</b><br>It was a case of the blind leading the blind.<br>The project failed because it was the blind leading the blind.",
+  "<b>Blow your own horn</b>:<br><b>Brag about your achievements</b><br>He's always blowing his own horn.<br>It's important to be proud, but don't blow your own horn too much.",
+  "<b>Bolt from the blue</b>:<br><b>Something unexpected and sudden</b><br>The resignation came as a bolt from the blue.<br>The news was a complete bolt from the blue.",
+  "<b>Bury the hatchet</b>:<br><b>Make peace after a conflict</b><br>It's time for them to bury the hatchet.<br>After years of arguing, they finally buried the hatchet.",
+  "<b>By the skin of your teeth</b>:<br><b>Barely succeeding at something</b><br>He passed the exam by the skin of his teeth.<br>We escaped by the skin of our teeth.",
+  "<b>Call it a day</b>:<br><b>Stop working on something</b><br>It's getting late; let's call it a day.<br>After working for hours, they decided to call it a day.",
+  "<b>Calm before the storm</b>:<br><b>A quiet period before a time of great activity or trouble</b><br>The silence before the meeting was the calm before the storm.<br>Enjoy the peace; it's just the calm before the storm.",
+  "<b>Cat got your tongue?</b>:<br><b>Why are you so quiet?</b><br>You're awfully quiet today. Cat got your tongue?<br>He just stared silently, and she asked, 'Cat got your tongue?'",
+  "<b>Chip on your shoulder</b>:<br><b>Being resentful or having a bad attitude</b><br>He's always had a chip on his shoulder.<br>She has a chip on her shoulder about her past.",
+  "<b>Clean as a whistle</b>:<br><b>Completely clean</b><br>The kitchen was as clean as a whistle.<br>After hours of scrubbing, the floor was clean as a whistle.",
+  "<b>Clear as a bell</b>:<br><b>Very clear and easy to understand</b><br>Her instructions were as clear as a bell.<br>The sound was clear as a bell.",
+  "<b>Close but no cigar</b>:<br><b>Almost successful but not quite</b><br>He got the answer close, but no cigar.<br>They almost won; close but no cigar.",
+  "<b>Come hell or high water</b>:<br><b>No matter what happens</b><br>I'll be there come hell or high water.<br>She promised to finish the project come hell or high water.",
+  "<b>Cook up a storm</b>:<br><b>Prepare a lot of food</b><br>She cooked up a storm for the party.<br>He loves to cook up a storm on weekends.",
+  "<b>Couch potato</b>:<br><b>A person who spends a lot of time sitting and watching television</b><br>He's become a bit of a couch potato lately.<br>After a long week, she just wanted to be a couch potato.",
+  "<b>Cream of the crop</b>:<br><b>The best of a group</b><br>These students are the cream of the crop.<br>This restaurant is considered the cream of the crop.",
+  "<b>Cry over spilt milk</b>:<br><b>Complain about something that cannot be changed</b><br>There's no use crying over spilt milk.<br>It's done; don't cry over spilt milk.",
+  "<b>Curiosity killed the cat</b>:<br><b>Being too curious can lead to trouble</b><br>Don't ask too many questions; curiosity killed the cat.<br>Maybe you shouldn't be so inquisitive; curiosity killed the cat.",
+  "<b>Cut the mustard</b>:<br><b>Meet the required standard</b><br>He couldn't cut the mustard for the job.<br>If you can't cut the mustard, you'll have to leave.",
+  "<b>Dark horse</b>:<br><b>A competitor who is unexpectedly successful</b><br>He was the dark horse in the election.<br>The small company turned out to be a dark horse in the industry.",
+  "<b>Dead ringer</b>:<br><b>Someone who looks exactly like another person</b><br>She's a dead ringer for her mother.<br>He's a dead ringer for that actor.",
+  "<b>Devil's advocate</b>:<br><b>Someone who argues against a position just to provoke discussion</b><br>I'm just playing devil's advocate.<br>He often plays devil's advocate in meetings.",
+  "<b>Don't put all your eggs in one basket</b>:<br><b>Don't risk everything on a single venture</b><br>It's wise not to put all your eggs in one basket.<br>Diversify your investments; don't put all your eggs in one basket.",
+  "<b>Down and out</b>:<br><b>Having no money, no home, and no prospects</b><br>He was down and out for a while.<br>The charity helps people who are down and out.",
+  "<b>Draw a line in the sand</b>:<br><b>Set a clear limit to what you will accept</b><br>We need to draw a line in the sand.<br>The company drew a line in the sand with the new policy.",
+  "<b> ഡ്രോപ്പ് ഇൻ ദി ബക്കറ്റ്</b>:<br><b>A very small amount compared to what is needed</b><br>Our donation is just a drop in the bucket.<br>Compared to the total cost, our contribution is a drop in the bucket.",
+  "<b>Easy come, easy go</b>:<br><b>Money or things acquired easily are also lost easily</b><br>He won a lot of money, but easy come, easy go.<br>That's the way it goes—easy come, easy go.",
+  "<b>Eat your heart out</b>:<br><b>Used to taunt someone about your success</b><br>Look at my new car, eat your heart out!<br>With my high score, eat your heart out!",
+  "<b>Eleventh hour</b>:<br><b>The latest possible time</b><br>He submitted his report at the eleventh hour.<br>They made the decision at the eleventh hour.",
+  "<b>Every cloud has a silver lining</b>:<br><b>There is something good in every bad situation</b><br>Even though you lost your job, remember every cloud has a silver lining.<br>Despite the difficulties, every cloud has a silver lining.",
+  "<b>Fair-weather friend</b>:<br><b>Someone who is only a friend in good times</b><br>He turned out to be just a fair-weather friend.<br>She realized who her true friends were and who were just fair-weather friends.",
+  "<b>Feather in your cap</b>:<br><b>An achievement to be proud of</b><br>Winning this award is a real feather in your cap.<br>Getting the promotion is another feather in his cap.",
+  "<b>Few and far between</b>:<br><b>Not happening often</b><br>Sunny days have been few and far between lately.<br>Opportunities like this are few and far between.",
+  "<b>Fight fire with fire</b>:<br><b>Retaliate with the same methods used against you</b><br>They attacked us, so we had to fight fire with fire.<br>Sometimes you have to fight fire with fire.",
+  "<b>Fish out of water</b>:<br><b>Feeling uncomfortable in an unfamiliar situation</b><br>He felt like a fish out of water at the formal event.<br>She was a fish out of water in the big city.",
+  "<b>Fit as a fiddle</b>:<br><b>In excellent physical condition</b><br>Despite his age, he's as fit as a fiddle.<br>After his recovery, he was as fit as a fiddle.",
+  "<b>Fly by the seat of your pants</b>:<br><b>Do something without much planning</b><br>We had to fly by the seat of our pants on that trip.<br>He often makes decisions by the seat of his pants.",
+  "<b>Foaming at the mouth</b>:<br><b>Very angry</b><br>He was foaming at the mouth when he heard the news.<br>The customer was foaming at the mouth with rage.",
+  "<b>For a song</b>:<br><b>Very cheaply</b><br>I bought this old book for a song.<br>She got the antique furniture for a song at the auction.",
+  "<b>Get a taste of your own medicine</b>:<br><b>Experience the same bad treatment you've given others</b><br>He finally got a taste of his own medicine when his friends played a prank on him.<br>It wasn't pleasant when she got a taste of her own medicine.",
+  "<b>Get down to brass tacks</b>:<br><b>Start talking about the most important things</b><br>Let's get down to brass tacks and discuss the budget.<br>It's time to get down to brass tacks.",
+  "<b>Get off your high horse</b>:<br><b>Stop acting superior</b><br>You need to get off your high horse and be more humble.<br>He needs to get off his high horse and listen to others.",
+  "<b>Get something off your chest</b>:<br><b>Talk about something that has been bothering you</b><br>I need to get this off my chest; it's been bothering me for days.<br>It always feels better to get things off your chest.",
+  "<b>Get your ducks in a row</b>:<br><b>Organize things properly</b><br>Make sure you get your ducks in a row before the presentation.<br>She's trying to get her ducks in a row for the big move.",
+  "<b>Give someone the cold shoulder</b>:<br><b>Intentionally ignore someone</b><br>He gave her the cold shoulder after their argument.<br>Why are you giving me the cold shoulder?",
+  "<b>Go against the grain</b>:<br><b>Do something contrary to the usual way</b><br>He decided to go against the grain and start his own business.<br>Sometimes it's good to go against the grain.",
+  "<b>Go the extra mile</b>:<br><b>Do more than what is expected</b><br>She always goes the extra mile for her clients.<br>He's willing to go the extra mile to help.",
+  "<b>Go to pot</b>:<br><b>Deteriorate</b><br>Since the new management took over, the company has gone to pot.<br>The old house has really gone to pot.",
+  "<b>Have a bone to pick</b>:<br><b>Have a grievance to discuss</b><br>I have a bone to pick with you about what you said.<br>She has a bone to pick with the way she was treated.",
+  "<b>Have eyes in the back of your head</b>:<br><b>Be aware of everything happening around you</b><br>My teacher seems to have eyes in the back of her head.<br>Good parents often seem to have eyes in the back of their head.",
+  "<b>Have your head in the clouds</b>:<br><b>Be unrealistic or impractical</b><br>He always has his head in the clouds.<br>She needs to stop having her head in the clouds and focus on reality.",
+  "<b>Hear something straight from the horse's mouth</b>:<br><b>Hear something directly from the person involved</b><br>I heard it straight from the horse's mouth that he's leaving.<br>You can trust this news; I heard it straight from the horse's mouth.",
+  "<b>Hit the nail on the head</b>:<br><b>Say exactly the right thing</b><br>You hit the nail on the head with that comment.<br>Her analysis hit the nail on the head.",
+  "<b>Hit the road</b>:<br><b>Leave</b><br>It's time to hit the road.<br>We should hit the road before it gets too late.",
+  "<b>Hold your horses</b>:<br><b>Wait a moment</b><br>Hold your horses; I'm not ready yet.<br>Just hold your horses and listen to me.",
+  "<b>In a nutshell</b>:<br><b>Briefly</b><br>In a nutshell, the meeting was a success.<br>To put it in a nutshell, we need more funding.",
+  "<b>In hot water</b>:<br><b>In trouble</b><br>He's in hot water with his boss.<br>She got into hot water for breaking the rules.",
+  "<b>In the heat of the moment</b>:<br><b>Said or done without thinking due to strong emotion</b><br>I didn't mean it; it was said in the heat of the moment.<br>He made a decision in the heat of the moment.",
+  "<b>It takes two to tango</b>:<br><b>Both parties involved in a situation are responsible</b><br>Don't blame her entirely; it takes two to tango.<br>In any conflict, remember it takes two to tango.",
+  "<b>Jump on the bandwagon</b>:<br><b>Join a popular trend or activity</b><br>Everyone's jumping on the bandwagon of this new social media app.<br>He decided to jump on the bandwagon and try the new diet.",
+  "<b>Keep a lid on something</b>:<br><b>Keep something secret</b><br>We need to keep a lid on this information.<br>Try to keep a lid on the surprise party plans.",
+  "<b>Keep your fingers crossed</b>:<br><b>Hope for good luck</b><br>I'm keeping my fingers crossed for the job interview.<br>Let's keep our fingers crossed that it doesn't rain.",
+  "<b>Kick the bucket</b>:<br><b>Die</b><br>He finally kicked the bucket after a long illness.<br>The old dog kicked the bucket peacefully in his sleep.",
+  "<b>Kill two birds with one stone</b>:<br><b>Accomplish two things at once</b><br>I can kill two birds with one stone by picking up groceries on the way to the gym.<br>She killed two birds with one stone by visiting family while on a business trip.",
+  "<b>Knock on wood</b>:<br><b>Touch wood for good luck</b><br>I haven't had any problems so far, knock on wood.<br>Let's knock on wood that the project stays on schedule.",
+  "<b>Last but not least</b>:<br><b>Finally, but equally important</b><br>Last but not least, I want to thank our volunteers.<br>And last but not least, we have our special guest.",
+  "<b>Laugh all the way to the bank</b>:<br><b>Make a lot of money easily</b><br>With this successful invention, he's laughing all the way to the bank.<br>The investors are laughing all the way to the bank.",
+  "<b>Leave no stone unturned</b>:<br><b>Search everywhere</b><br>The police left no stone unturned in their investigation.<br>She left no stone unturned trying to find her lost keys.",
+  "<b>Let sleeping dogs lie</b>:<br><b>Avoid stirring up trouble</b><br>It's best to let sleeping dogs lie and not bring up the old argument.<br>Sometimes it's wiser to just let sleeping dogs lie.",
+  "<b>Let the cat out of the bag</b>:<br><b>Reveal a secret</b><br>He accidentally let the cat out of the bag about the surprise party.<br>Don't let the cat out of the bag before the announcement.",
+  "<b>Like riding a bicycle</b>:<br><b>Something you never forget how to do</b><br>It's like riding a bicycle; once you learn, you never forget.<br>Getting back into it was like riding a bicycle.",
+  "<b>Lion's share</b>:<br><b>The largest part</b><br>He got the lion's share of the profits.<br>The biggest company took the lion's share of the market.",
+  "<b>Long in the tooth</b>:<br><b>Old</b><br>He's getting a bit long in the tooth for such strenuous work.<br>That car is quite long in the tooth.",
+  "<b>Look before you leap</b>:<br><b>Consider the consequences before taking action</b><br>Remember to look before you leap.<br>It's important to look before you leap into a new venture.",
+  "<b>Lose your shirt</b>:<br><b>Lose a lot of money</b><br>He lost his shirt in the stock market crash.<br>Be careful with risky investments, or you could lose your shirt.",
+  "<b>Make a mountain out of a molehill</b>:<br><b>Exaggerate a small problem</b><br>Don't make a mountain out of a molehill; it's not that serious.<br>She tends to make a mountain out of a molehill.",
+  "<b>Make ends meet</b>:<br><b>Have just enough money to cover expenses</b><br>It's hard for many families to make ends meet these days.<br>She works two jobs to try and make ends meet.",
+  "<b>Miss the boat</b>:<br><b>Miss an opportunity</b><br>He missed the boat on that investment opportunity.<br>If you don't apply now, you might miss the boat.",
+  "<b>More than one way to skin a cat</b>:<br><b>There are many ways to achieve the same goal</b><br>Don't worry if that method doesn't work; there's more than one way to skin a cat.<br>We can try a different approach; there's more than one way to skin a cat.",
+  "<b>Mouth watering</b>:<br><b>Appetizing</b><br>The aroma of the food was mouth watering.<br>That cake looks absolutely mouth watering.",
+  "<b>Neck and neck</b>:<br><b>Very close in a race or competition</b><br>The two runners were neck and neck until the final lap.<br>The election results are neck and neck.",
+  "<b>Needle in a haystack</b>:<br><b>Something very difficult to find</b><br>Finding that specific file is like looking for a needle in a haystack.<br>Trying to find him in this crowd is like searching for a needle in a haystack.",
+  "<b>No pain, no gain</b>:<br><b>You have to work hard to achieve something</b><br>Remember, no pain, no gain at the gym.<br>She believes in no pain, no gain when it comes to learning a new skill.",
+  "<b>Not a pretty picture</b>:<br><b>An unpleasant situation</b><br>The financial situation is not a pretty picture.<br>The aftermath of the storm was not a pretty picture.",
+  "<b>Not playing with a full deck</b>:<br><b>Not very intelligent or sane</b><br>He sometimes acts like he's not playing with a full deck.<br>I think he's not playing with a full deck.",
+  "<b>Off the cuff</b>:<br><b>Without preparation</b><br>He gave an impressive speech off the cuff.<br>Her off-the-cuff remarks were quite insightful.",
+  "<b>Off the hook</b>:<br><b>Released from a responsibility or difficulty</b><br>You're off the hook for cleaning today.<br>He was glad to be off the hook for the presentation.",
+  "<b>Old hat</b>:<br><b>Outdated</b><br>That style of clothing is old hat now.<br>That technology is quite old hat.",
+  "<b>On cloud nine</b>:<br><b>Extremely happy</b><br>She was on cloud nine after getting the promotion.<br>He's been on cloud nine since the birth of his child.",
+  "<b>On the ball</b>:<br><b>Alert and competent</b><br>She's really on the ball when it comes to organizing events.<br>You need to be on the ball in this fast-paced job.",
+  "<b>On the fence</b>:<br><b>Undecided</b><br>I'm still on the fence about which car to buy.<br>She's on the fence about accepting the new job offer.",
+  "<b>Once in a blue moon</b>:<br><b>Very rarely</b><br>He visits his hometown once in a blue moon.<br>I eat fast food only once in a blue moon.",
+  "<b>Open a can of worms</b>:<br><b>Create a lot of new problems</b><br>Bringing up that issue would open a real can of worms.<br>His investigation opened a can of worms that no one expected.",
+  "<b>Out of the blue</b>:<br><b>Unexpectedly</b><br>He called me out of the blue after many years.<br>The opportunity came completely out of the blue.",
+  "<b>Out of the frying pan and into the fire</b>:<br><b>From a bad situation to a worse one</b><br>He left his terrible job and went out of the frying pan and into the fire with his new one.<br>Moving to that new city was like going out of the frying pan and into the fire.",
+  "<b>Over the top</b>:<br><b>Exaggerated or excessive</b><br>His reaction was a bit over the top.<br>The decorations for the party were really over the top.",
+
+    "<b>You can say that again</b>:<br><b>I completely agree</b><br>‘It’s really cold today.’ ‘You can say that again!’<br>‘This food is delicious.’ ‘You can say that again!",
+  "<b>A piece of cake</b>:<br><b>Something very easy</b><br>The test was a piece of cake.<br>Baking cookies is a piece of cake for her.",
+  "<b>Break a leg</b>:<br><b>Good luck</b><br>Break a leg at your performance tonight!<br>She told her friend to break a leg before the exam.",
+  "<b>Hit the books</b>:<br><b>Study hard</b><br>I need to hit the books tonight.<br>He hit the books to prepare for his finals.",
+  "<b>Let the cat out of the bag</b>:<br><b>Reveal a secret</b><br>She let the cat out of the bag about the surprise party.<br>Don’t let the cat out of the bag before his birthday.",
+  "<b>Under the weather</b>:<br><b>Feeling sick</b><br>I’m feeling under the weather today.<br>She stayed home because she was under the weather.",
+  "<b>Spill the beans</b>:<br><b>Reveal a secret</b><br>Who spilled the beans about the promotion?<br>Don’t spill the beans until it’s official.",
+  "<b>Hit the sack</b>:<br><b>Go to bed</b><br>I’m tired, I’ll hit the sack early tonight.<br>After the long trip, he hit the sack right away.",
+  "<b>Bite the bullet</b>:<br><b>Face something difficult bravely</b><br>She had to bite the bullet and apologize.<br>He bit the bullet and went to the dentist.",
+  "<b>Cost an arm and a leg</b>:<br><b>Very expensive</b><br>That car costs an arm and a leg.<br>The concert tickets cost me an arm and a leg.",
+  "<b>Break the ice</b>:<br><b>Start a conversation</b><br>He told a joke to break the ice.<br>Games help break the ice at parties.",
+  "<b>Once in a blue moon</b>:<br><b>Very rarely</b><br>He visits us once in a blue moon.<br>I eat fast food once in a blue moon.",
+  "<b>When pigs fly</b>:<br><b>Never</b><br>He’ll clean his room when pigs fly.<br>I’ll believe you when pigs fly.",
+  "<b>Let sleeping dogs lie</b>:<br><b>Don’t disturb a situation</b><br>Let sleeping dogs lie and don’t bring up old arguments.<br>It’s better to let sleeping dogs lie.",
+  "<b>Kick the bucket</b>:<br><b>Die</b><br>The old man kicked the bucket last night.<br>He hopes to travel before he kicks the bucket.",
+  "<b>Hit the nail on the head</b>:<br><b>Be exactly right</b><br>You hit the nail on the head with your answer.<br>Her comment hit the nail on the head.",
+  "<b>Add fuel to the fire</b>:<br><b>Make a situation worse</b><br>Yelling only adds fuel to the fire.<br>His comment added fuel to the fire.",
+  "<b>Bend over backwards</b>:<br><b>Try very hard</b><br>She bent over backwards to help him.<br>He bent over backwards to please his boss.",
+  "<b>Burn the midnight oil</b>:<br><b>Work late into the night</b><br>She burned the midnight oil to finish her project.<br>He often burns the midnight oil before exams.",
+  "<b>Cry over spilt milk</b>:<br><b>Complain about something that can’t be changed</b><br>Don’t cry over spilt milk.<br>There’s no use crying over spilt milk.",
+  "<b>Cut corners</b>:<br><b>Do something badly to save time or money</b><br>The builder cut corners and the house collapsed.<br>Don’t cut corners on this project.",
+  "<b>Devil’s advocate</b>:<br><b>Argue the opposite for the sake of argument</b><br>I’ll play devil’s advocate to test your idea.<br>Sometimes it’s good to have a devil’s advocate.",
+  "<b>Don’t judge a book by its cover</b>:<br><b>Don’t judge by appearance</b><br>He looks mean, but don’t judge a book by its cover.<br>Don’t judge a book by its cover; she’s very kind.",
+  "<b>Don’t put all your eggs in one basket</b>:<br><b>Don’t risk everything on one idea</b><br>Invest in different stocks; don’t put all your eggs in one basket.<br>She put all her eggs in one basket and lost everything.",
+  "<b>Every cloud has a silver lining</b>:<br><b>There’s something good in every bad situation</b><br>Losing the job was hard, but every cloud has a silver lining.<br>Remember, every cloud has a silver lining.",
+  "<b>Get cold feet</b>:<br><b>Become nervous</b><br>He got cold feet before the wedding.<br>She got cold feet and canceled the trip.",
+  "<b>Give someone the cold shoulder</b>:<br><b>Ignore someone</b><br>He gave me the cold shoulder at the party.<br>She gave her ex the cold shoulder.",
+  "<b>Go the extra mile</b>:<br><b>Do more than expected</b><br>She always goes the extra mile at work.<br>He went the extra mile to help his friend.",
+  "<b>Hit the road</b>:<br><b>Leave</b><br>Let’s hit the road before traffic starts.<br>We hit the road at sunrise.",
+  "<b>In hot water</b>:<br><b>In trouble</b><br>He’s in hot water with his boss.<br>She got in hot water for missing the meeting.",
+  "<b>It takes two to tango</b>:<br><b>Both people are responsible</b><br>Don’t blame her; it takes two to tango.<br>It takes two to tango in any argument.",
+  "<b>Jump on the bandwagon</b>:<br><b>Join a popular trend</b><br>Everyone’s jumping on the bandwagon.<br>He jumped on the bandwagon and bought the latest phone.",
+  "<b>Keep an eye on</b>:<br><b>Watch carefully</b><br>Keep an eye on the soup.<br>I’ll keep an eye on your bag.",
+  "<b>Kick up your heels</b>:<br><b>Celebrate</b><br>Let’s kick up our heels this weekend.<br>She kicked up her heels at the party.",
+  "<b>Leave no stone unturned</b>:<br><b>Search everywhere</b><br>They left no stone unturned in their search.<br>She left no stone unturned to find her lost dog.",
+  "<b>Let the chips fall where they may</b>:<br><b>Let things happen</b><br>I’ll tell the truth and let the chips fall where they may.<br>Just do your best and let the chips fall where they may.",
+  "<b>Miss the boat</b>:<br><b>Miss an opportunity</b><br>He missed the boat on that investment.<br>Don’t miss the boat; apply now.",
+  "<b>On cloud nine</b>:<br><b>Very happy</b><br>She was on cloud nine after the wedding.<br>He’s on cloud nine with his new job.",
+  "<b>On the ball</b>:<br><b>Alert and quick</b><br>She’s really on the ball at work.<br>You need to be on the ball in this job.",
+  "<b>Out of the blue</b>:<br><b>Unexpectedly</b><br>He called out of the blue.<br>The news came out of the blue.",
+  "<b>Out of the woods</b>:<br><b>Out of danger</b><br>He’s out of the woods after surgery.<br>We’re not out of the woods yet.",
+  "<b>Pull someone’s leg</b>:<br><b>Joke with someone</b><br>Are you pulling my leg?<br>He pulled her leg about the surprise.",
+  "<b>Put all your eggs in one basket</b>:<br><b>Risk everything on one thing</b><br>Don’t put all your eggs in one basket.<br>She put all her eggs in one basket and lost.",
+  "<b>Put your best foot forward</b>:<br><b>Try your best</b><br>Put your best foot forward in the interview.<br>She always puts her best foot forward.",
+  "<b>Rain cats and dogs</b>:<br><b>Rain heavily</b><br>It’s raining cats and dogs outside.<br>We got wet because it rained cats and dogs.",
+  "<b>See eye to eye</b>:<br><b>Agree</b><br>They don’t see eye to eye on politics.<br>We finally saw eye to eye.",
+  "<b>Sit on the fence</b>:<br><b>Not decide</b><br>He’s sitting on the fence about the job.<br>Don’t sit on the fence, make a choice.",
+  "<b>Speak of the devil</b>:<br><b>The person appears when talked about</b><br>Speak of the devil, here she comes!<br>We were talking about you-speak of the devil!",
+  "<b>Steal someone’s thunder</b>:<br><b>Take credit for someone else’s work</b><br>She stole my thunder at the meeting.<br>He hates when others steal his thunder.",
+  "<b>Take it with a grain of salt</b>:<br><b>Don’t take it too seriously</b><br>Take his advice with a grain of salt.<br>I take rumors with a grain of salt.",
+  "<b>The ball is in your court</b>:<br><b>It’s your turn to act</b><br>The ball is in your court now.<br>I’ve done my part; the ball is in your court.",
+  "<b>Throw in the towel</b>:<br><b>Give up</b><br>He threw in the towel after many tries.<br>Don’t throw in the towel yet.",
+  "<b>Turn a blind eye</b>:<br><b>Ignore</b><br>She turned a blind eye to his mistakes.<br>The manager turned a blind eye to the problem.",
+  "<b>Up in the air</b>:<br><b>Uncertain</b><br>Our plans are up in the air.<br>The decision is still up in the air.",
+  "<b>Burn bridges</b>:<br><b>Destroy relationships</b><br>Don’t burn bridges with your old boss.<br>He burned his bridges when he quit.",
+  "<b>By the book</b>:<br><b>Follow rules strictly</b><br>She does everything by the book.<br>The company works by the book.",
+  "<b>Call it a day</b>:<br><b>Stop working</b><br>Let’s call it a day and go home.<br>We called it a day after finishing the report.",
+  "<b>Cut to the chase</b>:<br><b>Get to the point</b><br>Let’s cut to the chase.<br>He cut to the chase and explained the problem.",
+  "<b>Easy as pie</b>:<br><b>Very easy</b><br>The homework was easy as pie.<br>Cooking this dish is easy as pie.",
+  "<b>Face the music</b>:<br><b>Accept the consequences</b><br>He had to face the music after lying.<br>She faced the music when caught cheating.",
+  "<b>Get a taste of your own medicine</b>:<br><b>Experience what you’ve done to others</b><br>He got a taste of his own medicine.<br>She didn’t like getting a taste of her own medicine.",
+  "<b>Go down in flames</b>:<br><b>Fail spectacularly</b><br>The plan went down in flames.<br>His idea went down in flames.",
+  "<b>Go out on a limb</b>:<br><b>Take a risk</b><br>She went out on a limb for her friend.<br>He went out on a limb with his prediction.",
+  "<b>Have a blast</b>:<br><b>Have a great time</b><br>We had a blast at the party.<br>She had a blast on vacation.",
+  "<b>In a pickle</b>:<br><b>In a difficult situation</b><br>I’m in a pickle with this homework.<br>He found himself in a pickle.",
+  "<b>In the same boat</b>:<br><b>In the same situation</b><br>We’re all in the same boat.<br>She realized they were in the same boat.",
+  "<b>Jump the gun</b>:<br><b>Start too soon</b><br>He jumped the gun and answered early.<br>Don’t jump the gun; wait for instructions.",
+  "<b>Keep your chin up</b>:<br><b>Stay positive</b><br>Keep your chin up, things will get better.<br>She told him to keep his chin up.",
+  "<b>Let your hair down</b>:<br><b>Relax</b><br>It’s time to let your hair down.<br>She let her hair down at the party.",
+  "<b>Make a long story short</b>:<br><b>Summarize</b><br>To make a long story short, we won.<br>He made a long story short and left.",
+  "<b>No pain, no gain</b>:<br><b>Must work hard to succeed</b><br>No pain, no gain at the gym.<br>She believes in no pain, no gain.",
+  "<b>On thin ice</b>:<br><b>In a risky situation</b><br>He’s on thin ice with his teacher.<br>She’s on thin ice after missing work.",
+  "<b>Pull yourself together</b>:<br><b>Calm down</b><br>Pull yourself together and focus.<br>He pulled himself together after the news.",
+  "<b>Read between the lines</b>:<br><b>Find the hidden meaning</b><br>Read between the lines of his letter.<br>She read between the lines and understood.",
+  "<b>Rock the boat</b>:<br><b>Cause trouble</b><br>Don’t rock the boat at work.<br>He rocked the boat with his ideas.",
+  "<b>See the writing on the wall</b>:<br><b>Notice signs of trouble</b><br>She saw the writing on the wall.<br>He didn’t see the writing on the wall.",
+  "<b>Shoot the breeze</b>:<br><b>Chat casually</b><br>We shot the breeze all night.<br>They love to shoot the breeze.",
+  "<b>Sleep on it</b>:<br><b>Think before deciding</b><br>I’ll sleep on it and decide tomorrow.<br>She slept on it and chose the job.",
+  "<b>Smell a rat</b>:<br><b>Suspect something</b><br>I smell a rat in this deal.<br>She smelled a rat and investigated.",
+  "<b>Speak your mind</b>:<br><b>Say what you think</b><br>She always speaks her mind.<br>He spoke his mind at the meeting.",
+  "<b>Take the bull by the horns</b>:<br><b>Face a problem directly</b><br>Take the bull by the horns and fix it.<br>She took the bull by the horns.",
+  "<b>The best of both worlds</b>:<br><b>All advantages</b><br>Working from home is the best of both worlds.<br>She has the best of both worlds.",
+  "<b>The early bird catches the worm</b>:<br><b>Start early to succeed</b><br>The early bird catches the worm.<br>He wakes up early because the early bird catches the worm.",
+  "<b>Throw caution to the wind</b>:<br><b>Take a risk</b><br>She threw caution to the wind and quit.<br>He threw caution to the wind and invested.",
+  "<b>Time flies</b>:<br><b>Time passes quickly</b><br>Time flies when you’re having fun.<br>Time flies at the beach.",
+  "<b>Turn over a new leaf</b>:<br><b>Start fresh</b><br>He turned over a new leaf after school.<br>She turned over a new leaf this year.",
+  "<b>Up the creek without a paddle</b>:<br><b>In trouble</b><br>We’re up the creek without a paddle.<br>He was up the creek without a paddle.",
+  "<b>You can’t judge a book by its cover</b>:<br><b>Don’t judge by looks</b><br>You can’t judge a book by its cover.<br>She learned not to judge a book by its cover.",
+  "<b>Your guess is as good as mine</b>:<br><b>I don’t know either</b><br>Your guess is as good as mine.<br>Where did he go? Your guess is as good as mine.",
+  "<b>By the seat of your pants</b>:<br><b>Do something without planning</b><br>He passed the test by the seat of his pants.<br>She managed the event by the seat of her pants.",
+  "<b>Call the shots</b>:<br><b>Be in charge</b><br>The manager calls the shots here.<br>She likes to call the shots in her team.",
+  "<b>Carry the torch</b>:<br><b>Be in love, usually secretly</b><br>He’s still carrying the torch for his ex.<br>She carried the torch for years.",
+  "<b>Cast iron stomach</b>:<br><b>Can eat or drink anything</b><br>He must have a cast     iron stomach to eat that.<br>With a cast iron stomach, she tried every dish.",
+  "<b>Caught red-handed</b>:<br><b>Caught in the act</b><br>He was caught red-handed stealing the money.<br>She was caught red-handed cheating.",
+  "<b>Climb on the bandwagon</b>:<br><b>Join others in doing something popular</b><br>Everyone’s climbing on the bandwagon of social media.<br>He climbed on the bandwagon when the trend started.",
+  "<b>Come out of left field</b>:<br><b>Be unexpected</b><br>Her resignation came out of left field.<br>The question came out of left field.",
+  "<b>Cross that bridge when you come to it</b>:<br><b>Deal with a problem when it happens</b><br>Don’t worry now; we’ll cross that bridge when we come to it.<br>Let’s cross that bridge when we come to it",
+  "<b>Cry wolf</b>:<br><b>Raise a false alarm</b><br>If you keep crying wolf, no one will believe you.<br>She cried wolf too many times.",
+  "<b>Cut the Gordian knot</b>:<br><b>Solve a complex problem simply</b><br>He cut the Gordian knot with his bold decision.<br>The manager cut the Gordian knot by restructuring the team.",
+  "<b>Don’t look a gift horse in the mouth</b>:<br><b>Don’t be ungrateful for a gift</b><br>Accept the offer; don’t look a gift horse in the mouth.<br>She looked a gift horse in the mouth and lost the opportunity.",
+  "<b>Down to the wire</b>:<br><b>Until the last moment</b><br>The game went down to the wire.<br>We worked down to the wire on the project.",
+  "<b>Draw a blank</b>:<br><b>Fail to get an answer or result</b><br>I drew a blank during the test.<br>He drew a blank when asked the question.",
+  "<b>Drop a dime</b>:<br><b>Inform the authorities</b><br>Someone dropped a dime on the criminals.<br>He dropped a dime about the illegal activity.",
+  "<b>Eat crow</b>:<br><b>Admit a mistake</b><br>He had to eat crow after the prediction failed.<br>She ate crow when proven wrong.",
+  "<b>Eat humble pie</b>:<br><b>Apologize and accept humiliation</b><br>He ate humble pie after his mistake.<br>She was forced to eat humble pie.",
+  "<b>Face the music</b>:<br><b>Accept the consequences</b><br>He must face the music for his actions.<br>She faced the music after breaking the rule.",
+  "<b>Fiddle while Rome burns</b>:<br><b>Do nothing during a crisis</b><br>The leaders fiddled while Rome burned.<br>She fiddled while Rome burned during the crisis.",
+  "<b>Fly off the handle</b>:<br><b>Lose one’s temper</b><br>He flew off the handle at the bad news.<br>She flies off the handle easily.",
+  "<b>For a song</b>:<br><b>Very cheaply</b><br>He bought the car for a song.<br>The house was sold for a song.",
+  "<b>Get a word in edgewise</b>:<br><b>Get a chance to speak</b><br>I couldn’t get a word in edgewise at the meeting.<br>She talks so much, no one can get a word in edgewise.",
+  "<b>Get your ducks in a row</b>:<br><b>Get organized</b><br>Get your ducks in a row before the audit.<br>She got her ducks in a row for the presentation.",
+  "<b>Give someone the slip</b>:<br><b>Escape from someone</b><br>The thief gave the police the slip.<br>She gave her followers the slip.",
+  "<b>Go against the grain</b>:<br><b>Do something unusual</b><br>His decision goes against the grain.<br>It goes against the grain to lie.",
+  "<b>Go for broke</b>:<br><b>Risk everything</b><br>He decided to go for broke and invest it all.<br>They went for broke in the final round.",
+  "<b>Go out on a limb</b>:<br><b>Take a risk</b><br>She went out on a limb with her idea.<br>He went out on a limb for his friend.",
+  "<b>Go the whole hog</b>:<br><b>Do something completely</b><br>They went the whole hog with the renovations.<br>She went the whole hog for her birthday.",
+  "<b>Grasp at straws</b>:<br><b>Try anything to solve a problem</b><br>He was grasping at straws for an excuse.<br>She grasped at straws to explain her lateness.",
+  "<b>Have an axe to grind</b>:<br><b>Have a personal reason for complaining</b><br>He has an axe to grind with the manager.<br>She always has an axe to grind.",
+  "<b>Have egg on your face</b>:<br><b>Be embarrassed</b><br>He had egg on his face after the error.<br>She had egg on her face when caught lying.",
+  "<b>Hit below the belt</b>:<br><b>Act unfairly</b><br>His comment was hitting below the belt.<br>She hit below the belt with her insult.",
+  "<b>In a nutshell</b>:<br><b>In summary</b><br>In a nutshell, we lost the game.<br>To put it in a nutshell, the plan failed.",
+  "<b>In cold blood</b>:<br><b>Deliberately and without emotion</b><br>The crime was committed in cold blood.<br>He acted in cold blood.",
+  "<b>In the doghouse</b>:<br><b>In trouble</b><br>He’s in the doghouse for forgetting her birthday.<br>She was in the doghouse after the argument.",
+  "<b>Jump down someone’s throat</b>:<br><b>Criticize angrily</b><br>Don’t jump down my throat!<br>She jumped down his throat for being late.",
+  "<b>Keep a stiff upper lip</b>:<br><b>Remain unemotional</b><br>He kept a stiff upper lip during the crisis.<br>She always keeps a stiff upper lip.",
+  "<b>Keep your nose to the grindstone</b>:<br><b>Work hard</b><br>Keep your nose to the grindstone and you’ll succeed.<br>She kept her nose to the grindstone all year.",
+  "<b>Know the ropes</b>:<br><b>Be familiar with the details</b><br>He knows the ropes in this business.<br>She quickly learned the ropes.",
+  "<b>Leave someone in the lurch</b>:<br><b>Abandon someone in trouble</b><br>He left me in the lurch at the last minute.<br>She felt left in the lurch.",
+  "<b>Let sleeping dogs lie</b>:<br><b>Leave things as they are</b><br>Let sleeping dogs lie and don’t mention it.<br>He let sleeping dogs lie to avoid conflict.",
+  "<b>Make a mountain out of a molehill</b>:<br><b>Exaggerate a small problem</b><br>Don’t make a mountain out of a molehill.<br>She made a mountain out of a molehill with her complaint.",
+  "<b>Make ends meet</b>:<br><b>Have enough money</b><br>It’s hard to make ends meet these days.<br>She works two jobs to make ends meet.",
+  "<b>Method to the madness</b>:<br><b>Reason behind strange behavior</b><br>There’s a method to his madness.<br>Her chaos has a method to the madness.",
+  "<b>Move heaven and earth</b>:<br><b>Do everything possible</b><br>He moved heaven and earth to get the job.<br>She’ll move heaven and earth for her children.",
+  "<b>Not playing with a full deck</b>:<br><b>Not mentally sound</b><br>He’s not playing with a full deck.<br>She acts like she’s not playing with a full deck.",
+  "<b>Off the cuff</b>:<br><b>Without preparation</b><br>He spoke off the cuff.<br>Her off the cuff remarks were impressive.",
+  "<b>On a wing and a prayer</b>:<br><b>With little chance of success</b><br>They finished the race on a wing and a prayer.<br>He started the business on a wing and a prayer.",
+  "<b>On the fence</b>:<br><b>Undecided</b><br>I’m on the fence about the offer.<br>She’s on the fence about moving.",
+  "<b>On the tip of your tongue</b>:<br><b>Almost able to remember</b><br>The name is on the tip of my tongue.<br>Her answer was on the tip of her tongue.",
+  "<b>Out of the frying pan and into the fire</b>:<br><b>From one bad situation to another</b><br>He went out of the frying pan and into the fire.<br>She left one bad job for another-out of the frying pan and into the fire.",
+  "<b>Pass the buck</b>:<br><b>Shift responsibility</b><br>Don’t pass the buck to me.<br>He passed the buck instead of solving the problem.",
+  "<b>Pay the piper</b>:<br><b>Face the consequences</b><br>It’s time to pay the piper for your actions.<br>She paid the piper after breaking the rule.",
+  "<b>Pull out all the stops</b>:<br><b>Do everything possible</b><br>They pulled out all the stops for the wedding.<br>She pulled out all the stops for her performance.",
+  "<b>Put your money where your mouth is</b>:<br><b>Back up words with action</b><br>Put your money where your mouth is and help us.<br>He put his money where his mouth is and donated.",
+  "<b>Raise the bar</b>:<br><b>Set higher standards</b><br>She raised the bar for future students.<br>The team raised the bar with their performance.",
+  "<b>Read the riot act</b>:<br><b>Warn or reprimand</b><br>The teacher read the riot act to the class.<br>He read the riot act after the mistake.",
+  "<b>Red herring</b>:<br><b>Something misleading</b><br>The clue was a red herring.<br>Her comment was a red herring.",
+  "<b>Ring a bell</b>:<br><b>Sound familiar</b><br>Does that name ring a bell?<br>The story rings a bell.",
+  "<b>Rub salt in the wound</b>:<br><b>Make a bad situation worse</b><br>Don’t rub salt in the wound.<br>His joke rubbed salt in the wound.",
+  "<b>Run the gauntlet</b>:<br><b>Go through a difficult experience</b><br>He ran the gauntlet of criticism.<br>She ran the gauntlet during the interview.",
+  "<b>Sail close to the wind</b>:<br><b>Take risks</b><br>He sails close to the wind with his jokes.<br>She’s always sailing close to the wind at work.",
+  "<b>Saved by the bell</b>:<br><b>Saved at the last moment</b><br>He was saved by the bell from answering.<br>The fire alarm saved her by the bell.",
+  "<b>Scot-free</b>:<br><b>Without punishment</b><br>He got off scot-free.<br>She left scot-free after the trial.",
+  "<b>Shoot from the hip</b>:<br><b>Speak directly</b><br>He shoots from the hip in meetings.<br>She shot from the hip with her answer.",
+  "<b>Skeleton in the closet</b>:<br><b>Hidden secret</b><br>Everyone has a skeleton in the closet.<br>His skeleton in the closet was revealed.",
+  "<b>Sleep like a log</b>:<br><b>Sleep very well</b><br>I slept like a log last night.<br>She always sleeps like a log.",
+  "<b>Smell a rat</b>:<br><b>Suspect something</b><br>I smell a rat in this story.<br>She smelled a rat and investigated.",
+  "<b>Spill the beans</b>:<br><b>Reveal a secret</b><br>He spilled the beans about the surprise.<br>She spilled the beans accidentally.",
+  "<b>Stick to your guns</b>:<br><b>Refuse to change your mind</b><br>She stuck to her guns despite criticism.<br>He sticks to his guns in every debate.",
+  "<b>Take a rain check</b>:<br><b>Postpone an invitation</b><br>Can I take a rain check on dinner?<br>She took a rain check on the movie.",
+  "<b>Take the cake</b>:<br><b>Be the best or worst example</b><br>His excuse takes the cake.<br>That story really takes the cake.",
+  "<b>Take the wind out of someone’s sails</b>:<br><b>Make someone less confident</b><br>Her comment took the wind out of his sails.<br>He took the wind out of my sails with his reply.",
+  "<b>Throw down the gauntlet</b>:<br><b>Challenge someone</b><br>He threw down the gauntlet to his rival.<br>She threw down the gauntlet in the debate.",
+  "<b>Throw your hat in the ring</b>:<br><b>Enter a competition</b><br>He threw his hat in the ring for president.<br>She threw her hat in the ring for the job.",
+  "<b>Toe the line</b>:<br><b>Follow the rules</b><br>Employees must toe the line.<br>He toes the line at work.",
+  "<b>Turn the tables</b>:<br><b>Reverse the situation</b><br>She turned the tables on her opponent.<br>He turned the tables with a clever move.",
+  "<b>Under one’s belt</b>:<br><b>Achieved or experienced</b><br>She has many awards under her belt.<br>He got the degree under his belt.",
+  "<b>Up in arms</b>:<br><b>Very angry</b><br>The community is up in arms about the change.<br>Parents are up in arms over the policy.",
+  "<b>Walk on eggshells</b>:<br><b>Be very careful</b><br>I walk on eggshells around my boss.<br>She walked on eggshells after the argument.",
+  "<b>Wash your hands of something</b>:<br><b>Stop being involved</b><br>He washed his hands of the project.<br>She washed her hands of the drama.",
+  "<b>Weather the storm</b>:<br><b>Survive a difficult time</b><br>The company weathered the storm.<br>They weathered the storm together.",
+  "<b>Wild goose chase</b>:<br><b>A futile search</b><br>The search was a wild goose chase.<br>He sent us on a wild goose chase.",
+  "<b>With flying colors</b>:<br><b>With great success</b><br>She passed the exam with flying colors.<br>He finished the race with flying colors.",
+  "<b>Wolf in sheep’s clothing</b>:<br><b>Someone who hides malicious intent</b><br>He’s a wolf in sheep’s clothing.<br>Beware of wolves in sheep’s clothing.",
+  "<b>Zero in on</b>:<br><b>Focus closely on</b><br>The police zeroed in on the suspect.<br>She zeroed in on her goals.",
+  "<b>Backseat driver</b>:<br><b>Someone who gives unwanted advice</b><br>He’s such a backseat driver.<br>She hates backseat drivers.",
+  "<b>Break a sweat</b>:<br><b>Work hard</b><br>He didn’t even break a sweat.<br>She broke a sweat cleaning the house.",
+  "<b>Call the shots</b>:<br><b>Be in charge</b><br>The manager calls the shots.<br>She likes to call the shots.",
+  "<b>Cut corners</b>:<br><b>Do something badly to save time or money</b><br>The builder cut corners.<br>Don’t cut corners on this project.",
+  "<b>Down to the wire</b>:<br><b>Until the last moment</b><br>The game went down to the wire.<br>We worked down to the wire.",
+  "<b>Face the music</b>:<br><b>Accept consequences</b><br>He faced the music.<br>She’s facing the music now.",
+  "<b>Go the extra mile</b>:<br><b>Do more than expected</b><br>She always goes the extra mile.<br>He went the extra mile to help.",
+  "<b>Hit the jackpot</b>:<br><b>Have great success</b><br>She hit the jackpot.<br>He hit the jackpot in the lottery.",
+  "<b>Jump on the bandwagon</b>:<br><b>Join a trend</b><br>He jumped on the bandwagon.<br>She’s jumping on the bandwagon.",
+  "<b>Keep your eyes peeled</b>:<br><b>Be alert and watchful</b><br>Keep your eyes peeled.<br>She kept her eyes peeled for her friend.",
+  "<b>Let off steam</b>:<br><b>Release emotion</b><br>He went for a run to let off steam.<br>She let off steam by shouting.",
+  "<b>On thin ice</b>:<br><b>In a risky situation</b><br>He’s on thin ice.<br>She’s on thin ice after missing work.",
+  "<b>Pull out all the stops</b>:<br><b>Do everything possible</b><br>She pulled out all the stops.<br>He’s pulling out all the stops.",
+  "<b>Raise the bar</b>:<br><b>Set higher standards</b><br>She raised the bar.<br>The team raised the bar with their performance.",
+  "<b>Saved by the bell</b>:<br><b>Saved at the last moment</b><br>He was saved by the bell.<br>The fire alarm saved her by the bell.",
+  "<b>Take a rain check</b>:<br><b>Postpone</b><br>He took a rain check.<br>She’s taking a rain check.",
+  "<b>Under the weather</b>:<br><b>Feeling sick</b><br>I’m under the weather today.<br>She stayed home because she was under the weather.",
+  "<b>Work like a dog</b>:<br><b>Work very hard</b><br>He works like a dog.<br>She worked like a dog all week.",
+  "<b>At the drop of a hat</b>:<br><b>Immediately</b><br>She’d help you at the drop of     a hat.<br>He’s ready to travel at the drop of a hat.",
+  "<b>Back to square one</b>:<br><b>Start over</b><br>The plan failed, so we’re back to square one.<br>After the error, it was back to square one.",
+  "<b>Burn your bridges</b>:<br><b>Destroy relationships</b><br>Don’t burn your bridges.<br>He burned his bridges when he left.",
+  "<b>Cross that bridge when you come to it</b>:<br><b>Deal with a problem when it happens</b><br>We’ll cross that bridge when we come to it.<br>Don’t worry now; cross that bridge when you come to it.",
+  "<b>Don’t bite the hand that feeds you</b>:<br><b>Don’t harm someone who helps you</b><br>Don’t bite the hand that feeds you.<br>He bit the hand that fed him.",
+  "<b>Every cloud has a silver lining</b>:<br><b>There’s something good in every bad situation</b><br>Every cloud has a silver lining.<br>Remember, every cloud has a silver lining.",
+  "<b>Fish out of water</b>:<br><b>Uncomfortable in a situation</b><br>He felt like a fish out of water.<br>She’s a fish out of water at parties.",
+  "<b>Give someone the cold shoulder</b>:<br><b>Ignore someone</b><br>He gave me the cold shoulder.<br>She gave her ex the cold shoulder.",
+  "<b>Hit the sack</b>:<br><b>Go to bed</b><br>I’m tired, I’ll hit the sack.<br>He hit the sack right away.",
+  "<b>In the same boat</b>:<br><b>In the same situation</b><br>We’re all in the same boat.<br>She realized they were in the same boat.",
+  "<b>Jump down someone’s throat</b>:<br><b>Criticize angrily</b><br>Don’t jump down my throat!<br>She jumped down his throat for being late.",
+  "<b>Keep your fingers crossed</b>:<br><b>Hope for good luck</b><br>Keep your fingers crossed.<br>She’s keeping her fingers crossed for the results.",
+  "<b>Let the cat out of the bag</b>:<br><b>Reveal a secret</b><br>She let the cat out of the bag.<br>Don’t let the cat out of the bag before his birthday.",
+  "<b>Make a long story short</b>:<br><b>Summarize</b><br>To make a long story short, we won.<br>He made a long story short and left.",
+  "<b>No pain, no gain</b>:<br><b>You must work hard to succeed</b><br>No pain, no gain at the gym.<br>She believes in no pain, no gain.",
+  "<b>On the fence</b>:<br><b>Undecided</b><br>I’m on the fence.<br>She’s on the fence about moving.",
+  "<b>Pull someone’s leg</b>:<br><b>Joke with someone</b><br>Are you pulling my leg?<br>He pulled her leg about the surprise.",
+  "<b>Read the riot act</b>:<br><b>Warn or reprimand</b><br>The teacher read the riot act.<br>He read the riot act after the mistake.",
+  "<b>See the writing on the wall</b>:<br><b>Notice signs of trouble</b><br>She saw the writing on the wall.<br>He didn’t see the writing on the wall.",
+  "<b>Shoot from the hip</b>:<br><b>Speak directly</b><br>He shoots from the hip.<br>She shot from the hip with her answer.",
+  "<b>Take the wind out of someone’s sails</b>:<br><b>Make someone less confident</b><br>Her comment took the wind out of his sails.<br>He took the wind out of my sails.",
+  "<b>Under one’s belt</b>:<br><b>Achieved or experienced</b><br>She has many awards under her belt.<br>He got the degree under his belt.",
+  "<b>Walk on eggshells</b>:<br><b>Be very careful</b><br>I walk on eggshells.<br>She walked on eggshells after the argument.",
+  "<b>With bells on</b>:<br><b>With enthusiasm</b><br>I’ll be there with bells on.<br>She arrived with bells on.",
+  "<b>Zero tolerance</b>:<br><b>No acceptance of misbehavior</b><br>The school has zero tolerance for cheating.<br>There is zero tolerance for violence.",
+  "<b>Go for broke</b>:<br><b>Risk everything</b><br>He decided to go for broke and invest it all.<br>They went for broke in the final round.",
+  "<b>Go out on a limb</b>:<br><b>Take a risk</b><br>She went out on a limb with her idea.<br>He went out on a limb for his friend.",
+  "<b>Go the whole hog</b>:<br><b>Do something completely</b><br>They went the whole hog with the renovations.<br>She went the whole hog for her birthday.",
+  "<b>Grasp at straws</b>:<br><b>Try anything to solve a problem</b><br>He was grasping at straws for an excuse.<br>She grasped at straws to explain her lateness.",
+  "<b>Have an axe to grind</b>:<br><b>Have a personal reason for complaining</b><br>He has an axe to grind with the manager.<br>She always has an axe to grind.",
+  "<b>Have egg on your face</b>:<br><b>Be embarrassed</b><br>He had egg on his face after the error.<br>She had egg on her face when caught lying.",
+  "<b>Hit below the belt</b>:<br><b>Act unfairly</b><br>His comment was hitting below the belt.<br>She hit below the belt with her insult.",
+  "<b>In a nutshell</b>:<br><b>In summary</b><br>In a nutshell, we lost the game.<br>To put it in a nutshell, the plan failed.",
+  "<b>In cold blood</b>:<br><b>Deliberately and without emotion</b><br>The crime was committed in cold blood.<br>He acted in cold blood.",
+  "<b>In the doghouse</b>:<br><b>In trouble</b><br>He’s in the doghouse for forgetting her birthday.<br>She was in the doghouse after the argument.",
+  "<b>Jump down someone’s throat</b>:<br><b>Criticize angrily</b><br>Don’t jump down my throat!<br>She jumped down his throat for being late.",
+  "<b>Keep a stiff upper lip</b>:<br><b>Remain unemotional</b><br>He kept a stiff upper lip during the crisis.<br>She always keeps a stiff upper lip.",
+  "<b>Keep your nose to the grindstone</b>:<br><b>Work hard</b><br>Keep your nose to the grindstone and you’ll succeed.<br>She kept her nose to the grindstone all year.",
+  "<b>Know the ropes</b>:<br><b>Be familiar with the details</b><br>He knows the ropes in this business.<br>She quickly learned the ropes.",
+  "<b>Leave someone in the lurch</b>:<br><b>Abandon someone in trouble</b><br>He left me in the lurch at the last minute.<br>She felt left in the lurch.",
+  "<b>Let sleeping dogs lie</b>:<br><b>Leave things as they are</b><br>Let sleeping dogs lie and don’t mention it.<br>He let sleeping dogs lie to avoid conflict.",
+  "<b>Make a mountain out of a molehill</b>:<br><b>Exaggerate a small problem</b><br>Don’t make a mountain out of a molehill.<br>She made a mountain out of a molehill with her complaint.",
+  "<b>Make ends meet</b>:<br><b>Have enough money</b><br>It’s hard to make ends meet these days.<br>She works two jobs to make ends meet.",
+  "<b>Method to the madness</b>:<br><b>Reason behind strange behavior</b><br>There’s a method to his madness.<br>Her chaos has a method to the madness.",
+  "<b>Move heaven and earth</b>:<br><b>Do everything possible</b><br>He moved heaven and earth to get the job.<br>She’ll move heaven and earth for her children.",
+  "<b>Not playing with a full deck</b>:<br><b>Not mentally sound</b><br>He’s not playing with a full deck.<br>She acts like she’s not playing with a full deck.",
+  "<b>Off the cuff</b>:<br><b>Without preparation</b><br>He spoke off the cuff.<br>Her off the cuff remarks were impressive.",
+  "<b>On a wing and a prayer</b>:<br><b>With little chance of success</b><br>They finished the race on a wing and a prayer.<br>He started the business on a wing and a prayer.",
+  "<b>On the fence</b>:<br><b>Undecided</b><br>I’m on the fence about the offer.<br>She’s on the fence about moving.",
+  "<b>On the tip of your tongue</b>:<br><b>Almost able to remember</b><br>The name is on the tip of my tongue.<br>Her answer was on the tip of her tongue.",
+  "<b>Out of the frying pan and into the fire</b>:<br><b>From one bad situation to another</b><br>He went out of the frying pan and into the fire.<br>She left one bad job for another-out of the frying pan and into the fire.",
+  "<b>Pass the buck</b>:<br><b>Shift responsibility</b><br>Don’t pass the buck to me.<br>He passed the buck instead of solving the problem.",
+  "<b>Pay the piper</b>:<br><b>Face the consequences</b><br>It’s time to pay the piper for your actions.<br>She paid the piper after breaking the rule.",
+  "<b>Pull out all the stops</b>:<br><b>Do everything possible</b><br>They pulled out all the stops for the wedding.<br>She pulled out all the stops for her performance.",
+  "<b>Put your money where your mouth is</b>:<br><b>Back up words with action</b><br>Put your money where your mouth is and help us.<br>He put his money where his mouth is and donated.",
+  "<b>Raise the bar</b>:<br><b>Set higher standards</b><br>She raised the bar for future students.<br>The team raised the bar with their performance.",
+  "<b>Read the riot act</b>:<br><b>Warn or reprimand</b><br>The teacher read the riot act to the class.<br>He read the riot act after the mistake.",
+  "<b>Red herring</b>:<br><b>Something misleading</b><br>The clue was a red herring.<br>Her comment was a red herring.",
+  "<b>Ring a bell</b>:<br><b>Sound familiar</b><br>Does that name ring a bell?<br>The story rings a bell.",
+  "<b>Rub salt in the wound</b>:<br><b>Make a bad situation worse</b><br>Don’t rub salt in the wound.<br>His joke rubbed salt in the wound.",
+  "<b>Run the gauntlet</b>:<br><b>Go through a difficult experience</b><br>He ran the gauntlet of criticism.<br>She ran the gauntlet during the interview.",
+  "<b>Sail close to the wind</b>:<br><b>Take risks</b><br>He sails close to the wind with his jokes.<br>She’s always sailing close to the wind at work.",
+  "<b>Saved by the bell</b>:<br><b>Saved at the last moment</b><br>He was saved by the bell from answering.<br>The fire alarm saved her by the bell.",
+  "<b>Scot-free</b>:<br><b>Without punishment</b><br>He got off scot-free.<br>She left scot-free after the trial.",
+  "<b>Shoot from the hip</b>:<br><b>Speak directly</b><br>He shoots from the hip in meetings.<br>She shot from the hip with her answer.",
+  "<b>Skeleton in the closet</b>:<br><b>Hidden secret</b><br>Everyone has a skeleton in the closet.<br>His skeleton in the closet was revealed.",
+  "<b>Sleep like a log</b>:<br><b>Sleep very well</b><br>I slept like a log last night.<br>She always sleeps like a log.",
+  "<b>Smell a rat</b>:<br><b>Suspect something</b><br>I smell a rat in this story.<br>She smelled a rat and investigated.",
+  "<b>Spill the beans</b>:<br><b>Reveal a secret</b><br>He spilled the beans about the surprise.<br>She spilled the beans accidentally.",
+  "<b>Stick to your guns</b>:<br><b>Refuse to change your mind</b><br>She stuck to her guns despite criticism.<br>He sticks to his guns in every debate.",
+  "<b>Take a rain check</b>:<br><b>Postpone an invitation</b><br>Can I take a rain check on dinner?<br>She took a rain check on the movie.",
+  "<b>Take the cake</b>:<br><b>Be the best or worst example</b><br>His excuse takes the cake.<br>That story really takes the cake.",
+  "<b>Take the wind out of someone’s sails</b>:<br><b>Make someone less confident</b><br>Her comment took the wind out of his sails.<br>He took the wind out of my sails with his reply."
+  
+  
+  
+  
+  
+];
+
+    function rotateIdioms() {
+      const factEl = document.getElementById("idiom-text");
+      if (!factEl || idioms.length === 0) return;
+      let i = 0;
+      // Initial display
+      factEl.innerHTML = idioms[i];
+      i = (i + 1) % idioms.length;
+      
+      // Rotate every 7 seconds
+      setInterval(() => {
+        factEl.innerHTML = idioms[i];
+        i = (i + 1) % idioms.length;
+      }, 7000);
+    }
+
+    rotateIdioms();
+
+    const studentName = localStorage.getItem("userName");
+    const welcomeDiv = document.getElementById("welcome-message");
+    if (studentName) {
+      welcomeDiv.textContent = "Welcome back, " + studentName + "!";
+    } else {
+      welcomeDiv.style.display = 'none';
+    }
+
+    let tokenClient;
+    function googleLogin() {
+      if (!tokenClient) {
+        tokenClient = google.accounts.oauth2.initTokenClient({
+          client_id: '924721243511-67b5b592j50k1c97dc4gellu5tnmpblk.apps.googleusercontent.com', // Your Client ID
+          scope: 'email profile openid',
+          callback: (tokenResponse) => {
+            if (tokenResponse.access_token) {
+              fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+                headers: {
+                  Authorization: `Bearer ${tokenResponse.access_token}`
+                }
+              })
+              .then(res => res.json())
+              .then(userInfo => {
+                const name = userInfo.name || userInfo.email;
+                localStorage.setItem("userName", name);
+                welcomeDiv.textContent = "Welcome, " + name + "!";
+                welcomeDiv.style.display = 'block';
+              });
+            }
+          }
+        });
+      }
+      tokenClient.requestAccessToken();
+    }
+
+    function emailLogin() {
+      window.location.href = "loginlast.html";
+    }
+
+    function goToAISection() {
+      window.location.href = "mainlast.html";
+    }
+
+    function goToLiveSessions() {
+      window.location.href = "sessionlast.html";
+    }
+
+    function goToAITraining() {
+      window.location.href = "livelast.html";
+    }
+
+    function goToGrammarConcepts() {
+      window.location.href = "reference.html";
+    }
+
+  </script>
+
+</body>
+</html>

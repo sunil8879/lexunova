@@ -1,143 +1,253 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact Us | LEXUNOVA</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Wellspokn Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <style>
+        :root {
+            --primary-blue: #0866FF; /* Modern Facebook Blue */
+            --light-blue: #eaf2ff;
+            --white: #ffffff;
+            --text-dark: #333;
+            --text-light: #f0f8ff;
+            --grey: #f5f5f5;
+            --border-color: #ddd;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-<style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--grey);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+            color: var(--text-dark);
+        }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
+        .contact-container {
+            display: flex;
+            width: 100%;
+            max-width: 1100px;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-body{
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:30px;
-background:linear-gradient(-45deg,#667eea,#764ba2,#6dd5ed,#2193b0);
-background-size:400% 400%;
-animation:gradient 15s ease infinite;
-overflow:hidden;
-}
+        .contact-info {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 4rem 3rem;
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-@keyframes gradient{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
-}
+        .contact-info h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #ffffff, #a7caff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-.card{
-width:900px;
-max-width:100%;
-background:rgba(255,255,255,0.15);
-backdrop-filter:blur(15px);
-padding:60px;
-border-radius:30px;
-box-shadow:0 20px 60px rgba(0,0,0,.25);
-color:white;
-text-align:center;
-}
+        .contact-info p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
 
-.logo{
-font-size:4rem;
-font-weight:800;
-letter-spacing:2px;
-margin-bottom:10px;
-}
+        .contact-form {
+            padding: 4rem 3rem;
+            width: 60%;
+        }
 
-.tagline{
-font-size:1.3rem;
-margin-bottom:40px;
-color:#fff9c4;
-}
+        .contact-form h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-blue);
+        }
 
-.contact-box{
-background:rgba(255,255,255,.15);
-padding:35px;
-border-radius:20px;
-margin-top:20px;
-}
+        .form-group {
+            position: relative;
+            margin-bottom: 2rem;
+        }
 
-.contact-item{
-font-size:1.2rem;
-margin:20px 0;
-line-height:2;
-}
+        .form-group label {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 1rem;
+            color: #999;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
 
-.label{
-font-weight:700;
-display:block;
-font-size:1.1rem;
-opacity:.9;
-}
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
 
-.value{
-font-size:1.25rem;
-}
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 10px var(--light-blue);
+        }
+        
+        /* Input focus and valid state animation */
+        .form-input:focus + label,
+        .form-input:not(:placeholder-shown) + label {
+            top: -10px;
+            left: 10px;
+            font-size: 0.8rem;
+            color: var(--primary-blue);
+            background-color: var(--white);
+            padding: 0 5px;
+        }
+        
+        textarea.form-input {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .char-counter {
+            text-align: right;
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 5px;
+        }
 
-.footer{
-margin-top:40px;
-font-size:1rem;
-opacity:.9;
-}
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            border: none;
+            border-radius: 10px;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(8, 102, 255, 0.3);
+        }
 
-</style>
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(8, 102, 255, 0.4);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .contact-container {
+                flex-direction: column;
+            }
+            .contact-info, .contact-form {
+                width: 100%;
+            }
+            .contact-info {
+                padding: 3rem;
+                text-align: center;
+            }
+            .contact-form {
+                padding: 3rem;
+            }
+        }
+        @media (max-width: 576px) {
+            body {
+                padding: 1rem;
+            }
+            .contact-info h1 { font-size: 2.2rem; }
+            .contact-form h2 { font-size: 1.8rem; }
+            .contact-info, .contact-form { padding: 2rem; }
+        }
 
+    </style>
 </head>
-
 <body>
 
-<div class="card">
+    <div class="contact-container">
+        <div class="contact-info">
+            <h1>Let's Talk!</h1>
+            <p>We're here to help you on your journey to fluent English. Fill out the form, and we'll get back to you as soon as possible. Your future is bright!</p>
+        </div>
 
-<div class="logo">LEXUNOVA</div>
+        <div class="contact-form">
+            <h2>Get in Touch</h2>
+            <form action="https://api.web3forms.com/submit" method="POST">
+                
+                <!-- IMPORTANT: Replace with your actual Access Key from web3forms.com -->
+                <input type="hidden" name="access_key" value="856f356e-96b7-48f8-925c-79173780dcf4">
 
-<div class="tagline">
-Excellence in Education & Communication
-</div>
+                <!-- Full Name -->
+                <div class="form-group">
+                    <input type="text" id="name" name="name" class="form-input" placeholder=" " required>
+                    <label for="name">Full Name</label>
+                </div>
+                
+                <!-- Email ID -->
+                <div class="form-group">
+                    <input type="email" id="email" name="email" class="form-input" placeholder=" " required>
+                    <label for="email">Email ID</label>
+                </div>
 
-<div class="contact-box">
+                <!-- Location -->
+                <div class="form-group">
+                    <input type="text" id="location" name="location" class="form-input" placeholder=" " required>
+                    <label for="location">Location (City, Country)</label>
+                </div>
 
-<h2>Contact Us</h2>
+                <!-- Mobile Number -->
+                <div class="form-group">
+                    <input type="tel" id="mobile" name="mobile" class="form-input" placeholder=" " required>
+                    <label for="mobile">Mobile Number</label>
+                </div>
 
-<br>
+                <!-- Message -->
+                <div class="form-group">
+                    <textarea id="message" name="message" class="form-input" placeholder=" " maxlength="500" required onkeyup="updateCharCounter()"></textarea>
+                    <label for="message">Your Message</label>
+                    <div id="char-counter" class="char-counter">0 / 500</div>
+                </div>
 
-<div class="contact-item">
-<span class="label">Address</span>
-<span class="value">
-YOUR OFFICE ADDRESS HERE
-</span>
-</div>
+                <!-- Submit Button -->
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
 
-<div class="contact-item">
-<span class="label">Mobile Number</span>
-<span class="value">
-+91 XXXXXXXXXX
-</span>
-</div>
-
-<div class="contact-item">
-<span class="label">Email Address</span>
-<span class="value">
-your@email.com
-</span>
-</div>
-
-</div>
-
-<div class="footer">
-For enquiries, partnerships, training programs, and support, feel free to contact us using the details above.
-</div>
-
-</div>
-
+    <script>
+        function updateCharCounter() {
+            const messageInput = document.getElementById('message');
+            const counter = document.getElementById('char-counter');
+            const currentLength = messageInput.value.length;
+            counter.textContent = `${currentLength} / 500`;
+        }
+    </script>
 </body>
 </html>

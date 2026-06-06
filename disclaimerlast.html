@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disclaimer - Wellspokn Spoken English Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <style>
+        :root {
+            --primary-color: #40E0D0; /* Turquoise */
+            --secondary-color: #00CED1; /* Dark Turquoise */
+            --white: #ffffff;
+            --bg-light: #f9ffff; /* Very light turquoise tint */
+            --text-dark: #333;
+            --text-grey: #555;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--white);
+            line-height: 1.7;
+        }
+
+        /* --- Header Section --- */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* --- General Section Styling --- */
+        .section {
+            padding: 5rem 5%;
+            text-align: center;
+        }
+        
+        /* --- Disclaimer Grid --- */
+        #disclaimer-content {
+            background-color: var(--bg-light);
+        }
+
+        .disclaimer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            text-align: left;
+        }
+
+        .disclaimer-card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .disclaimer-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(64, 224, 208, 0.3);
+        }
+
+        .disclaimer-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .disclaimer-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .disclaimer-card p {
+            color: var(--text-grey);
+            font-size: 1rem;
+        }
+        
+        /* --- Call to Action Section --- */
+        #cta {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: var(--white);
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 1rem 2.5rem;
+            background-color: var(--white);
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        .cta-button:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            background-color: var(--bg-light);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2.5rem; }
+            .section { padding: 4rem 5%; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>Disclaimer</h1>
+        <p>Important information about your use of the Wellspokn App.</p>
+    </header>
+
+    <main>
+        <section id="disclaimer-content" class="section">
+            <div class="disclaimer-grid">
+
+                <div class="disclaimer-card">
+                    <i class="fas fa-file-alt"></i>
+                    <h3>Accuracy of Content</h3>
+                    <p>The content provided in the Wellspokn Spoken English Studio App is for general informational and educational purposes only. While we strive to ensure accuracy, we make no warranties about the completeness or reliability of the information.</p>
+                </div>
+
+                <div class="disclaimer-card">
+                    <i class="fas fa-robot"></i>
+                    <h3>AI Feedback</h3>
+                    <p>The app may offer AI-driven feedback on pronunciation and fluency. This feedback is intended as a helpful guide and may not always be perfectly accurate. It should be used as a supplement to, not a replacement for, instruction from qualified language trainers.</p>
+                </div>
+
+                <div class="disclaimer-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Educational Purpose</h3>
+                    <p>The app is an educational tool designed to assist users in improving their spoken English skills. Success and fluency depend on individual effort, practice, and learning styles. We do not guarantee any specific level of proficiency.</p>
+                </div>
+
+                <div class="disclaimer-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Limitation of Liability</h3>
+                    <p>Wellspokn Spoken English Studio is not liable for any direct, indirect, incidental, or consequential damages arising from the use of, or inability to use, the app. Your use of any information or materials on this app is entirely at your own risk.</p>
+                </div>
+
+                <div class="disclaimer-card">
+                    <i class="fas fa-link"></i>
+                    <h3>Third-Party Links</h3>
+                    <p>The app may contain links to third-party websites or resources. These links are provided for convenience only and do not signify our endorsement. We have no responsibility for the content of the linked websites.</p>
+                </div>
+
+                <div class="disclaimer-card">
+                    <i class="fas fa-edit"></i>
+                    <h3>Changes to Disclaimer</h3>
+                    <p>We reserve the right to modify this disclaimer at any time. We recommend you review it periodically. Continued use of the app after any changes constitutes your acceptance of the new terms.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="cta" class="section">
+            <h2>Acceptance of Terms</h2>
+            <p>By using the Wellspokn Spoken English Studio App, you agree to this disclaimer in full. Let's learn, speak, and grow — together!</p>
+            <a href="dashboardlast.html" class="cta-button">Back to Home</a>
+        </section>
+    </main>
+
+</body>
+</html>
