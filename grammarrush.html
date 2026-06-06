@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grammar Rush - Spoken English</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #f0f2f5 0%, #7fffd4 100%);
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    h1 { color: #1877F2; text-transform: uppercase; text-shadow: 2px 2px white; margin-bottom: 5px; }
+
+    .game-box {
+      background: white;
+      padding: 30px;
+      border-radius: 30px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+      position: relative;
+    }
+
+    .timer-bar {
+      width: 100%;
+      height: 10px;
+      background: #eee;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    #progress {
+      width: 100%;
+      height: 100%;
+      background: #ff4757;
+      transition: width 0.1s linear;
+    }
+
+    .question-text {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #333;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .options-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .option-btn {
+      background: #ffffff;
+      border: 3px solid #1877F2;
+      color: #1877F2;
+      padding: 15px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: all 0.2s;
+      box-shadow: 0 5px 0 #1877F2;
+      text-align: center;
+    }
+
+    .option-btn:hover { background: #f0faff; }
+    .option-btn:active { transform: translateY(3px); box-shadow: 0 2px 0 #1877F2; }
+
+    .score-area {
+      margin-top: 25px;
+      font-weight: 800;
+      font-size: 1.1rem;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    #message {
+      height: 30px;
+      margin-top: 15px;
+      font-weight: 700;
+    }
+
+    .start-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: white;
+      border-radius: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .start-btn {
+      background: #2ed573;
+      color: white;
+      padding: 20px 40px;
+      border-radius: 20px;
+      border: none;
+      font-size: 1.5rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 8px 0 #218c74;
+    }
+
+    .start-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 #218c74; }
+
+    select {
+      padding: 8px;
+      border-radius: 10px;
+      border: 2px solid #1877F2;
+      font-family: inherit;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🚀 Grammar Rush</h1>
+  <p>Pick the <b>CORRECT</b> sentence before time runs out!</p>
+
+  <div class="game-box">
+    <div id="startOverlay" class="start-overlay">
+      <button class="start-btn" onclick="startGame()">START GAME</button>
+    </div>
+
+    <!-- GO TO Section -->
+    <div style="margin-bottom: 15px; display: flex; justify-content: center; gap: 8px;">
+      <select id="difficultyJump">
+        <option value="0-50">Simple (1-50)</option>
+        <option value="50-100">Hard (51-100)</option>
+        <option value="100-150">Harder (101-150)</option>
+        <option value="150-200">Hardest (151-200)</option>
+      </select>
+      <button class="option-btn" style="padding: 5px 15px; font-size: 0.8rem; box-shadow: 0 3px 0 #1877F2; margin:0;" onclick="jumpToDifficulty()">GO TO</button>
+    </div>
+
+    <div class="timer-bar"><div id="progress"></div></div>
+    
+    <div class="question-text" id="question">Ready?</div>
+
+    <div class="options-container" id="options"></div>
+
+    <div id="message"></div>
+
+    <div class="score-area">
+      <span>Score: <span id="score">0</span></span>
+      <span>Best: <span id="highScore">0</span></span>
+    </div>
+  </div>
+
+  <script>
+    const quizData = [
+    // === SIMPLE (50 ITEMS) ===
+    { q: "Subject-Verb Agreement", options: ["He goes home", "He go home"], correct: 0 },
+    { q: "Subject-Verb Agreement", options: ["She like tea", "She likes tea"], correct: 1 },
+    { q: "Pronouns", options: ["I am happy", "Me am happy"], correct: 0 },
+    { q: "Articles", options: ["An apple a day", "A apple a day"], correct: 0 },
+    { q: "Articles", options: ["I have a car", "I have an car"], correct: 0 },
+    { q: "Plurals", options: ["Two mens", "Two men"], correct: 1 },
+    { q: "Plurals", options: ["Three boys", "Three boyes"], correct: 0 },
+    { q: "Basic Negatives", options: ["I not like it", "I do not like it"], correct: 1 },
+    { q: "Basic Questions", options: ["Are you ready?", "You are ready?"], correct: 0 },
+    { q: "Subject-Verb Agreement", options: ["They are here", "They is here"], correct: 0 },
+    { q: "Plurals", options: ["Many childs", "Many children"], correct: 1 },
+    { q: "Pronouns", options: ["It is mine", "It is my"], correct: 0 },
+    { q: "Basic Tense", options: ["I eat now", "I am eating now"], correct: 1 },
+    { q: "Plurals", options: ["Five boxs", "Five boxes"], correct: 1 },
+    { q: "Articles", options: ["A orange", "An orange"], correct: 1 },
+    { q: "To Be Verb", options: ["We is students", "We are students"], correct: 1 },
+    { q: "To Be Verb", options: ["It is hot", "It are hot"], correct: 0 },
+    { q: "Basic Negatives", options: ["He doesn't know", "He don't know"], correct: 0 },
+    { q: "Subject-Verb Agreement", options: ["The cat runs", "The cat run"], correct: 0 },
+    { q: "Pronouns", options: ["Give it to me", "Give it to I"], correct: 0 },
+    { q: "Demonstratives", options: ["This books", "These books"], correct: 1 },
+    { q: "Demonstratives", options: ["That car", "Those car"], correct: 0 },
+    { q: "Demonstratives", options: ["This is my pen", "These is my pen"], correct: 0 },
+    { q: "Plurals", options: ["Two fish", "Two fishes"], correct: 0 },
+    { q: "Plurals", options: ["Ten teeth", "Ten tooths"], correct: 0 },
+    { q: "Basic Tense", options: ["She is sing", "She is singing"], correct: 1 },
+    { q: "Subject-Verb Agreement", options: ["You are late", "You is late"], correct: 0 },
+    { q: "Articles", options: ["An university", "A university"], correct: 1 },
+    { q: "Plurals", options: ["Four cities", "Four citys"], correct: 0 },
+    { q: "Plurals", options: ["Two wives", "Two wifes"], correct: 0 },
+    { q: "Basic Negatives", options: ["We aren't busy", "We am not busy"], correct: 0 },
+    { q: "Basic Questions", options: ["Does he play?", "Do he plays?"], correct: 0 },
+    { q: "Pronouns", options: ["Her is tall", "She is tall"], correct: 1 },
+    { q: "Pronouns", options: ["Theirs house", "Their house"], correct: 1 },
+    { q: "Articles", options: ["The sun", "A sun"], correct: 0 },
+    { q: "Subject-Verb Agreement", options: ["Birds fly", "Birds flies"], correct: 0 },
+    { q: "Basic Tense", options: ["I see him", "I am see him"], correct: 0 },
+    { q: "Basic Negatives", options: ["She is not here", "She not is here"], correct: 0 },
+    { q: "Basic Questions", options: ["Can you help?", "You can help?"], correct: 0 },
+    { q: "To Be Verb", options: ["I am a boy", "I is a boy"], correct: 0 },
+    { q: "Plurals", options: ["Many people", "Many peoples"], correct: 0 },
+    { q: "Plurals", options: ["Small mice", "Small mouses"], correct: 0 },
+    { q: "Pronouns", options: ["He loves she", "He loves her"], correct: 1 },
+    { q: "Pronouns", options: ["It is its", "It is it's"], correct: 0 },
+    { q: "Subject-Verb Agreement", options: ["Everyone is here", "Everyone are here"], correct: 0 },
+    { q: "Articles", options: ["An hour", "A hour"], correct: 0 },
+    { q: "Demonstratives", options: ["Those apples", "That apples"], correct: 0 },
+    { q: "Demonstratives", options: ["These is easy", "This is easy"], correct: 1 },
+    { q: "Plurals", options: ["Three sheep", "Three sheeps"], correct: 0 },
+    { q: "Basic Tense", options: ["I go everyday", "I am go everyday"], correct: 0 },
+
+    // === HARD (50 ITEMS) ===
+    { q: "Tenses", options: ["I went yesterday", "I have go yesterday"], correct: 0 },
+    { q: "Prepositions", options: ["In Monday", "On Monday"], correct: 1 },
+    { q: "Prepositions", options: ["At night", "In night"], correct: 0 },
+    { q: "Questions", options: ["What did you say?", "What you said?"], correct: 0 },
+    { q: "Possessives", options: ["My fathers' car", "My father's car"], correct: 1 },
+    { q: "Adverbs", options: ["He runs slow", "He runs slowly"], correct: 1 },
+    { q: "Irregular Past", options: ["I buyed a book", "I bought a book"], correct: 1 },
+    { q: "Irregular Past", options: ["She wrote a letter", "She writed a letter"], correct: 0 },
+    { q: "Prepositions", options: ["Good at English", "Good in English"], correct: 0 },
+    { q: "Prepositions", options: ["Wait for me", "Wait to me"], correct: 0 },
+    { q: "Irregular Past", options: ["He swam", "He swimmed"], correct: 0 },
+    { q: "Irregular Past", options: ["They spoke", "They speaked"], correct: 0 },
+    { q: "Questions", options: ["Where are you going?", "Where you are going?"], correct: 0 },
+    { q: "Negatives", options: ["He didn't see it", "He didn't saw it"], correct: 0 },
+    { q: "Possessives", options: ["Children's toys", "Childrens' toys"], correct: 0 },
+    { q: "Prepositions", options: ["Angry with you", "Angry at you"], correct: 0 },
+    { q: "Adverbs", options: ["Singing beautifully", "Singing beautiful"], correct: 0 },
+    { q: "Adjectives", options: ["More better", "Better"], correct: 1 },
+    { q: "Comparative", options: ["Happier", "More happy"], correct: 0 },
+    { q: "Irregular Past", options: ["I ran", "I runned"], correct: 0 },
+    { q: "Tense", options: ["I have lived here", "I am live here"], correct: 0 },
+    { q: "Prepositions", options: ["Depends on", "Depends of"], correct: 0 },
+    { q: "Questions", options: ["Did she go?", "Did she went?"], correct: 0 },
+    { q: "Negatives", options: ["We don't have any", "We don't have no"], correct: 0 },
+    { q: "Adjectives", options: ["Intelligentest", "Most intelligent"], correct: 1 },
+    { q: "Comparative", options: ["Worse", "Badder"], correct: 0 },
+    { q: "Prepositions", options: ["Afraid of", "Afraid from"], correct: 0 },
+    { q: "Prepositions", options: ["Interested in", "Interested with"], correct: 0 },
+    { q: "Possessives", options: ["Yours", "Your's"], correct: 0 },
+    { q: "Tense", options: ["I am waiting", "I waiting"], correct: 0 },
+    { q: "Irregular Past", options: ["He forgot", "He forgetted"], correct: 0 },
+    { q: "Adverbs", options: ["Speak clearly", "Speak clear"], correct: 0 },
+    { q: "Adverbs", options: ["Well done", "Good done"], correct: 0 },
+    { q: "Adjectives", options: ["A big red ball", "A red big ball"], correct: 0 },
+    { q: "Prepositions", options: ["Arrive at the airport", "Arrive to the airport"], correct: 0 },
+    { q: "Questions", options: ["How long is it?", "How long it is?"], correct: 0 },
+    { q: "Negatives", options: ["I can't hear you", "I can't to hear you"], correct: 0 },
+    { q: "Tense", options: ["She has gone", "She is gone"], correct: 0 },
+    { q: "Irregular Past", options: ["We drank", "We drunked"], correct: 0 },
+    { q: "Prepositions", options: ["By bus", "With bus"], correct: 0 },
+    { q: "Prepositions", options: ["Listen to music", "Listen music"], correct: 0 },
+    { q: "Irregular Past", options: ["They thought", "They thinked"], correct: 0 },
+    { q: "Questions", options: ["Why did you leave?", "Why you did leave?"], correct: 0 },
+    { q: "Negatives", options: ["Nothing happened", "Nothing didn't happen"], correct: 0 },
+    { q: "Adjectives", options: ["An interesting book", "A book interesting"], correct: 0 },
+    { q: "Adjectives", options: ["Boring", "Bored (for a movie)"], correct: 0 },
+    { q: "Prepositions", options: ["Similar to", "Similar with"], correct: 0 },
+    { q: "Comparative", options: ["Further", "Farther (distance)"], correct: 1 },
+    { q: "Irregular Past", options: ["It cost $5", "It costed $5"], correct: 0 },
+    { q: "Tense", options: ["I will call you", "I call you tomorrow"], correct: 0 },
+
+    // === HARDER (50 ITEMS) ===
+    { q: "Present Perfect", options: ["I have finished", "I finished already"], correct: 0 },
+    { q: "Modals", options: ["You should go", "You should to go"], correct: 0 },
+    { q: "Modals", options: ["He must stay", "He must to stay"], correct: 0 },
+    { q: "Passive", options: ["It was made in China", "It made in China"], correct: 0 },
+    { q: "Gerunds", options: ["I enjoy swimming", "I enjoy to swim"], correct: 0 },
+    { q: "Infinitives", options: ["I want to see", "I want seeing"], correct: 0 },
+    { q: "Conditionals", options: ["If it rains, I stay", "If it rains, I will stay"], correct: 1 },
+    { q: "Conditionals", options: ["If I were you", "If I was you"], correct: 0 },
+    { q: "Phrasal Verbs", options: ["Give up", "Give over (stop trying)"], correct: 0 },
+    { q: "Phrasal Verbs", options: ["Look for (search)", "Look to (search)"], correct: 0 },
+    { q: "Question Tags", options: ["You are coming, aren't you?", "You are coming, isn't it?"], correct: 0 },
+    { q: "Adverbs", options: ["He hardly works", "He works hard (diligent)"], correct: 1 },
+    { q: "Present Perfect", options: ["I've been here since 2 hours", "I've been here for 2 hours"], correct: 1 },
+    { q: "Present Perfect", options: ["Have you ever been?", "Did you ever been?"], correct: 0 },
+    { q: "Modals", options: ["I might come", "I might to come"], correct: 0 },
+    { q: "Modals", options: ["You ought to try", "You ought try"], correct: 0 },
+    { q: "Passive", options: ["The window was broken", "The window broke by him"], correct: 0 },
+    { q: "Gerunds", options: ["Stop talking", "Stop to talk (quit speaking)"], correct: 0 },
+    { q: "Conditionals", options: ["I would help if I could", "I will help if I can"], correct: 0 },
+    { q: "Conditionals", options: ["Had I known", "If I knew (Past Perfect)"], correct: 0 },
+    { q: "Phrasal Verbs", options: ["Take off (plane)", "Go off (plane)"], correct: 0 },
+    { q: "Phrasal Verbs", options: ["Put off (postpone)", "Put out (postpone)"], correct: 0 },
+    { q: "Question Tags", options: ["He plays, doesn't he?", "He plays, don't he?"], correct: 0 },
+    { q: "Adverbs", options: ["Lately (recently)", "Late (recently)"], correct: 0 },
+    { q: "Comparatives", options: ["The faster, the better", "Faster, better"], correct: 0 },
+    { q: "Present Perfect", options: ["I have never seen", "I never saw (experience)"], correct: 0 },
+    { q: "Modals", options: ["Could you help?", "Can you to help?"], correct: 0 },
+    { q: "Modals", options: ["I'd rather stay", "I'd rather to stay"], correct: 0 },
+    { q: "Passive", options: ["He was told", "He was tell"], correct: 0 },
+    { q: "Gerunds", options: ["Mind closing?", "Mind to close?"], correct: 0 },
+    { q: "Infinitives", options: ["Decided to go", "Decided going"], correct: 0 },
+    { q: "Conditionals", options: ["If I had seen him", "If I saw him (yesterday)"], correct: 0 },
+    { q: "Phrasal Verbs", options: ["Call off (cancel)", "Call out (cancel)"], correct: 0 },
+    { q: "Phrasal Verbs", options: ["Run out of (exhaust)", "Run away of"], correct: 0 },
+    { q: "Question Tags", options: ["They won't, will they?", "They won't, won't they?"], correct: 0 },
+    { q: "Adverbs", options: ["Fast", "Fastly"], correct: 0 },
+    { q: "Present Perfect", options: ["I have known her", "I am knowing her"], correct: 0 },
+    { q: "Modals", options: ["Used to play", "Was used to play"], correct: 0 },
+    { q: "Modals", options: ["Shall we?", "Will we?"], correct: 0 },
+    { q: "Passive", options: ["Is being built", "Is building now"], correct: 0 },
+    { q: "Gerunds", options: ["Avoid making", "Avoid to make"], correct: 0 },
+    { q: "Infinitives", options: ["Allowed to park", "Allowed parking"], correct: 0 },
+    { q: "Relative Clause", options: ["The man who...", "The man which..."], correct: 0 },
+    { q: "Relative Clause", options: ["The house where...", "The house which..."], correct: 0 },
+    { q: "Reported Speech", options: ["He said he was...", "He said that he is..."], correct: 0 },
+    { q: "Reported Speech", options: ["She told me...", "She told to me..."], correct: 0 },
+    { q: "Quantifiers", options: ["A few friends", "A little friends"], correct: 0 },
+    { q: "Quantifiers", options: ["Too much water", "Too many water"], correct: 0 },
+    { q: "Conjunctions", options: ["Neither...nor", "Neither...or"], correct: 0 },
+    { q: "Conjunctions", options: ["Although it rained", "Despite it rained"], correct: 0 },
+
+    // === HARDEST (50 ITEMS) ===
+    { q: "Conditionals", options: ["If I had been there, I would have helped", "If I was there, I would help"], correct: 0 },
+    { q: "Subjunctive", options: ["I suggest that he be...", "I suggest that he is..."], correct: 0 },
+    { q: "Inversion", options: ["Never have I seen...", "Never I have seen..."], correct: 0 },
+    { q: "Inversion", options: ["Hardly had he left...", "Hardly he had left..."], correct: 0 },
+    { q: "Inversion", options: ["Only then did I realize", "Only then I realized"], correct: 0 },
+    { q: "Modals", options: ["Should have done", "Should done"], correct: 0 },
+    { q: "Modals", options: ["Must have forgotten", "Must forgotten"], correct: 0 },
+    { q: "Passive", options: ["Having been told...", "Having told..."], correct: 0 },
+    { q: "Gerunds", options: ["Worth seeing", "Worth to see"], correct: 0 },
+    { q: "Conditionals", options: ["Unless you try...", "Unless you don't try..."], correct: 0 },
+    { q: "Conditionals", options: ["But for your help...", "If not for your help..."], correct: 0 },
+    { q: "Phrasal Verbs", options: ["Look down on (despise)", "Look down to"], correct: 0 },
+    { q: "Phrasal Verbs", options: ["Get along with", "Get along to"], correct: 0 },
+    { q: "Gerunds", options: ["Look forward to meeting", "Look forward to meet"], correct: 0 },
+    { q: "Gerunds", options: ["Accustomed to living", "Accustomed to live"], correct: 0 },
+    { q: "Infinitives", options: ["Needn't have gone", "Didn't need go"], correct: 0 },
+    { q: "Causative", options: ["Get it fixed", "Get it fix"], correct: 0 },
+    { q: "Causative", options: ["Have him do it", "Have him to do it"], correct: 0 },
+    { q: "Subjunctive", options: ["It's high time we left", "It's high time we leave"], correct: 0 },
+    { q: "Subjunctive", options: ["I wish I were rich", "I wish I am rich"], correct: 0 },
+    { q: "Determiners", options: ["Scarcely any", "Scarcely some"], correct: 0 },
+    { q: "Prepositions", options: ["Married to", "Married with"], correct: 0 },
+    { q: "Prepositions", options: ["By the time I arrive", "Until the time I arrive"], correct: 0 },
+    { q: "Adverbs", options: ["Barely any", "Barely some"], correct: 0 },
+    { q: "Collocations", options: ["Make a decision", "Do a decision"], correct: 0 },
+    { q: "Collocations", options: ["Take a photo", "Make a photo"], correct: 0 },
+    { q: "Collocations", options: ["Do a favor", "Make a favor"], correct: 0 },
+    { q: "Phrasal Verbs", options: ["Bring up (mention)", "Bring out (mention)"], correct: 0 },
+    { q: "Phrasal Verbs", options: ["Come across (find)", "Come about (find)"], correct: 0 },
+    { q: "Relative Clause", options: ["The reason why", "The reason because"], correct: 0 },
+    { q: "Relative Clause", options: ["Whose book is this?", "Who's book is this?"], correct: 0 },
+    { q: "Quantifiers", options: ["The number of students is", "The number of students are"], correct: 0 },
+    { q: "Quantifiers", options: ["A number of students are", "A number of students is"], correct: 0 },
+    { q: "Subject-Verb Agreement", options: ["Physics is hard", "Physics are hard"], correct: 0 },
+    { q: "Subject-Verb Agreement", options: ["News is good", "News are good"], correct: 0 },
+    { q: "Tense", options: ["By 2025, I will have...", "By 2025, I will..."], correct: 0 },
+    { q: "Modals", options: ["May as well", "Might as good"], correct: 0 },
+    { q: "Modals", options: ["Could have been", "Could been"], correct: 0 },
+    { q: "Idioms", options: ["Piece of cake", "Bit of cake"], correct: 0 },
+    { q: "Idioms", options: ["Break a leg", "Break a foot"], correct: 0 },
+    { q: "Passive", options: ["The house is being cleaned", "The house is cleaning"], correct: 0 },
+    { q: "Gerunds", options: ["Stop to smoke (pause)", "Stop smoking (quit)"], correct: 1 },
+    { q: "Prepositions", options: ["Independent of", "Independent from"], correct: 0 },
+    { q: "Prepositions", options: ["Abide by", "Abide with"], correct: 0 },
+    { q: "Adverbs", options: ["Highly recommended", "High recommended"], correct: 0 },
+    { q: "Comparatives", options: ["Elder (family)", "Older (family)"], correct: 0 },
+    { q: "Comparatives", options: ["Lesser", "Less"], correct: 1 },
+    { q: "Word Form", options: ["Economical (saving money)", "Economic"], correct: 0 },
+    { q: "Word Form", options: ["Continuous (without stop)", "Continual"], correct: 0 },
+    { q: "Advanced", options: ["Every now and then", "Every now and when"], correct: 0 }
+];
+
+    let score = 0;
+    let highScore = localStorage.getItem('grammarHighScore') || 0;
+    let currentQuestion = {};
+    let timer;
+    let timeLeft = 100;
+    let minRange = 0;
+    let maxRange = 200;
+
+    document.getElementById('highScore').innerText = highScore;
+
+    function jumpToDifficulty() {
+      const range = document.getElementById('difficultyJump').value.split('-');
+      minRange = parseInt(range[0]);
+      maxRange = parseInt(range[1]);
+      
+      startGame(); // Restarts the game in the new difficulty
+    }
+
+    function startGame() {
+      score = 0;
+      document.getElementById('score').innerText = score;
+      document.getElementById('startOverlay').style.display = 'none';
+      nextQuestion();
+    }
+
+    function nextQuestion() {
+      clearInterval(timer);
+      timeLeft = 100;
+      document.getElementById('progress').style.width = '100%';
+      document.getElementById('message').innerText = "";
+      
+      const randomIndex = Math.floor(Math.random() * (maxRange - minRange)) + minRange;
+      currentQuestion = quizData[randomIndex];
+      
+      document.getElementById('question').innerText = `Topic: ${currentQuestion.q}`;
+      
+      const optionsDiv = document.getElementById('options');
+      optionsDiv.innerHTML = '';
+      
+      currentQuestion.options.forEach((opt, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.innerText = opt;
+        btn.onclick = () => checkAnswer(index);
+        optionsDiv.appendChild(btn);
+      });
+
+      startTimer();
+    }
+
+    function startTimer() {
+      timer = setInterval(() => {
+        timeLeft -= 2;
+        document.getElementById('progress').style.width = timeLeft + '%';
+        if (timeLeft <= 0) {
+          endGame("⏰ Out of Time!");
+        }
+      }, 100);
+    }
+
+    function checkAnswer(choice) {
+      if (choice === currentQuestion.correct) {
+        score++;
+        document.getElementById('score').innerText = score;
+        document.getElementById('message').innerText = "✅ Correct!";
+        document.getElementById('message').style.color = "#2ed573";
+        setTimeout(nextQuestion, 500);
+      } else {
+        endGame("❌ Wrong Choice!");
+      }
+    }
+
+    function endGame(msg) {
+      clearInterval(timer);
+      if (score > highScore) {
+        highScore = score;
+        localStorage.setItem('grammarHighScore', highScore);
+        document.getElementById('highScore').innerText = highScore;
+      }
+      document.getElementById('message').innerText = msg;
+      document.getElementById('message').style.color = "#ff4757";
+      document.getElementById('options').innerHTML = '';
+      setTimeout(() => {
+        document.getElementById('startOverlay').style.display = 'flex';
+        document.getElementById('question').innerText = `Game Over! Final Score: ${score}`;
+      }, 1500);
+    }
+  </script>
+</body>
+</html>

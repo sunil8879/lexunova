@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<script src="keys.js"></script>
+  <title>AI Trainer - Fullscreen Background</title>
+<style>
+    body {
+      /* Keep background white/transparent to ensure video shows */
+      background: #ffffff !important;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    /* Fullscreen AI Video Model */
+    #aiVideo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: 1; /* Sits above the body background */
+    }
+.title-box {
+      position: fixed;
+      bottom: 140px;
+      left: 50%;
+      transform: translateX(-50%) perspective(1000px) rotateX(10deg);
+      background: #7FFFD4 !important;
+      border: 4px solid #45cea2 !important;
+      padding: 15px 40px;
+      z-index: 100;
+      box-shadow: 10px 10px 0px #45cea2 !important;
+    }
+
+    h1 {
+      font-size: 28px !important;
+      color: #004d40 !important;
+      text-transform: uppercase !important;
+      margin: 0 !important;
+      letter-spacing: 3px !important;
+      font-weight: 900 !important;
+    }
+
+    #learnerVideo {
+      width: 160px;
+      height: 120px;
+      border-radius: 12px;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 20;
+      border: 3px solid #7FFFD4 !important;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    #status {
+      color: #000 !important;
+      background: rgba(255, 255, 255, 0.85) !important;
+      padding: 10px 30px;
+      border-radius: 50px;
+      display: inline-block;
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 30px;
+      z-index: 10;
+      position: relative;
+      border: 2px solid #7FFFD4 !important;
+    }
+
+    /* Single Line Button Row */
+    .button-container {
+      position: fixed;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      display: flex !important;
+      flex-direction: row !important;
+      gap: 15px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 20px;
+      border: 1px solid #7FFFD4;
+    }
+
+    .dashboard-button {
+      background: #7FFFD4 !important; /* Aquamarine */
+      color: #004d40 !important; /* Dark text for contrast */
+      padding: 12px 20px !important;
+      font-size: 13px !important;
+      font-weight: 800 !important;
+      text-transform: uppercase !important;
+      border: none !important;
+      border-bottom: 4px solid #45cea2 !important; /* 3D Shadow */
+      border-radius: 8px !important;
+      cursor: pointer;
+      transition: all 0.1s ease;
+      white-space: nowrap;
+      min-width: 140px;
+    }
+
+    .dashboard-button:hover {
+      background-color: #a4ffe7 !important;
+      transform: translateY(-2px);
+    }
+
+    .dashboard-button:active {
+      transform: translateY(2px);
+      border-bottom-width: 0px !important;
+    }
+</style>
+</head>
+<body>
+  <!-- AI Model Video -->
+  <video id="aiVideo" src="/media/AI.mp4" muted autoplay loop></video>
+  
+  <!-- Learner Camera -->
+  <video id="learnerVideo" autoplay muted playsinline></video>
+
+  <!-- 3D Boxed Title -->
+  <div class="title-box">
+    <h1>AI : VIDEO BASED LEARNING</h1>
+  </div>
+
+
+  <!-- All buttons in a single row -->
+  <div class="button-container">
+    <button class="dashboard-button" onclick="startConversation()">Start Talking</button>
+    <button class="dashboard-button" onclick="stopConversation()">Stop</button>
+    <button class="dashboard-button" onclick="downloadTranscript()">Transcript</button>
+    <button class="dashboard-button" onclick="clearStatus()">Clear</button>
+  </div>
+  <div id="status"></div>
+
+  <script>
+    const transcript = [];
+    let recognition;  // global recognition instance
+    let utterance;    // global utterance instance
+
+    function saveTurn(role, text) {
+      transcript.push({ role, text, time: new Date().toISOString() });
+    }
+
+    function downloadTranscript() {
+      const blob = new Blob([JSON.stringify(transcript, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "chat_transcript.json";
+      a.click();
+    }
+
+    function clearStatus() {
+      document.getElementById('status').innerText = '';
+    }
+
+    navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+      .then(stream => {
+        document.getElementById('learnerVideo').srcObject = stream;
+      })
+      .catch(err => {
+        console.error('Camera error:', err);
+        alert('Please allow camera access');
+      });
+
+    
+    function canStartChat() {
+      const today = new Date().toISOString().split('T')[0];
+      const data = JSON.parse(localStorage.getItem("chatUsage") || "{}");
+
+      if (data.date !== today) {
+        data.date = today;
+        data.count = 0;
+      }
+
+      if (data.count >= 5) {
+        alert("You've reached your daily limit of 5 video chats. Please upgrade to continue.");
+        return false;
+      }
+
+      data.count += 1;
+      localStorage.setItem("chatUsage", JSON.stringify(data));
+      return true;
+    }
+
+
+    async function startConversation() {
+    //   if (!canStartChat()) return;
+      const status = document.getElementById('status');
+      const aiVideo = document.getElementById('aiVideo');
+      recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+
+      status.innerText = 'Listening...';
+      recognition.start();
+
+      recognition.onresult = async (event) => {
+        const userInput = event.results[0][0].transcript;
+        status.innerText = 'Thinking...';
+        saveTurn("user", userInput);
+
+        const aiReply = await getAIResponse(userInput);
+        status.innerText = 'AI: ' + aiReply;
+        saveTurn("ai", aiReply);
+
+        aiVideo.play();
+        speak(aiReply, () => {
+          aiVideo.pause();
+          aiVideo.currentTime = 0;
+        });
+      };
+
+      recognition.onerror = (event) => {
+        status.innerText = 'Recognition error: ' + event.error;
+      };
+    }
+
+    function speak(text, callback) {
+      utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      utterance.pitch = 1;
+      utterance.rate = 1;
+      utterance.volume = 1;
+      utterance.onend = callback;
+      speechSynthesis.speak(utterance);
+    }
+async function getAIResponse(userInput) {
+  const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      // Look here: We are using the variable from keys.js
+      "Authorization": "Bearer " + MY_KEYS.openRouter, 
+      "HTTP-Referer": "https://wellspokn.com", // Use your real domain!
+      "X-Title": "Live AI Trainer",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      model: "openai/gpt-3.5-turbo",
+      messages: [{ role: "user", content: userInput }]
+    })
+  });
+
+      const data = await response.json();
+      return data.choices[0].message.content;
+    }
+
+    // Stop button functionality:
+    function stopConversation() {
+      const status = document.getElementById('status');
+      if (recognition) {
+        recognition.abort();
+        recognition = null;
+      }
+      if (utterance) {
+        speechSynthesis.cancel();
+        utterance = null;
+      }
+      status.innerText = 'Stopped.';
+      const aiVideo = document.getElementById('aiVideo');
+      aiVideo.pause();
+      aiVideo.currentTime = 0;
+    }
+  </script>
+</body>
+</html>

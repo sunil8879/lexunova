@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="keys.js"></script>
+  <title>THE AI PLATFORM</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      margin: 0;
+    }
+
+    .title-box {
+      background: #007BFF;
+      border: 4px solid #7FFFD4;
+      padding: 15px 30px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      color: white;
+      text-align: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    label { font-weight: bold; color: #007BFF; text-transform: uppercase; font-size: 14px;}
+
+    input, textarea {
+      width: 100%;
+      box-sizing: border-box;
+      border: 3px solid #007BFF;
+      border-radius: 10px;
+      padding: 15px;
+      font-size: 16px;
+      outline: none;
+      background: #fdfdfd;
+    }
+
+    textarea { height: 150px; resize: none; }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 10px 0;
+    }
+
+    .btn {
+      padding: 15px;
+      font-size: 14px;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: 0.2s;
+      border: none;
+    }
+
+    #audioResponseBtn { background: #7FFFD4; color: #007BFF; border: 2px solid #007BFF; }
+    #audioStopBtn { background: #ff4d4d; color: white; }
+    #textResponseBtn { background: #007BFF; color: white; }
+    #clearTextBtn { background: #333; color: white; }
+
+    .btn:active { transform: scale(0.95); opacity: 0.8; }
+    #status { color: #007BFF; font-style: italic; font-size: 12px; height: 15px; }
+  </style>
+</head>
+<body>
+
+  <div class="title-box"><h1>THE AI PLATFORM</h1></div>
+
+  <div class="container">
+    <label>1. Type your question here:</label>
+    <input id="userInput" type="text" placeholder="e.g. What is a desert? or Define focus">
+
+    <div id="status"></div>
+
+    <div class="button-grid">
+      <button id="audioResponseBtn" class="btn">Audio Response</button>
+      <button id="audioStopBtn" class="btn">Audio Stop</button>
+      <button id="textResponseBtn" class="btn">Text Response</button>
+      <button id="clearTextBtn" class="btn">Clear Text</button>
+    </div>
+
+    <label>Result Area:</label>
+    <textarea id="output" readonly placeholder="Text will appear here only when you click 'Text Response'..."></textarea>
+  </div>
+
+  <script>
+  // Replace your old key code with this:
+const openRouterKey = MY_KEYS.openRouter;
+const deepgramKey = MY_KEYS.deepgram;
+const mwKey = MY_KEYS.merriam;
+
+    const input = document.getElementById('userInput');
+    const output = document.getElementById('output');
+    const status = document.getElementById('status');
+    
+    let currentAudio = null;
+
+    async function getAIContent(query) {
+      const cleanQuery = query.toLowerCase().trim();
+      
+      if (cleanQuery.startsWith("define ")) {
+        const word = cleanQuery.replace("define ", "");
+        try {
+          const res = await fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=${merriamKey}`);
+          const data = await res.json();
+          if (data && data[0] && data[0].shortdef) {
+            return `Definition of ${word}: ${data[0].shortdef.join(", ")}`;
+          }
+          return "Dictionary definition not found.";
+        } catch (e) { return "Dictionary Error."; }
+      }
+
+      try {
+        const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+          method: "POST",
+          headers: { "Authorization": `Bearer ${openRouterKey}`, "Content-Type": "application/json" },
+          body: JSON.stringify({
+            model: "mistralai/mistral-7b-instruct",
+            messages: [{ role: "user", content: query }]
+          })
+        });
+        const data = await res.json();
+        return data.choices[0].message.content.replace(/\*/g, '');
+      } catch (e) { return "AI Error."; }
+    }
+
+    // UPDATED SPEAK FUNCTION WITH FALLBACK
+    async function speak(text) {
+      status.innerText = "Generating voice...";
+      try {
+        const response = await fetch("https://api.deepgram.com/v1/speak?model=aura-asteria-en", {
+          method: "POST",
+          headers: { "Authorization": `Token ${deepgramKey}`, "Content-Type": "application/json" },
+          body: JSON.stringify({ text: text })
+        });
+
+        if (!response.ok) {
+            const errData = await response.json();
+            console.error("Deepgram Error Details:", errData);
+            throw new Error("Key/Balance Issue");
+        }
+
+        const blob = await response.blob();
+        const url = URL.createObjectURL(blob);
+        
+        if (currentAudio) currentAudio.pause();
+        currentAudio = new Audio(url);
+        currentAudio.play();
+        status.innerText = "Playing AI Voice...";
+      } catch (err) {
+        console.warn("Deepgram failed. Using Browser Voice fallback.");
+        status.innerText = "Using Backup Voice...";
+        
+        // BROWSER FALLBACK (Works even if Deepgram key is dead)
+        const msg = new SpeechSynthesisUtterance(text);
+        window.speechSynthesis.speak(msg);
+      }
+    }
+
+    document.getElementById('audioResponseBtn').onclick = async () => {
+      const q = input.value.trim();
+      if (!q) return alert("Type a question first.");
+      status.innerText = "AI is thinking...";
+      const result = await getAIContent(q);
+      status.innerText = "";
+      speak(result);
+    };
+
+    document.getElementById('audioStopBtn').onclick = () => {
+      if (currentAudio) { currentAudio.pause(); currentAudio.currentTime = 0; }
+      window.speechSynthesis.cancel(); // Stop browser voice too
+      status.innerText = "Audio stopped.";
+    };
+
+    document.getElementById('textResponseBtn').onclick = async () => {
+      const q = input.value.trim();
+      if (!q) return alert("Type a question first.");
+      status.innerText = "Writing...";
+      const result = await getAIContent(q);
+      output.value = result; 
+      status.innerText = "";
+    };
+
+    document.getElementById('clearTextBtn').onclick = () => {
+      input.value = "";
+      output.value = "";
+      status.innerText = "";
+      if (currentAudio) currentAudio.pause();
+      window.speechSynthesis.cancel();
+    };
+  </script>
+</body>
+</html>
