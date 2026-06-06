@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Testimonials - Wellspokn Studio</title>
+  
+  <!-- Link to Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Link to Google Fonts for a Modern Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --turquoise: #40E0D0;
+      --white: #FFFFFF;
+      --text-dark: #2c3e50;
+      --bg-light: #f4f7f6;
+      --border-color: #eef2f5;
+      --shadow-color: rgba(64, 224, 208, 0.2);
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, var(--white) 0%, #e6fffa 100%);
+      animation: gradient-flow 15s ease infinite;
+      background-size: 200% 200%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-y: auto; /* Allow scrolling if content is too long */
+    }
+
+    @keyframes gradient-flow {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    
+    /* Main container for the two-column layout */
+    .testimonial-container {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr; /* Form is smaller, display is larger */
+      gap: 40px;
+      width: 90%;
+      max-width: 1200px;
+      background: var(--white);
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      margin: 40px 0;
+    }
+
+    /* Form and Display columns */
+    .form-column, .display-column {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .display-column {
+        min-height: 500px; /* Ensures the display column has a decent height */
+    }
+
+    h1, h2 {
+      color: var(--text-dark);
+      margin-top: 0;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+        margin-bottom: 20px;
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+        margin-bottom: 25px;
+    }
+
+    h1 .icon, h2 .icon {
+        color: var(--turquoise);
+    }
+
+    /* Stylish Form Elements */
+    .input-group {
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .input-group .icon {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #aaa;
+        transition: color 0.3s ease;
+    }
+
+    .testimonial-form input,
+    .testimonial-form textarea {
+      width: 100%;
+      padding: 12px 12px 12px 45px; /* Padding for icon */
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-light);
+      color: var(--text-dark);
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-sizing: border-box;
+    }
+
+    .testimonial-form input:focus,
+    .testimonial-form textarea:focus {
+      border-color: var(--turquoise);
+      box-shadow: 0 0 0 3px var(--shadow-color);
+      outline: none;
+    }
+
+    .testimonial-form input:focus + .icon {
+        color: var(--turquoise);
+    }
+
+    .testimonial-form button {
+      background: var(--turquoise);
+      color: var(--white);
+      cursor: pointer;
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+    }
+
+    .testimonial-form button:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px var(--shadow-color);
+    }
+
+    /* Testimonial Display Area */
+    .testimonial-section {
+      flex-grow: 1; /* Makes it take available space */
+      overflow-y: auto; /* Scroll if testimonials overflow */
+      padding-right: 15px;
+    }
+
+    .testimonial {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--border-color);
+      padding: 20px 0;
+    }
+    .testimonial:last-child { border-bottom: none; }
+
+    .testimonial img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--turquoise);
+    }
+
+    .testimonial-content { text-align: left; }
+    .stars { color: #f39c12; }
+    .testimonial-content p { margin: 5px 0 0; color: #555; }
+
+    /* Navigation */
+    .navigation-buttons {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .arrow-button {
+      background-color: var(--turquoise);
+      color: white;
+      width: 40px;
+      height: 40px;
+      margin: 0 10px;
+      border: none;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .arrow-button:hover {
+      opacity: 0.9;
+      box-shadow: 0 5px 15px var(--shadow-color);
+    }
+
+    .back-link {
+        margin-top: auto; /* Pushes to the bottom of the column */
+        padding-top: 20px;
+        text-align: center;
+    }
+
+    .back-link a {
+        color: var(--turquoise);
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    /* Responsive design for smaller screens */
+    @media (max-width: 960px) {
+      .testimonial-container {
+        grid-template-columns: 1fr; /* Stack columns on top of each other */
+        padding: 20px;
+        width: 95%;
+      }
+      .display-column {
+        margin-top: 40px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  
+  <div class="testimonial-container">
+    
+    <!-- Form Column -->
+    <div class="form-column">
+      <h2><i class="fas fa-paper-plane icon"></i>Submit Your Testimonial</h2>
+      <form class="testimonial-form">
+        <div class="input-group">
+          <input type="text" id="fullName" placeholder="Full Name" required>
+          <i class="fas fa-user icon"></i>
+        </div>
+        <div class="input-group">
+          <input type="text" id="mobile" placeholder="Mobile Number">
+          <i class="fas fa-phone icon"></i>
+        </div>
+        <div class="input-group">
+          <input type="email" id="email" placeholder="Email Address">
+          <i class="fas fa-envelope icon"></i>
+        </div>
+        <div class="input-group">
+          <textarea id="message" rows="4" placeholder="Your message..." required></textarea>
+        </div>
+        <div class="input-group">
+          <input type="file" id="photo" accept="image/jpeg, image/png" required>
+        </div>
+        <div class="input-group">
+          <input type="number" id="rating" min="1" max="5" placeholder="Rating (1-5)" required>
+          <i class="fas fa-star icon"></i>
+        </div>
+        <button type="button" onclick="submitTestimonial()">Submit Review</button>
+      </form>
+    </div>
+    
+    <!-- Display Column -->
+    <div class="display-column">
+      <h1><i class="fas fa-comments icon"></i>Testimonials</h1>
+      <div class="testimonial-section" id="testimonialSection">
+        <!-- Testimonials will appear here -->
+      </div>
+      <div class="navigation-buttons">
+        <button class="arrow-button" onclick="previousPage()"><i class="fas fa-arrow-left"></i></button>
+        <button class="arrow-button" onclick="nextPage()"><i class="fas fa-arrow-right"></i></button>
+      </div>
+      <div class="back-link">
+        <a href="dashboardlast.html"><i class="fas fa-tachometer-alt"></i> Back to Dashboard</a>
+      </div>
+    </div>
+    
+  </div>
+
+  <script>
+    // JavaScript remains unchanged as it's functional
+    let testimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
+    let currentPage = 0;
+
+    function saveToLocalStorage() {
+      localStorage.setItem('testimonials', JSON.stringify(testimonials));
+    }
+
+    function renderTestimonials() {
+      const container = document.getElementById('testimonialSection');
+      container.innerHTML = '';
+      const start = currentPage * 5;
+      const end = start + 5;
+      const pageTestimonials = testimonials.slice(start, end);
+
+      if (pageTestimonials.length === 0) {
+          container.innerHTML = '<p style="text-align: center; color: #999;">Be the first to leave a testimonial!</p>';
+          return;
+      }
+
+      for (const testimonial of pageTestimonials) {
+        const div = document.createElement('div');
+        div.className = 'testimonial';
+        div.innerHTML = `
+          <img src="${testimonial.photo}" alt="Photo">
+          <div class="testimonial-content">
+            <strong>${testimonial.name}</strong><br>
+            <span class="stars">${'★'.repeat(testimonial.rating)}${'☆'.repeat(5 - testimonial.rating)}</span><br>
+            <p>${testimonial.message}</p>
+          </div>
+        `;
+        container.appendChild(div);
+      }
+    }
+
+    function submitTestimonial() {
+      const name = document.getElementById('fullName').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const rating = parseInt(document.getElementById('rating').value) || 5;
+      const photoInput = document.getElementById('photo');
+      const file = photoInput.files[0];
+
+      if (!name || !message || !file) {
+        alert("Please fill all required fields and upload a photo.");
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        testimonials.unshift({
+          name: name,
+          message: message,
+          rating: rating,
+          photo: e.target.result
+        });
+
+        saveToLocalStorage();
+        currentPage = 0;
+        renderTestimonials();
+      };
+      reader.readAsDataURL(file);
+
+      // Clear form fields
+      document.getElementById('fullName').value = '';
+      document.getElementById('mobile').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('message').value = '';
+      document.getElementById('rating').value = '';
+      document.getElementById('photo').value = '';
+    }
+
+    function nextPage() {
+      if ((currentPage + 1) * 5 < testimonials.length) {
+        currentPage++;
+        renderTestimonials();
+      }
+    }
+
+    function previousPage() {
+      if (currentPage > 0) {
+        currentPage--;
+        renderTestimonials();
+      }
+    }
+
+    // Initial render
+    renderTestimonials();
+  </script>
+</body>
+</html>

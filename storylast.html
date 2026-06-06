@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>StoryLast - Fill in the Blanks</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f2f2f2; color: #333; }
+        .story { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        input[type='text'] { border: none; border-bottom: 2px solid #000; width: 100px; margin: 0 4px; }
+        .reveal-link { color: blue; cursor: pointer; margin-top: 10px; display: inline-block; }
+    </style>
+    <script>
+        function revealStory() {
+            document.getElementById('fullStory').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <div class="story">
+        <h2>Story 1</h2>
+        <p>
+            One <input type="text" placeholder="adjective"> morning, a young <input type="text" placeholder="noun"> decided to <input type="text" placeholder="verb"> to the <input type="text" placeholder="place">.
+            She carried a <input type="text" placeholder="adjective"> basket filled with <input type="text" placeholder="plural noun">.
+            On her way, she met a <input type="text" placeholder="adjective"> stranger who <input type="text" placeholder="verb (past tense)"> her a warning.
+            "Do not <input type="text" placeholder="verb"> into the <input type="text" placeholder="noun"> after sunset," he said.
+            Ignoring the advice, she <input type="text" placeholder="verb (past tense)"> deeper into the woods.
+            Suddenly, the <input type="text" placeholder="noun"> began to <input type="text" placeholder="verb">.
+            She <input type="text" placeholder="verb (past tense)"> for help but no one was there.
+            At last, she remembered her grandmother's words and used a <input type="text" placeholder="noun"> to find her way back.
+            When she returned home, she promised never to forget a wise <input type="text" placeholder="noun">'s warning again.
+        </p>
+        <a class="reveal-link" onclick="revealStory()">View Full Story</a>
+        <p id="fullStory" style="display:none;">
+            One chilly morning, a young girl decided to walk to the forest.  
+            She carried a small basket filled with berries.  
+            On her way, she met a strange stranger who gave her a warning.  
+            "Do not wander into the forest after sunset," he said.  
+            Ignoring the advice, she ventured deeper into the woods.  
+            Suddenly, the wind began to howl.  
+            She screamed for help but no one was there.  
+            At last, she remembered her grandmother's words and used a compass to find her way back.  
+            When she returned home, she promised never to forget a wise man's warning again.
+        </p>
+    </div>
+</body>
+</html>

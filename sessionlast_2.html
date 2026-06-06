@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Live Sessions</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #333333;
+      margin-bottom: 5px;
+    }
+
+    p {
+      font-size: 18px;
+      color: #666666;
+      margin-bottom: 60px;
+    }
+
+    .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px; /* Horizontal gap between buttons */
+    }
+
+    .row-gap {
+      margin-bottom: 40px; /* Equal gap between all rows */
+    }
+
+    .dashboard-button {
+      background: linear-gradient(to bottom, #333333, #808080); /* black to grey gradient */
+      color: white;
+      padding: 15px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 20px;
+      box-shadow: 
+        inset 0 -3px 8px rgba(255, 255, 255, 0.4), /* Top light for bevel effect */
+        0 6px 15px rgba(0, 0, 0, 0.6); /* Bottom shadow for 3D effect */
+      width: 240px;
+      height: 70px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .dashboard-button:hover {
+      box-shadow:
+        inset 0 -3px 8px rgba(255, 255, 255, 0.6), /* Lightens top bevel on hover */
+        0 8px 20px rgba(0, 0, 0, 0.8); /* Stronger shadow for deeper 3D effect */
+      transform: translateY(-2px); /* Lifts the button on hover */
+    }
+
+    .full-width {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Welcome to the Live Session</h1>
+  <p>Select a topic to join a live session:</p>
+
+  <!-- Button Container -->
+  <div class="button-container">
+    <!-- Row 1 -->
+    <button class="dashboard-button" onclick="joinSession('Nouns')">Nouns</button>
+    <button class="dashboard-button" onclick="joinSession('Verbs')">Verbs</button>
+    <button class="dashboard-button" onclick="joinSession('Adjectives')">Adjectives</button>
+    <button class="dashboard-button" onclick="joinSession('Adverbs')">Adverbs</button>
+    <button class="dashboard-button" onclick="joinSession('Pronouns')">Pronouns</button>
+    <button class="dashboard-button" onclick="joinSession('Prepositions')">Prepositions</button>
+
+    <!-- Row 2 -->
+    <button class="dashboard-button" onclick="joinSession('Conjunctions')">Conjunctions</button>
+    <button class="dashboard-button" onclick="joinSession('Interjections')">Interjections</button>
+    <button class="dashboard-button" onclick="joinSession('Phrases')">Phrases</button>
+    <button class="dashboard-button" onclick="joinSession('Clauses')">Clauses</button>
+    <button class="dashboard-button" onclick="joinSession('Tenses')">Tenses</button>
+    <button class="dashboard-button" onclick="joinSession('Conditionals')">Conditionals</button>
+
+    <!-- Row 3 -->
+    <button class="dashboard-button" onclick="joinSession('Subject-Verb agreement')">Subject-Verb agreement</button>
+    <button class="dashboard-button" onclick="joinSession('Subject-Predicate')">Subject-Predicate</button>
+    <button class="dashboard-button" onclick="joinSession('Sentence types')">Sentence types</button>
+    <button class="dashboard-button" onclick="joinSession('Sentence structures')">Sentence structures</button>
+    <button class="dashboard-button" onclick="joinSession('Articles')">Articles</button>
+    <button class="dashboard-button" onclick="joinSession('Active-passive voice')">Active-passive voice</button>
+
+    <!-- Row 4 -->
+    <button class="dashboard-button" onclick="joinSession('Direct-indirect speech')">Direct-indirect speech</button>
+    <button class="dashboard-button" onclick="joinSession('Direct-indirect object')">Direct-indirect object</button>
+    <button class="dashboard-button" onclick="joinSession('Complements')">Complements</button>
+    <button class="dashboard-button" onclick="joinSession('Modals')">Modals</button>
+    <button class="dashboard-button" onclick="joinSession('Past modals')">Past modals</button>
+    <button class="dashboard-button" onclick="joinSession('Miscellaneous')">Miscellaneous</button>
+
+    <!-- Final Button Row (Centered) -->
+    <div class="full-width">
+      <button class="dashboard-button" onclick="joinSession('Idioms')">Idioms</button>
+    </div>
+  </div>
+
+  <script>
+    const meetLinks = {
+      "Nouns": "https://meet.google.com/vnm-vtcg-qhv",
+      "Verbs": "https://meet.google.com/qso-keek-pji",
+      "Adjectives": "https://meet.google.com/zjy-ihdd-shy",
+      "Adverbs": "https://meet.google.com/zdp-rkyc-tdv",
+      "Pronouns": "https://meet.google.com/ofh-wqux-bwp",
+      "Prepositions": "https://meet.google.com/aip-gtwv-zwu",
+      "Conjunctions": "https://meet.google.com/dma-gjra-nyj",
+      "Interjections": "https://meet.google.com/ikb-najv-dge",
+      "Phrases": "https://meet.google.com/wxv-ukqw-zkx",
+      "Clauses": "https://meet.google.com/miq-wzdh-dky",
+      "Tenses": "https://meet.google.com/qfy-bohq-vjt",
+      "Conditionals": "https://meet.google.com/eja-hccy-upi",
+      "Subject-Verb agreement": "https://meet.google.com/mcm-oofe-bvf",
+      "Subject-Predicate": "https://meet.google.com/qww-xupy-ucj",
+      "Sentence types": "https://meet.google.com/edp-wpyq-ozz",
+      "Sentence structures": "https://meet.google.com/drp-kkzs-sdq",
+      "Articles": "https://meet.google.com/dns-uawv-jbr",
+      "Active-passive voice": "https://meet.google.com/tsz-hebn-oee",
+      "Direct-indirect speech": "https://meet.google.com/snw-jxfq-xhu",
+      "Direct-indirect object": "https://meet.google.com/zks-ynqf-xps",
+      "Complements": "https://meet.google.com/udi-fxrm-ibb",
+      "Modals": "https://meet.google.com/eju-dwof-rmp",
+      "Past modals": "https://meet.google.com/vww-yuca-teh",
+      "Miscellaneous": "https://meet.google.com/dhy-gtfu-dja",
+      "Idioms": "https://meet.google.com/roo-erzh-zjx"
+    };
+
+    function joinSession(topic) {
+      const url = meetLinks[topic];
+      if (url) {
+        window.open(url, "_blank");
+      } else {
+        alert("Please select a valid session.");
+      }
+    }
+  </script>
+
+</body>
+</html>

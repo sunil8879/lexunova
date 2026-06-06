@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vocabulary Matching Game - Wellspokn Studio</title>
+  
+  <!-- Link to Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Link to Google Fonts for a Modern Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --turquoise: #40E0D0;
+      --white: #FFFFFF;
+      --text-dark: #2c3e50;
+      --bg-light: #f4f7f6;
+      --border-color: #eef2f5;
+      --shadow-color: rgba(64, 224, 208, 0.3);
+      --correct-color: #2ecc71;
+      --wrong-color: #e74c3c;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, var(--white) 0%, #e6fffa 100%);
+      animation: gradient-flow 15s ease infinite;
+      background-size: 200% 200%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    @keyframes gradient-flow {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .game-container {
+      width: 100%;
+      max-width: 900px;
+      background: var(--white);
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin: 0 0 10px 0;
+    }
+
+    p.subtitle {
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    #wordDisplay {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      color: var(--text-dark);
+      background: var(--bg-light);
+      padding: 20px;
+      border-radius: 12px;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .category-button {
+      background: var(--white);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 15px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .category-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px var(--shadow-color);
+      border-color: var(--turquoise);
+    }
+    
+    .category-button .icon {
+      font-size: 2rem;
+      color: var(--turquoise);
+    }
+
+    .controls-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .nav-button {
+      background: none;
+      border: 2px solid var(--turquoise);
+      color: var(--turquoise);
+      padding: 10px 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-button:hover {
+      background: var(--turquoise);
+      color: var(--white);
+    }
+
+    .start-button {
+      background: var(--turquoise);
+      color: var(--white);
+      padding: 15px 40px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px var(--shadow-color);
+    }
+
+    .start-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px var(--shadow-color);
+    }
+
+    #feedback {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-top: 20px;
+      height: 40px;
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    #feedback.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .back-link {
+        display: inline-block;
+        margin-top: 30px;
+        color: var(--turquoise);
+        text-decoration: none;
+        font-weight: 500;
+    }
+    
+    /* Responsive design for smaller screens */
+    @media (max-width: 768px) {
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      h1 { font-size: 2rem; }
+      #wordDisplay { font-size: 2rem; }
+      .game-container { padding: 25px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="game-container">
+    <h1>Vocabulary Matching Game</h1>
+    <p class="subtitle">Select the correct category for the word shown</p>
+
+    <div id="wordDisplay">Click Start Game</div>
+
+    <div class="category-grid">
+      <button class="category-button" onclick="checkAnswer('fruits')"><i class="fas fa-apple-alt icon"></i><span>Fruits</span></button>
+      <button class="category-button" onclick="checkAnswer('vegetables')"><i class="fas fa-carrot icon"></i><span>Vegetables</span></button>
+      <button class="category-button" onclick="checkAnswer('animals')"><i class="fas fa-paw icon"></i><span>Animals</span></button>
+      <button class="category-button" onclick="checkAnswer('birds')"><i class="fas fa-dove icon"></i><span>Birds</span></button>
+      <button class="category-button" onclick="checkAnswer('places')"><i class="fas fa-city icon"></i><span>Places</span></button>
+      <button class="category-button" onclick="checkAnswer('countries')"><i class="fas fa-globe-americas icon"></i><span>Countries</span></button>
+      <button class="category-button" onclick="checkAnswer('people')"><i class="fas fa-users icon"></i><span>People</span></button>
+      <button class="category-button" onclick="checkAnswer('flowers')"><i class="fas fa-fan icon"></i><span>Flowers</span></button>
+    </div>
+
+    <div class="controls-container">
+      <button class="nav-button" onclick="showPrevious()"><i class="fas fa-chevron-left"></i> Previous</button>
+      <button class="start-button" onclick="startGame()">Start / New Game</button>
+      <button class="nav-button" onclick="showNext()">Next <i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <div id="feedback"></div>
+
+    <a href="dashboardlast.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+  </div>
+
+  <script>
+    const words = {
+      fruits: ["Apple", "Banana", "Orange", "Mango", "Strawberry", "Blueberry", "Raspberry", "Grapes", "Watermelon", "Pineapple", "Kiwi", "Peach", "Pear", "Plum", "Cherry", "Lemon", "Lime", "Avocado", "Pomegranate", "Papaya", "Guava", "Coconut", "Fig", "Date", "Apricot", "Cranberry", "Blackberry", "Melon", "Grapefruit", "Tangerine", "Lychee", "Passion Fruit", "Dragon Fruit", "Star Fruit", "Fig", "Gooseberry", "Elderberry", "Boysenberry", "Cantaloupe", "Honeydew", "Nectarine", "Persimmon", "Quince", "Ugli Fruit", "Yuzu", "Salak", "Rambutan", "Longan", "Mangosteen", "Durian"],
+      vegetables: ["Potato", "Tomato", "Onion", "Carrot", "Broccoli", "Cauliflower", "Spinach", "Lettuce", "Cabbage", "Cucumber", "Bell Pepper", "Zucchini", "Eggplant", "Radish", "Green Beans", "Peas", "Asparagus", "Sweet Potato", "Yam", "Garlic", "Ginger", "Corn", "Mushroom", "Celery", "Artichoke", "Brussels Sprouts", "Kale", "Mustard Greens", "Turnip", "Beetroot", "Okra", "Chili Pepper", "Lemon", "Lime", "Avocado", "Pumpkin", "Squash", "Leek", "Scallion", "Shallot", "Parsnip", "Rutabaga", "Collard Greens", "Endive", "Radicchio", "Bok Choy", "Kohlrabi", "Cassava", "Plantain", "Taro"],
+      animals: ["Lion","Tiger","Elephant","Leopard","Jaguar","Cheetah","Puma","Wolf","Fox","Coyote","Bear","Zebra","Giraffe","Hippopotamus","Rhinoceros","Deer","Elk","Moose","Antelope","Gazelle","Sheep","Goat","Pig","Horse","Donkey","Camel","Llama","Alpaca","Dog","Cat","Rabbit","Squirrel","Monkey","Chimpanzee","Gorilla","Orangutan","Beaver","Otter","Seal","Whale","Dolphin","Shark","Crocodile","Alligator","Lizard","Snake","Frog","Toad","Turtle","Tortoise"],
+      birds: ["Eagle","Hawk","Falcon","Owl","Sparrow","Robin","Bluebird","Cardinal","Finch","Canary","Pigeon","Dove","Crow","Raven","Jay","Magpie","Swallow","Swift","Hummingbird","Woodpecker","Pelican","Seagull","Albatross","Penguin","Ostrich","Emu","Cassowary","Rhea","Kiwi","Heron","Egret","Crane","Stork","Ibis","Flamingo","Duck","Goose","Swan","Turkey","Chicken","Pheasant","Quail","Partridge","Parrot","Macaw","Cockatoo","Toucan","Kingfisher","Wren","Thrush"],
+      flowers: ["Rose","Tulip","Sunflower","Daisy","Lily","Orchid","Carnation","Poppy","Iris","Lotus","Daffodil","Hyacinth","Peony","Snapdragon","Marigold","Lavender","Violet","Pansy","Geranium","Petunia","Zinnia","Begonia","Dahlia","Gladiolus","Chrysanthemum","Aster","Cosmos","Forget-Me-Not","Lilac","Magnolia","Jasmine","Hibiscus","Buttercup","Bluebell","Anemone","Calla Lily","Freesia","Gardenia","Heather","Impatiens","Lantana","Nasturtium","Primrose","Salvia","Sweet Pea","Verbena","Yarrow","Amaryllis","Camellia","Foxglove"],
+      places: ["Mumbai", "Delhi", "Kolkata", "Chennai", "Bengaluru", "Hyderabad", "Ahmedabad", "Pune", "Jaipur", "Lucknow", "Tokyo", "New York City", "London", "Paris", "Beijing", "Shanghai", "Cairo", "Lagos", "Mexico City", "Sao Paulo", "Moscow", "Istanbul", "Karachi", "Dhaka", "Buenos Aires", "Sydney", "Johannesburg", "Los Angeles", "Chicago", "Toronto", "Rio de Janeiro", "Berlin", "Madrid", "Rome", "Bangkok", "Singapore", "Kuala Lumpur", "Hong Kong", "Seoul", "Osaka", "Dubai", "Amsterdam", "Stockholm", "Zurich", "Melbourne", "Montreal", "Vancouver", "Cape Town", "Nairobi", "Riyadh"],
+      people: ["Aarav", "Priya", "Rahul", "Sneha", "Vikram", "Anjali", "Ethan", "Olivia", "Noah", "Sophia", "Muhammad", "Fatima", "Kenji", "Sakura", "Mateo", "Isabella", "Alexander", "Mia", "William", "Ava", "Devon", "Chloe", "Samuel", "Lily", "Joseph", "Grace", "Daniel", "Victoria", "Benjamin", "Charlotte", "Aryan", "Siya", "Rohan", "Diya", "Kian", "Aaliyah", "Leo", "Emily", "Lucas", "Harper", "Aditya", "Ananya", "Neil", "Hazel", "Owen", "Ella", "Caleb", "Scarlett", "Isaac", "Madison"],
+      countries: ["India", "China", "United States", "Brazil", "Russia", "Canada", "Australia", "Argentina", "Kazakhstan", "Algeria", "Democratic Republic of the Congo", "Saudi Arabia", "Mexico", "Indonesia", "Sudan", "Libya", "Iran", "Mongolia", "Peru", "Chad", "Niger", "Angola", "Mali", "South Africa", "Colombia", "Ethiopia", "Bolivia", "Mauritania", "Egypt", "Tanzania", "Nigeria", "Venezuela", "Pakistan", "Namibia", "Mozambique", "Turkey", "Chile", "Zambia", "Myanmar", "Afghanistan", "South Sudan", "France", "Spain", "Ukraine", "Thailand", "Somalia", "Central African Republic", "Madagascar", "Botswana", "Kenya"]
+    };
+
+    let gameWords = [];
+    let currentIndex = 0;
+
+    function getRandomWordList() {
+      const allWords = [];
+      for (const category in words) {
+        for (const word of words[category]) {
+          allWords.push({ word, category });
+        }
+      }
+      return allWords.sort(() => 0.5 - Math.random());
+    }
+
+    function startGame() {
+      gameWords = getRandomWordList();
+      currentIndex = 0;
+      showWord();
+      const feedback = document.getElementById("feedback");
+      feedback.textContent = "";
+      feedback.classList.remove('show');
+    }
+
+    function showWord() {
+      if (currentIndex >= 0 && currentIndex < gameWords.length) {
+        const currentWord = gameWords[currentIndex];
+        document.getElementById("wordDisplay").textContent = currentWord.word;
+      }
+    }
+
+    function checkAnswer(selectedCategory) {
+      if (gameWords.length === 0) return; // Prevent checking before game starts
+      const correctCategory = gameWords[currentIndex].category;
+      const feedback = document.getElementById("feedback");
+      
+      feedback.classList.remove('show');
+
+      setTimeout(() => {
+        if (selectedCategory === correctCategory) {
+          feedback.textContent = "Correct!";
+          feedback.style.color = "var(--correct-color)";
+        } else {
+          feedback.textContent = "Wrong! Correct category: " + correctCategory;
+          feedback.style.color = "var(--wrong-color)";
+        }
+        feedback.classList.add('show');
+      }, 100);
+    }
+
+    function showNext() {
+      if (gameWords.length > 0 && currentIndex < gameWords.length - 1) {
+        currentIndex++;
+        showWord();
+        const feedback = document.getElementById("feedback");
+        feedback.textContent = "";
+        feedback.classList.remove('show');
+      }
+    }
+
+    function showPrevious() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        showWord();
+        const feedback = document.getElementById("feedback");
+        feedback.textContent = "";
+        feedback.classList.remove('show');
+      }
+    }
+  </script>
+</body>
+</html>

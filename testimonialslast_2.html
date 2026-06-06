@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TESTIMONIALS BY STUDENTS</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    video.bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+    }
+
+    h1 {
+      text-align: center;
+      color: white;
+      margin-top: 20px;
+      z-index: 1;
+    }
+
+    .testimonial-form, .testimonial-section {
+      background: transparent;
+      color: white;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 800px;
+      z-index: 1;
+      position: relative;
+    }
+
+    .testimonial-form input,
+    .testimonial-form textarea,
+    .testimonial-form button,
+    .testimonial-form label {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .testimonial-form input,
+    .testimonial-form textarea {
+      background: rgba(255, 255, 255, 0.8);
+      color: black;
+    }
+
+    .testimonial-form button {
+      background: #28a745;
+      color: white;
+      cursor: pointer;
+    }
+
+    .testimonial-form button:hover {
+      background: #218838;
+    }
+
+    .testimonial {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+      padding: 10px 0;
+    }
+
+    .testimonial img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-right: 20px;
+      object-fit: cover;
+    }
+
+    .testimonial-content {
+      flex-grow: 1;
+    }
+
+    .stars {
+      color: gold;
+    }
+
+    .navigation-buttons {
+      text-align: center;
+      margin: 20px 0;
+      z-index: 1;
+      position: relative;
+    }
+
+    .arrow-button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      margin: 0 10px;
+      border: none;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .arrow-button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <video class="bg-video" autoplay muted loop>
+    <source src="media/video4.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="overlay"></div>
+
+  <h1>TESTIMONIALS BY STUDENTS</h1>
+
+  <div class="testimonial-form">
+    <h2>Submit Your Testimonial</h2>
+    <input type="text" id="fullName" placeholder="Full Name">
+    <input type="text" id="mobile" placeholder="Mobile Number">
+    <input type="email" id="email" placeholder="Email Address">
+    <textarea id="message" rows="4" placeholder="Your message..."></textarea>
+    <input type="file" id="photo" accept="image/jpeg, image/png">
+    <label>Rate your trainer (1-5): </label>
+    <input type="number" id="rating" min="1" max="5">
+    <button onclick="submitTestimonial()">Submit</button>
+  </div>
+
+  <div class="testimonial-section" id="testimonialSection">
+    <!-- Testimonials will appear here -->
+  </div>
+
+  <div class="navigation-buttons">
+    <button class="arrow-button" onclick="previousPage()">&#8592;</button>
+    <button class="arrow-button" onclick="nextPage()">&#8594;</button>
+  </div>
+
+  <script>
+    let testimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
+    let currentPage = 0;
+
+    function saveToLocalStorage() {
+      localStorage.setItem('testimonials', JSON.stringify(testimonials));
+    }
+
+    function renderTestimonials() {
+      const container = document.getElementById('testimonialSection');
+      container.innerHTML = '';
+      const start = currentPage * 5;
+      const end = start + 5;
+      const pageTestimonials = testimonials.slice(start, end);
+
+      for (const testimonial of pageTestimonials) {
+        const div = document.createElement('div');
+        div.className = 'testimonial';
+        div.innerHTML = `
+          <img src="${testimonial.photo}" alt="Photo">
+          <div class="testimonial-content">
+            <strong>${testimonial.name}</strong><br>
+            <span class="stars">${'★'.repeat(testimonial.rating)}${'☆'.repeat(5 - testimonial.rating)}</span><br>
+            <p>${testimonial.message}</p>
+          </div>
+        `;
+        container.appendChild(div);
+      }
+    }
+
+    function submitTestimonial() {
+      const name = document.getElementById('fullName').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const rating = parseInt(document.getElementById('rating').value) || 5;
+      const photoInput = document.getElementById('photo');
+      const file = photoInput.files[0];
+
+      if (!name || !message || !file) {
+        alert("Please fill all required fields and upload a photo.");
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        testimonials.unshift({
+          name: name,
+          message: message,
+          rating: rating,
+          photo: e.target.result
+        });
+
+        saveToLocalStorage();
+        currentPage = 0;
+        renderTestimonials();
+      };
+      reader.readAsDataURL(file);
+
+      // Clear form fields
+      document.getElementById('fullName').value = '';
+      document.getElementById('mobile').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('message').value = '';
+      document.getElementById('rating').value = '';
+      document.getElementById('photo').value = '';
+    }
+
+    function nextPage() {
+      if ((currentPage + 1) * 5 < testimonials.length) {
+        currentPage++;
+        renderTestimonials();
+      }
+    }
+
+    function previousPage() {
+      if (currentPage > 0) {
+        currentPage--;
+        renderTestimonials();
+      }
+    }
+
+    // Initial render
+    renderTestimonials();
+  </script>
+</body>
+</html>

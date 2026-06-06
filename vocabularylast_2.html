@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vocabulary Matching Game</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 30px;
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #333333;
+      margin-bottom: 5px;
+    }
+
+    p {
+      font-size: 18px;
+      color: #666666;
+      margin-bottom: 40px;
+    }
+
+    #wordDisplay {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      color: #000000;
+    }
+
+    #feedback {
+      font-size: 22px;
+      color: #000000;
+      margin-top: 20px;
+      height: 30px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 60px;
+      margin-bottom: 20px;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .dashboard-button {
+      background: linear-gradient(to bottom, #333333, #808080);
+      color: white;
+      padding: 15px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 20px;
+      box-shadow:
+        inset 0 -3px 8px rgba(255, 255, 255, 0.4),
+        0 6px 15px rgba(0, 0, 0, 0.6);
+      width: 200px;
+      height: 60px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .dashboard-button:hover {
+      box-shadow:
+        inset 0 -3px 8px rgba(255, 255, 255, 0.6),
+        0 8px 20px rgba(0, 0, 0, 0.8);
+      transform: translateY(-2px);
+    }
+
+    .start-container {
+      margin-top: 30px;
+    }
+
+    .nav-buttons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .nav-button {
+      font-size: 24px;
+      padding: 10px 20px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      background-color: #444;
+      color: white;
+      transition: 0.3s;
+    }
+
+    .nav-button:hover {
+      background-color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h1>Vocabulary Matching Game</h1>
+  <p>Select the correct category for the word shown</p>
+
+  <div id="wordDisplay">Click Start Game</div>
+
+  <div class="container">
+    <div class="column">
+      <button class="dashboard-button" onclick="checkAnswer('fruits')">Fruits</button>
+      <button class="dashboard-button" onclick="checkAnswer('vegetables')">Vegetables</button>
+      <button class="dashboard-button" onclick="checkAnswer('animals')">Animals</button>
+      <button class="dashboard-button" onclick="checkAnswer('birds')">Birds</button>
+    </div>
+    <div class="column">
+      <button class="dashboard-button" onclick="checkAnswer('places')">Places</button>
+      <button class="dashboard-button" onclick="checkAnswer('countries')">Countries</button>
+      <button class="dashboard-button" onclick="checkAnswer('people')">People</button>
+      <button class="dashboard-button" onclick="checkAnswer('flowers')">Flowers</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <button class="dashboard-button" onclick="showPrevious()">Previous</button>
+    <button class="dashboard-button" onclick="showNext()">Next</button>
+  </div>
+
+  <div class="start-container">
+    <button class="dashboard-button" onclick="startGame()">Start Game</button>
+  </div>
+
+  <div id="feedback"></div>
+
+  <script>
+    const words = {
+      fruits: ["Apple", "Banana", "Orange", "Mango", "Strawberry", "Blueberry", "Raspberry", "Grapes", "Watermelon", "Pineapple", "Kiwi", "Peach", "Pear", "Plum", "Cherry", "Lemon", "Lime", "Avocado", "Pomegranate", "Papaya", "Guava", "Coconut", "Fig", "Date", "Apricot", "Cranberry", "Blackberry", "Melon", "Grapefruit", "Tangerine", "Lychee", "Passion Fruit", "Dragon Fruit", "Star Fruit", "Fig", "Gooseberry", "Elderberry", "Boysenberry", "Cantaloupe", "Honeydew", "Nectarine", "Persimmon", "Quince", "Ugli Fruit", "Yuzu", "Salak", "Rambutan", "Longan", "Mangosteen", "Durian"],
+      vegetables: ["Potato", "Tomato", "Onion", "Carrot", "Broccoli", "Cauliflower", "Spinach", "Lettuce", "Cabbage", "Cucumber", "Bell Pepper", "Zucchini", "Eggplant", "Radish", "Green Beans", "Peas", "Asparagus", "Sweet Potato", "Yam", "Garlic", "Ginger", "Corn", "Mushroom", "Celery", "Artichoke", "Brussels Sprouts", "Kale", "Mustard Greens", "Turnip", "Beetroot", "Okra", "Chili Pepper", "Lemon", "Lime", "Avocado", "Pumpkin", "Squash", "Leek", "Scallion", "Shallot", "Parsnip", "Rutabaga", "Collard Greens", "Endive", "Radicchio", "Bok Choy", "Kohlrabi", "Cassava", "Plantain", "Taro"],
+      animals: ["Lion","Tiger","Elephant","Leopard","Jaguar","Cheetah","Puma","Wolf","Fox","Coyote","Bear","Zebra","Giraffe","Hippopotamus","Rhinoceros","Deer","Elk","Moose","Antelope","Gazelle","Sheep","Goat","Pig","Horse","Donkey","Camel","Llama","Alpaca","Dog","Cat","Rabbit","Squirrel","Monkey","Chimpanzee","Gorilla","Orangutan","Beaver","Otter","Seal","Whale","Dolphin","Shark","Crocodile","Alligator","Lizard","Snake","Frog","Toad","Turtle","Tortoise"],
+      birds: ["Eagle","Hawk","Falcon","Owl","Sparrow","Robin","Bluebird","Cardinal","Finch","Canary","Pigeon","Dove","Crow","Raven","Jay","Magpie","Swallow","Swift","Hummingbird","Woodpecker","Pelican","Seagull","Albatross","Penguin","Ostrich","Emu","Cassowary","Rhea","Kiwi","Heron","Egret","Crane","Stork","Ibis","Flamingo","Duck","Goose","Swan","Turkey","Chicken","Pheasant","Quail","Partridge","Parrot","Macaw","Cockatoo","Toucan","Kingfisher","Wren","Thrush"],
+      flowers: ["Rose","Tulip","Sunflower","Daisy","Lily","Orchid","Carnation","Poppy","Iris","Lotus","Daffodil","Hyacinth","Peony","Snapdragon","Marigold","Lavender","Violet","Pansy","Geranium","Petunia","Zinnia","Begonia","Dahlia","Gladiolus","Chrysanthemum","Aster","Cosmos","Forget-Me-Not","Lilac","Magnolia","Jasmine","Hibiscus","Buttercup","Bluebell","Anemone","Calla Lily","Freesia","Gardenia","Heather","Impatiens","Lantana","Nasturtium","Primrose","Salvia","Sweet Pea","Verbena","Yarrow","Amaryllis","Camellia","Foxglove"],
+places: ["Mumbai", "Delhi", "Kolkata", "Chennai", "Bengaluru", "Hyderabad", "Ahmedabad", "Pune", "Jaipur", "Lucknow", "Tokyo", "New York City", "London", "Paris", "Beijing", "Shanghai", "Cairo", "Lagos", "Mexico City", "Sao Paulo", "Moscow", "Istanbul", "Karachi", "Dhaka", "Buenos Aires", "Sydney", "Johannesburg", "Los Angeles", "Chicago", "Toronto", "Rio de Janeiro", "Berlin", "Madrid", "Rome", "Bangkok", "Singapore", "Kuala Lumpur", "Hong Kong", "Seoul", "Osaka", "Dubai", "Amsterdam", "Stockholm", "Zurich", "Melbourne", "Montreal", "Vancouver", "Cape Town", "Nairobi", "Riyadh"],
+people: ["Aarav", "Priya", "Rahul", "Sneha", "Vikram", "Anjali", "Ethan", "Olivia", "Noah", "Sophia", "Muhammad", "Fatima", "Kenji", "Sakura", "Mateo", "Isabella", "Alexander", "Mia", "William", "Ava", "Devon", "Chloe", "Samuel", "Lily", "Joseph", "Grace", "Daniel", "Victoria", "Benjamin", "Charlotte", "Aryan", "Siya", "Rohan", "Diya", "Kian", "Aaliyah", "Leo", "Emily", "Lucas", "Harper", "Aditya", "Ananya", "Neil", "Hazel", "Owen", "Ella", "Caleb", "Scarlett", "Isaac", "Madison"],
+countries: ["India", "China", "United States", "Brazil", "Russia", "Canada", "Australia", "Argentina", "Kazakhstan", "Algeria", "Democratic Republic of the Congo", "Saudi Arabia", "Mexico", "Indonesia", "Sudan", "Libya", "Iran", "Mongolia", "Peru", "Chad", "Niger", "Angola", "Mali", "South Africa", "Colombia", "Ethiopia", "Bolivia", "Mauritania", "Egypt", "Tanzania", "Nigeria", "Venezuela", "Pakistan", "Namibia", "Mozambique", "Turkey", "Chile", "Zambia", "Myanmar", "Afghanistan", "South Sudan", "France", "Spain", "Ukraine", "Thailand", "Somalia", "Central African Republic", "Madagascar", "Botswana", "Kenya"]
+    };
+
+    let gameWords = [];
+    let currentIndex = 0;
+
+    function getRandomWordList() {
+      const allWords = [];
+      for (const category in words) {
+        for (const word of words[category]) {
+          allWords.push({ word, category });
+        }
+      }
+      return allWords.sort(() => 0.5 - Math.random());
+    }
+
+    function startGame() {
+      gameWords = getRandomWordList();
+      currentIndex = 0;
+      showWord();
+      document.getElementById("feedback").textContent = "";
+    }
+
+    function showWord() {
+      if (currentIndex >= 0 && currentIndex < gameWords.length) {
+        const currentWord = gameWords[currentIndex];
+        document.getElementById("wordDisplay").textContent = currentWord.word;
+      }
+    }
+
+    function checkAnswer(selectedCategory) {
+      const correctCategory = gameWords[currentIndex].category;
+      const feedback = document.getElementById("feedback");
+      if (selectedCategory === correctCategory) {
+        feedback.textContent = "Correct!";
+        feedback.style.color = "green";
+      } else {
+        feedback.textContent = "Wrong! Correct category: " + correctCategory;
+        feedback.style.color = "red";
+      }
+    }
+
+    function showNext() {
+      if (currentIndex < gameWords.length - 1) {
+        currentIndex++;
+        showWord();
+        document.getElementById("feedback").textContent = "";
+      }
+    }
+
+    function showPrevious() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        showWord();
+        document.getElementById("feedback").textContent = "";
+      }
+    }
+  </script>
+</body>
+</html>
