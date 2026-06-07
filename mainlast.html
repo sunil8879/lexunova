@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="keys.js"></script>
+<script src="keys.js?v=1"></script>
   <title>THE AI PLATFORM</title>
   <style>
     body {
@@ -115,7 +115,7 @@ const mwKey = MY_KEYS.merriam;
       if (cleanQuery.startsWith("define ")) {
         const word = cleanQuery.replace("define ", "");
         try {
-          const res = await fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=${merriamKey}`);
+          const res = await fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=${mwKey}`);
           const data = await res.json();
           if (data && data[0] && data[0].shortdef) {
             return `Definition of ${word}: ${data[0].shortdef.join(", ")}`;
