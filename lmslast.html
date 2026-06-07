@@ -135,57 +135,34 @@
     <div id="message" class="message hidden"></div>
   </div>
 
-  <script>
-    // Display welcome message
+<script>
+    // 1. Display welcome message
     const studentName = localStorage.getItem("userName");
     const welcome = document.getElementById("welcome");
     if (studentName) {
       welcome.textContent = "Welcome " + studentName;
     }
 
-    // Logout logic
+    // 2. Logout logic
     document.getElementById("logout-button").addEventListener("click", () => {
-      const name = localStorage.getItem("userName") || "student";
-      alert("Bye Bye " + name);
+      alert("Bye Bye!");
       localStorage.removeItem("userName");
       window.location.href = "loginlast.html";
     });
 
-    const API_KEY = 'AIzaSyAAJFDgr6-p9PzS22AcuJTC9twOgwxdJBc';
-    const CLIENT_SECRET = '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';
-    const REDIRECT_URL = 'https://classroom.google.com';
-
-    function authenticateGoogleAPI() {
-      return new Promise((resolve, reject) => {
-        if (API_KEY && CLIENT_SECRET) {
-          resolve("Authentication successful!");
-        } else {
-          reject("Authentication failed. Please check API keys.");
-        }
-      });
-    }
-
+    // 3. Simple Redirect (NO API KEYS NEEDED)
     document.getElementById('dashboard-button').addEventListener('click', () => {
       const messageElement = document.getElementById('message');
-      messageElement.classList.add('hidden');
+      messageElement.classList.remove('hidden');
+      messageElement.classList.add('success');
+      messageElement.textContent = "Redirecting to Classroom...";
 
-      authenticateGoogleAPI()
-        .then((message) => {
-          messageElement.classList.remove('hidden');
-          messageElement.classList.add('success');
-          messageElement.textContent = message;
-
-          setTimeout(() => {
-            window.location.href = REDIRECT_URL;
-          }, 2000);
-        })
-        .catch((error) => {
-          messageElement.classList.remove('hidden');
-          messageElement.classList.add('error');
-          messageElement.textContent = error;
-        });
+      // Simply send the user to the URL
+      setTimeout(() => {
+        window.location.href = 'https://classroom.google.com';
+      }, 1000);
     });
-  </script>
+</script>
 
 </body>
 </html>

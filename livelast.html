@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-<script src="keys.js"></script>
+
   <title>AI Trainer - Fullscreen Background</title>
 <style>
     body {
@@ -231,25 +231,44 @@
       speechSynthesis.speak(utterance);
     }
 async function getAIResponse(userInput) {
-  const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      // Look here: We are using the variable from keys.js
-      "Authorization": "Bearer " + MY_KEYS.openRouter, 
-      "HTTP-Referer": "https://wellspokn.com", // Use your real domain!
-      "X-Title": "Live AI Trainer",
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      model: "openai/gpt-3.5-turbo",
-      messages: [{ role: "user", content: userInput }]
-    })
-  });
-
-      const data = await response.json();
-      return data.choices[0].message.content;
+    // 1. Get the key from browser storage or ask the user
+    let apiKey = localStorage.getItem('wellspokn_ai_key');
+    if (!apiKey) {
+        apiKey = prompt("Enter your OpenRouter API Key:");
+        if (apiKey) localStorage.setItem('wellspokn_ai_key', apiKey);
+        else return "API Key required.";
     }
 
+    // 2. Fetch the AI response
+    try {
+        const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+            method: "POST",
+            headers: {
+                "Authorization": "Bearer " + apiKey, 
+                "HTTP-Referer": "https://wellspokn.web.app", // Use your Firebase URL
+                "X-Title": "Live AI Trainer",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                model: "openai/gpt-3.5-turbo",
+                messages: [{ role: "user", content: userInput }]
+            })
+        });
+
+        const data = await response.json();
+
+        // 3. Robust error handling
+        if (data.error) {
+            if (data.error.code === 401) localStorage.removeItem('wellspokn_ai_key');
+            return "AI Error: " + data.error.message;
+        }
+        
+        return data.choices[0].message.content;
+    } catch (error) {
+        console.error("Fetch failed:", error);
+        return "Connection Error.";
+    }
+}
     // Stop button functionality:
     function stopConversation() {
       const status = document.getElementById('status');
